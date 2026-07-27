@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Sora", "Avenir Next", "Segoe UI", sans-serif;
+  --font-sans: "Inter", "Avenir Next", "Segoe UI", sans-serif;
+
+  --color-ink-50: #f4f6fb;
+  --color-ink-100: #e6eaf4;
+  --color-ink-200: #c9d2e5;
+  --color-ink-300: #a3b1cd;
+  --color-ink-400: #7688ab;
+  --color-ink-500: #566a92;
+  --color-ink-600: #435377;
+  --color-ink-700: #374361;
+  --color-ink-800: #262e44;
+  --color-ink-900: #1a2033;
+  --color-ink-950: #0f1322;
+
+  --color-brand-50: #eef4ff;
+  --color-brand-100: #dae6ff;
+  --color-brand-200: #bdd3ff;
+  --color-brand-300: #90b6ff;
+  --color-brand-400: #5b8dff;
+  --color-brand-500: #3564fb;
+  --color-brand-600: #1f42f0;
+  --color-brand-700: #172fdd;
+  --color-brand-800: #1928b3;
+  --color-brand-900: #1a288d;
+
+  --animate-pop-in: pop-in 0.35s cubic-bezier(0.2, 0.9, 0.3, 1.2) both;
+  --animate-fade-up: fade-up 0.4s ease-out both;
+
+  @keyframes pop-in {
+    from { opacity: 0; transform: scale(0.92); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+html {
+  font-family: var(--font-sans);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+.flip-card {
+  perspective: 1400px;
+}
+.flip-card-inner {
+  transition: transform 0.55s cubic-bezier(0.3, 0.8, 0.3, 1);
+  transform-style: preserve-3d;
+  position: relative;
+}
+.flip-card.flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+.flip-face {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.flip-back {
+  transform: rotateY(180deg);
+  position: absolute;
+  inset: 0;
+}
