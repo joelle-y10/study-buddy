@@ -2,7 +2,7 @@
 
 A creative, aesthetic study web app for Canadian high schoolers, built on each **province's real curriculum**. Flashcards, adaptive quizzes, timed unit tests, full final-exam mode, a note-taking academy, a study calendar, and rich progress tracking — all in the browser, no account needed.
 
-**Live site:** https://joelle-y10.github.io/studybuddy/
+**Live site:** https://joelle-y10.github.io/study-buddy/
 
 ## Features
 
@@ -35,7 +35,7 @@ npm run preview  # preview the production build
 
 ## Deploy
 
-Pushing to `main` triggers the GitHub Pages workflow in `.github/workflows/deploy.yml`. The Vite `base` is set to `/studybuddy/` for project-pages hosting.
+Pushing to `main` triggers the GitHub Pages workflow in `.github/workflows/deploy.yml`. The Vite `base` is set to `/study-buddy/` for project-pages hosting.
 
 ## Adding curriculum content
 
