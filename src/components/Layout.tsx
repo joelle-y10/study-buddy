@@ -1,7 +1,8 @@
 import { NavLink, Outlet, useNavigate } from 'react-router-dom'
 import { useApp } from '../store/AppContext'
 import { coursesFor, curriculumProvince } from '../data/catalog'
-import { SUBJECTS, provinceName, isSupported } from '../data/meta'
+import { PROVINCES, SUBJECTS, provinceName, isSupported } from '../data/meta'
+import type { Grade, ProvinceCode } from '../types'
 
 const NAV = [
   { to: '/', label: 'Dashboard', emoji: '🏠' },
@@ -94,9 +95,30 @@ export default function Layout() {
                 {provinceName(profile.province)} curriculum coming soon — showing {provinceName(curriculumProvince(profile.province))}
               </span>
             )}
-            <span className="rounded-full bg-brand-500/10 px-3 py-1 text-xs font-bold text-brand-600 dark:text-brand-300">
-              Grade {profile.grade} · {provinceName(profile.province)}
-            </span>
+            <select
+              value={profile.grade}
+              onChange={(e) => {
+                app.setProfile({ ...profile, grade: Number(e.target.value) as Grade })
+                app.setSelectedCourse(null)
+              }}
+              aria-label="Grade"
+              className="cursor-pointer rounded-full border-none bg-brand-500/10 px-3 py-1 text-xs font-bold text-brand-600 dark:text-brand-300"
+            >
+              {[10, 11, 12].map((g) => <option key={g} value={g}>Grade {g}</option>)}
+            </select>
+            <select
+              value={profile.province}
+              onChange={(e) => {
+                app.setProfile({ ...profile, province: e.target.value as ProvinceCode })
+                app.setSelectedCourse(null)
+              }}
+              aria-label="Province or territory"
+              className="max-w-36 cursor-pointer rounded-full border-none bg-brand-500/10 px-3 py-1 text-xs font-bold text-brand-600 dark:text-brand-300"
+            >
+              {PROVINCES.map((p) => (
+                <option key={p.code} value={p.code}>{p.name}</option>
+              ))}
+            </select>
             <button
               type="button"
               onClick={() => app.setTheme(app.theme === 'dark' ? 'light' : 'dark')}
