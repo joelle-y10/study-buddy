@@ -121,6 +121,13 @@ export function CourseDetailPage() {
                   <div className="mt-3 flex flex-wrap gap-2">
                     <button
                       type="button"
+                      onClick={() => navigate(`/learn?course=${course.id}&unit=${unit.id}`)}
+                      className="rounded-lg bg-emerald-500/10 px-3 py-1.5 text-xs font-bold text-emerald-600 hover:bg-emerald-500/20 dark:text-emerald-300"
+                    >
+                      📖 Learn
+                    </button>
+                    <button
+                      type="button"
                       onClick={() => navigate(`/flashcards?course=${course.id}&unit=${unit.id}`)}
                       className="rounded-lg bg-ink-100 px-3 py-1.5 text-xs font-bold text-ink-600 hover:bg-ink-200 dark:bg-ink-700 dark:text-ink-100"
                     >
