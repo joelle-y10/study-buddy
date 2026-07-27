@@ -1,0 +1,240 @@
+import type { Course } from '../../../types'
+
+/**
+ * Manitoba English Language Arts (20S), Grade 10, per Manitoba Education.
+ * Briefer supporting-province content: literary study, composition, media
+ * literacy, and language conventions.
+ */
+export const mbEla20s: Course = {
+  id: 'mb-ela20s',
+  province: 'MB',
+  grade: 10,
+  subject: 'ela',
+  name: 'English Language Arts 20S',
+  shortName: 'ELA 20S',
+  description:
+    'Manitoba Grade 10 English Language Arts. Develops reading, writing, speaking, and viewing across literary texts, composition, media, and language conventions.',
+  units: [
+    {
+      id: 'literary-study',
+      name: 'Literary Study',
+      description: 'Reading fiction and poetry: figurative language, theme, and point of view.',
+      outcomes: [
+        'Identify and interpret figurative language in texts',
+        'Determine the theme of a literary work',
+        'Analyze how point of view shapes a narrative',
+      ],
+      concepts: [
+        { id: 'figurative-language', name: 'Figurative language', keywords: ['metaphor', 'simile', 'personification', 'imagery', 'figurative'] },
+        { id: 'theme', name: 'Theme', keywords: ['theme', 'message', 'main idea', 'moral'] },
+        { id: 'point-of-view', name: 'Point of view', keywords: ['point of view', 'narrator', 'first person', 'third person', 'perspective'] },
+      ],
+      flashcards: [
+        { id: 'ls-f1', concept: 'figurative-language', front: 'What is a simile?', back: 'A comparison using “like” or “as”, e.g. “brave as a lion”.' },
+        { id: 'ls-f2', concept: 'figurative-language', front: 'What is a metaphor?', back: 'A direct comparison stating one thing IS another, without “like” or “as”.' },
+        { id: 'ls-f3', concept: 'figurative-language', front: 'What is personification?', back: 'Giving human qualities to something non-human, e.g. “the wind whispered”.' },
+        { id: 'ls-f4', concept: 'theme', front: 'What is theme?', back: 'The central message or insight about life a text conveys — not just the topic.' },
+        { id: 'ls-f5', concept: 'point-of-view', front: 'First-person point of view uses which pronouns?', back: '“I”, “me”, “we” — the narrator is a character in the story.' },
+        { id: 'ls-f6', concept: 'point-of-view', front: 'Third-person omniscient narrator', back: 'A narrator outside the story who knows the thoughts of all characters.' },
+      ],
+      questions: [
+        {
+          id: 'ls-q1', concept: 'figurative-language', difficulty: 1,
+          prompt: 'Which sentence contains a simile?',
+          options: ['The stars were diamonds.', 'Her smile was as bright as the sun.', 'The clock ticked angrily.', 'He ran quickly.'],
+          answer: 1,
+          explanation: 'A simile compares using “like” or “as”; “as bright as the sun” fits.',
+        },
+        {
+          id: 'ls-q2', concept: 'figurative-language', difficulty: 2,
+          prompt: '“The classroom was a zoo.” This is an example of:',
+          options: ['a simile', 'a metaphor', 'personification', 'alliteration'],
+          answer: 1,
+          explanation: 'It directly says the classroom IS a zoo, with no “like” or “as” — a metaphor.',
+        },
+        {
+          id: 'ls-q3', concept: 'figurative-language', difficulty: 2,
+          prompt: '“The old floorboards groaned under our feet.” Which device is used?',
+          options: ['simile', 'hyperbole', 'personification', 'metaphor'],
+          answer: 2,
+          explanation: 'Floorboards cannot literally groan; giving them a human action is personification.',
+        },
+        {
+          id: 'ls-q4', concept: 'theme', difficulty: 2,
+          prompt: 'Which statement is a theme rather than a topic?',
+          options: ['Friendship', 'War', 'True friendship requires sacrifice.', 'A dog'],
+          answer: 2,
+          explanation: 'A theme is a full insight about life; the others are just one-word topics.',
+        },
+        {
+          id: 'ls-q5', concept: 'theme', difficulty: 3,
+          prompt: 'A story shows a character who lies repeatedly and loses everyone’s trust. The likely theme is:',
+          options: ['Lying is fun.', 'Dishonesty destroys relationships.', 'Everyone lies.', 'Trust is impossible.'],
+          answer: 1,
+          explanation: 'The consequences shown point to the message that dishonesty erodes trust.',
+        },
+        {
+          id: 'ls-q6', concept: 'point-of-view', difficulty: 1,
+          prompt: 'A story told using “I walked to school” is written in:',
+          options: ['first person', 'second person', 'third person', 'no point of view'],
+          answer: 0,
+          explanation: 'The pronoun “I” signals a first-person narrator.',
+        },
+        {
+          id: 'ls-q7', concept: 'point-of-view', difficulty: 3,
+          prompt: 'A narrator describes the private thoughts of every character in the story. This is:',
+          options: ['first person', 'third-person limited', 'third-person omniscient', 'second person'],
+          answer: 2,
+          explanation: 'Knowing all characters’ thoughts is the mark of a third-person omniscient narrator.',
+        },
+      ],
+    },
+    {
+      id: 'composition',
+      name: 'Composition & Writing',
+      description: 'Structuring essays and paragraphs: thesis, evidence, and organization.',
+      outcomes: [
+        'Write a clear, arguable thesis statement',
+        'Support ideas with relevant evidence and explanation',
+        'Organize writing with coherent structure and transitions',
+      ],
+      concepts: [
+        { id: 'thesis', name: 'Thesis statement', keywords: ['thesis', 'claim', 'argument', 'main point'] },
+        { id: 'evidence', name: 'Evidence & support', keywords: ['evidence', 'quotation', 'support', 'example', 'proof'] },
+        { id: 'structure', name: 'Structure & organization', keywords: ['paragraph', 'topic sentence', 'transition', 'introduction', 'conclusion'] },
+      ],
+      flashcards: [
+        { id: 'co-f1', concept: 'thesis', front: 'What is a thesis statement?', back: 'A single sentence stating the main argument or claim of an essay.' },
+        { id: 'co-f2', concept: 'thesis', front: 'Where does the thesis usually appear?', back: 'At the end of the introduction paragraph.' },
+        { id: 'co-f3', concept: 'evidence', front: 'What follows a quotation in a body paragraph?', back: 'Analysis — an explanation of how the evidence supports your point.' },
+        { id: 'co-f4', concept: 'structure', front: 'What is a topic sentence?', back: 'The first sentence of a body paragraph stating its main idea.' },
+        { id: 'co-f5', concept: 'structure', front: 'Purpose of transition words', back: 'They connect ideas and guide the reader (e.g. “however”, “therefore”, “in addition”).' },
+      ],
+      questions: [
+        {
+          id: 'co-q1', concept: 'thesis', difficulty: 1,
+          prompt: 'Which is the best thesis statement?',
+          options: ['This essay is about school uniforms.', 'School uniforms.', 'School uniforms should be required because they reduce distraction and promote equality.', 'Do you like school uniforms?'],
+          answer: 2,
+          explanation: 'A thesis makes an arguable claim and previews reasons; the others announce or ask.',
+        },
+        {
+          id: 'co-q2', concept: 'thesis', difficulty: 2,
+          prompt: 'A strong thesis must be:',
+          options: ['a question', 'a well-known fact', 'arguable and specific', 'as long as possible'],
+          answer: 2,
+          explanation: 'A thesis takes a debatable, specific position that the essay can defend.',
+        },
+        {
+          id: 'co-q3', concept: 'evidence', difficulty: 2,
+          prompt: 'After introducing a quotation as evidence, you should:',
+          options: ['start a new topic', 'explain how it supports your point', 'end the paragraph', 'repeat the quotation'],
+          answer: 1,
+          explanation: 'Evidence needs analysis linking it back to your argument.',
+        },
+        {
+          id: 'co-q4', concept: 'evidence', difficulty: 3,
+          prompt: 'Which is the strongest support for the claim “the novel critiques greed”?',
+          options: ['“I liked the book a lot.”', 'A quotation showing a greedy character’s downfall', 'The book is long.', 'The author is famous.'],
+          answer: 1,
+          explanation: 'Relevant textual evidence that shows greed leading to ruin directly supports the claim.',
+        },
+        {
+          id: 'co-q5', concept: 'structure', difficulty: 1,
+          prompt: 'The topic sentence of a body paragraph should:',
+          options: ['restate the whole essay', 'state that paragraph’s main idea', 'contain a quotation', 'be a question'],
+          answer: 1,
+          explanation: 'A topic sentence announces the single idea the paragraph will develop.',
+        },
+        {
+          id: 'co-q6', concept: 'structure', difficulty: 2,
+          prompt: 'Which word best signals a contrast between two ideas?',
+          options: ['furthermore', 'however', 'similarly', 'because'],
+          answer: 1,
+          explanation: '“However” signals contrast; the others add, compare, or give cause.',
+        },
+        {
+          id: 'co-q7', concept: 'structure', difficulty: 3,
+          prompt: 'The main job of a conclusion paragraph is to:',
+          options: ['introduce new evidence', 'restate the thesis and summarize the argument', 'ask the reader questions', 'list sources'],
+          answer: 1,
+          explanation: 'A conclusion reinforces the thesis and ties the argument together rather than adding new proof.',
+        },
+      ],
+    },
+    {
+      id: 'media-literacy',
+      name: 'Media & Critical Literacy',
+      description: 'Analyzing purpose, audience, and persuasive techniques in media texts.',
+      outcomes: [
+        'Identify the purpose and target audience of a media text',
+        'Recognize persuasive and rhetorical techniques',
+        'Evaluate bias and reliability of sources',
+      ],
+      concepts: [
+        { id: 'purpose-audience', name: 'Purpose & audience', keywords: ['purpose', 'audience', 'target', 'intent'] },
+        { id: 'persuasive-techniques', name: 'Persuasive techniques', keywords: ['ethos', 'pathos', 'logos', 'bandwagon', 'appeal', 'persuasion'] },
+        { id: 'bias-reliability', name: 'Bias & reliability', keywords: ['bias', 'reliable', 'source', 'credibility', 'fact', 'opinion'] },
+      ],
+      flashcards: [
+        { id: 'ml-f1', concept: 'purpose-audience', front: 'Three common purposes of a text', back: 'To inform, to persuade, or to entertain.' },
+        { id: 'ml-f2', concept: 'persuasive-techniques', front: 'What is pathos?', back: 'A persuasive appeal to the audience’s emotions.' },
+        { id: 'ml-f3', concept: 'persuasive-techniques', front: 'What is the bandwagon technique?', back: 'Urging you to do something because “everyone else is”.' },
+        { id: 'ml-f4', concept: 'persuasive-techniques', front: 'What is logos?', back: 'A persuasive appeal to logic, facts, and reasoning.' },
+        { id: 'ml-f5', concept: 'bias-reliability', front: 'Difference between fact and opinion', back: 'A fact can be verified; an opinion is a personal belief or judgment.' },
+        { id: 'ml-f6', concept: 'bias-reliability', front: 'What is bias in a source?', back: 'A one-sided slant that favours a particular view, often leaving out other perspectives.' },
+      ],
+      questions: [
+        {
+          id: 'ml-q1', concept: 'purpose-audience', difficulty: 1,
+          prompt: 'A cereal commercial with cartoon characters is mainly targeting:',
+          options: ['doctors', 'children', 'seniors', 'engineers'],
+          answer: 1,
+          explanation: 'Cartoon mascots and bright visuals aim at a young audience.',
+        },
+        {
+          id: 'ml-q2', concept: 'purpose-audience', difficulty: 2,
+          prompt: 'A public-service ad urging people to recycle mainly aims to:',
+          options: ['entertain', 'persuade', 'sell a product', 'confuse'],
+          answer: 1,
+          explanation: 'It tries to change behaviour, so its purpose is to persuade.',
+        },
+        {
+          id: 'ml-q3', concept: 'persuasive-techniques', difficulty: 2,
+          prompt: '“Join thousands of happy customers today!” uses which technique?',
+          options: ['logos', 'bandwagon', 'expert testimony', 'statistics'],
+          answer: 1,
+          explanation: 'It pressures you to follow the crowd — the bandwagon appeal.',
+        },
+        {
+          id: 'ml-q4', concept: 'persuasive-techniques', difficulty: 3,
+          prompt: 'An ad shows a sad child to make you donate. This appeal is:',
+          options: ['logos', 'ethos', 'pathos', 'kairos'],
+          answer: 2,
+          explanation: 'Stirring emotions to persuade is pathos.',
+        },
+        {
+          id: 'ml-q5', concept: 'persuasive-techniques', difficulty: 2,
+          prompt: 'Citing studies and statistics to convince readers is an appeal to:',
+          options: ['pathos', 'logos', 'bandwagon', 'humour'],
+          answer: 1,
+          explanation: 'Facts and reasoning are the logic-based appeal, logos.',
+        },
+        {
+          id: 'ml-q6', concept: 'bias-reliability', difficulty: 1,
+          prompt: 'Which is a statement of fact?',
+          options: ['This is the best phone ever.', 'The phone weighs 180 grams.', 'Everyone should buy it.', 'It looks amazing.'],
+          answer: 1,
+          explanation: 'A measurable weight can be verified, so it is a fact.',
+        },
+        {
+          id: 'ml-q7', concept: 'bias-reliability', difficulty: 3,
+          prompt: 'Which source is likely the MOST reliable for medical information?',
+          options: ['an anonymous forum post', 'a peer-reviewed health organization', 'a product’s own advertisement', 'a random social media comment'],
+          answer: 1,
+          explanation: 'A peer-reviewed, authoritative health source is checked by experts and least biased.',
+        },
+      ],
+    },
+  ],
+}

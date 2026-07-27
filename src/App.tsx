@@ -5,6 +5,7 @@ import Onboarding from './pages/Onboarding'
 import Dashboard from './pages/Dashboard'
 import { CoursesPage, CourseDetailPage } from './pages/CoursesPage'
 import FlashcardsPage from './pages/FlashcardsPage'
+import LearnPage from './pages/LearnPage'
 import SessionPage from './pages/SessionPage'
 import NotesPage from './pages/NotesPage'
 import CalendarPage from './pages/CalendarPage'
@@ -28,6 +29,7 @@ function Routed() {
         <Route path="/" element={<Dashboard />} />
         <Route path="/courses" element={<CoursesPage />} />
         <Route path="/courses/:courseId" element={<CourseDetailPage />} />
+        <Route path="/learn" element={<LearnPage />} />
         <Route path="/flashcards" element={<FlashcardsPage />} />
         <Route path="/session/:kind" element={<SessionPage />} />
         <Route path="/notes" element={<NotesPage />} />

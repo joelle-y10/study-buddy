@@ -8,6 +8,7 @@ import type { Grade, ProvinceCode } from '../types'
 const NAV = [
   { to: '/', label: 'Dashboard', emoji: '🏠' },
   { to: '/courses', label: 'Courses', emoji: '🎓' },
+  { to: '/learn', label: 'Learn', emoji: '🏛️' },
   { to: '/flashcards', label: 'Flashcards', emoji: '🃏' },
   { to: '/session/quiz', label: 'Quiz', emoji: '⚡' },
   { to: '/session/unit-test', label: 'Unit Test', emoji: '📝' },

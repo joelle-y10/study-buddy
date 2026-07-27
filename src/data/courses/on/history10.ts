@@ -1,0 +1,283 @@
+import type { Course } from '../../../types'
+
+/**
+ * Ontario CHC2D — Canadian History Since World War I, Grade 10 (Academic).
+ * Ontario Ministry of Education curriculum. Organized chronologically:
+ * 1914–1929, 1929–1945, 1945–1982, and 1982 to the present.
+ */
+export const onHistory10: Course = {
+  id: 'on-history10',
+  province: 'ON',
+  grade: 10,
+  subject: 'social',
+  name: 'Canadian History Since World War I (CHC2D)',
+  shortName: 'History CHC2D',
+  description:
+    'A survey of Canadian history from 1914 to the present, examining how war, economic change, social movements and constitutional developments shaped modern Canada.',
+  units: [
+    {
+      id: 'canada-1914-1929',
+      name: 'Canada, 1914–1929',
+      description: 'The First World War, the home front and conscription, and social change through the 1920s.',
+      outcomes: [
+        'Assess the significance of Canadian battles such as Vimy Ridge',
+        'Explain the causes and effects of the 1917 Conscription Crisis',
+        'Describe social and economic change in Canada during the 1920s',
+      ],
+      concepts: [
+        { id: 'ww1-battles', name: 'Canada in the First World War', keywords: ['vimy ridge', 'passchendaele', 'canadian corps', 'first world war', 'wwi'] },
+        { id: 'home-front-ww1', name: 'The home front & conscription', keywords: ['conscription', 'military service act', 'borden', 'home front', 'suffrage'] },
+        { id: 'roaring-twenties', name: 'The 1920s', keywords: ['roaring twenties', 'winnipeg general strike', 'group of seven', 'prosperity'] },
+      ],
+      flashcards: [
+        { id: 'h1-f1', concept: 'ww1-battles', front: 'Why is the Battle of Vimy Ridge significant to Canada?', back: 'In April 1917 all four divisions of the Canadian Corps fought together for the first time and captured the ridge — often seen as a symbol of emerging Canadian nationhood.' },
+        { id: 'h1-f2', concept: 'home-front-ww1', front: 'What was the 1917 Conscription Crisis?', back: 'Prime Minister Borden\u2019s Military Service Act forced men into the army, deeply dividing English and French Canada.' },
+        { id: 'h1-f3', concept: 'home-front-ww1', front: 'When did many Canadian women first gain the federal vote?', back: 'In 1918, many women won the right to vote in federal elections, partly in recognition of their wartime contributions.' },
+        { id: 'h1-f4', concept: 'roaring-twenties', front: 'What was the Winnipeg General Strike?', back: 'A large 1919 strike in which tens of thousands of workers walked out demanding better wages and the right to bargain collectively.' },
+        { id: 'h1-f5', concept: 'roaring-twenties', front: 'Who were the Group of Seven?', back: 'Canadian landscape painters of the 1920s who developed a distinctly Canadian style depicting the northern wilderness.' },
+      ],
+      questions: [
+        {
+          id: 'h1-q1', concept: 'ww1-battles', difficulty: 2,
+          prompt: 'The Battle of Vimy Ridge (1917) is often remembered because:',
+          options: ['It ended the war', 'All four Canadian divisions fought together for the first time', 'It was fought in Canada', 'Canada fought alone against Germany'],
+          answer: 1,
+          explanation: 'Vimy is seen as a nation-building moment: the Canadian Corps fought as one for the first time and succeeded.',
+        },
+        {
+          id: 'h1-q2', concept: 'ww1-battles', difficulty: 1,
+          prompt: 'The First World War ended in:',
+          options: ['1916', '1917', '1918', '1920'],
+          answer: 2,
+          explanation: 'The armistice ending WWI was signed on November 11, 1918.',
+        },
+        {
+          id: 'h1-q3', concept: 'home-front-ww1', difficulty: 2,
+          prompt: 'The 1917 law that forced Canadians into military service was the:',
+          options: ['War Measures Act', 'Military Service Act', 'Official Languages Act', 'Indian Act'],
+          answer: 1,
+          explanation: 'The Military Service Act (1917) introduced conscription and split French and English Canada.',
+        },
+        {
+          id: 'h1-q4', concept: 'home-front-ww1', difficulty: 2,
+          prompt: 'Conscription in 1917 was most strongly opposed in:',
+          options: ['Ontario', 'Quebec', 'the Prairies', 'British Columbia'],
+          answer: 1,
+          explanation: 'Many French Canadians in Quebec felt little tie to Britain\u2019s war and opposed forced service.',
+        },
+        {
+          id: 'h1-q5', concept: 'roaring-twenties', difficulty: 2,
+          prompt: 'The Winnipeg General Strike took place in:',
+          options: ['1911', '1919', '1929', '1939'],
+          answer: 1,
+          explanation: 'The strike occurred in 1919 amid postwar labour unrest.',
+        },
+        {
+          id: 'h1-q6', concept: 'roaring-twenties', difficulty: 1,
+          prompt: 'The Group of Seven were famous Canadian:',
+          options: ['Politicians', 'Landscape painters', 'Hockey players', 'Soldiers'],
+          answer: 1,
+          explanation: 'They were 1920s painters known for wilderness landscapes in a uniquely Canadian style.',
+        },
+      ],
+    },
+    {
+      id: 'canada-1929-1945',
+      name: 'Canada, 1929–1945',
+      description: 'The Great Depression, the Second World War, and the wartime home front.',
+      outcomes: [
+        'Explain the causes and impacts of the Great Depression in Canada',
+        'Describe Canada\u2019s role in major Second World War events',
+        'Assess wartime experiences on the home front, including internment',
+      ],
+      concepts: [
+        { id: 'great-depression', name: 'The Great Depression', keywords: ['great depression', 'stock market crash', 'unemployment', 'on-to-ottawa trek', 'dust bowl'] },
+        { id: 'ww2-canada', name: 'Canada in the Second World War', keywords: ['second world war', 'wwii', 'd-day', 'juno beach', 'dieppe'] },
+        { id: 'home-front-ww2', name: 'The wartime home front', keywords: ['internment', 'japanese canadians', 'rationing', 'war effort'] },
+      ],
+      flashcards: [
+        { id: 'h2-f1', concept: 'great-depression', front: 'What event marked the start of the Great Depression?', back: 'The stock market crash of October 1929, which wiped out savings and investment.' },
+        { id: 'h2-f2', concept: 'great-depression', front: 'What was the On-to-Ottawa Trek (1935)?', back: 'Unemployed men rode the rails toward Ottawa to protest harsh relief-camp conditions during the Depression.' },
+        { id: 'h2-f3', concept: 'ww2-canada', front: 'When did Canada enter the Second World War?', back: 'In September 1939, declaring war about a week after Britain to assert its independence.' },
+        { id: 'h2-f4', concept: 'ww2-canada', front: 'Which beach did Canadians assault on D-Day (June 6, 1944)?', back: 'Juno Beach, in the Allied invasion of Normandy.' },
+        { id: 'h2-f5', concept: 'home-front-ww2', front: 'What happened to Japanese Canadians in 1942?', back: 'They were forcibly removed from the west coast and interned; their property was seized and sold.' },
+      ],
+      questions: [
+        {
+          id: 'h2-q1', concept: 'great-depression', difficulty: 1,
+          prompt: 'The Great Depression in Canada began with the:',
+          options: ['Stock market crash of 1929', 'Start of WWII', 'Winnipeg General Strike', 'Conscription Crisis'],
+          answer: 0,
+          explanation: 'The October 1929 crash triggered years of economic collapse and mass unemployment.',
+        },
+        {
+          id: 'h2-q2', concept: 'great-depression', difficulty: 2,
+          prompt: 'The On-to-Ottawa Trek was a protest mainly by:',
+          options: ['Factory owners', 'Unemployed men from relief camps', 'Bankers', 'Soldiers returning from war'],
+          answer: 1,
+          explanation: 'In 1935 unemployed men left relief camps to protest their conditions to the government.',
+        },
+        {
+          id: 'h2-q3', concept: 'ww2-canada', difficulty: 1,
+          prompt: 'Canada declared war on Germany in the Second World War in:',
+          options: ['1929', '1939', '1944', '1945'],
+          answer: 1,
+          explanation: 'Canada declared war in September 1939, one week after Britain, showing its independence.',
+        },
+        {
+          id: 'h2-q4', concept: 'ww2-canada', difficulty: 2,
+          prompt: 'On D-Day, June 6, 1944, Canadian forces landed at:',
+          options: ['Omaha Beach', 'Sword Beach', 'Juno Beach', 'Gold Beach'],
+          answer: 2,
+          explanation: 'Canada was assigned Juno Beach during the Normandy invasion.',
+        },
+        {
+          id: 'h2-q5', concept: 'ww2-canada', difficulty: 3,
+          prompt: 'The 1942 Dieppe Raid is best described as:',
+          options: ['A quick, easy Canadian victory', 'A costly failure with heavy Canadian casualties', 'A naval battle in the Pacific', 'The end of the war'],
+          answer: 1,
+          explanation: 'The raid failed badly, but lessons learned helped plan the later D-Day landings.',
+        },
+        {
+          id: 'h2-q6', concept: 'home-front-ww2', difficulty: 2,
+          prompt: 'During WWII, the Canadian government interned about 22,000 people of which background?',
+          options: ['Italian Canadians', 'Japanese Canadians', 'German prisoners only', 'British immigrants'],
+          answer: 1,
+          explanation: 'Japanese Canadians were forcibly relocated and interned in 1942; Canada later apologized in 1988.',
+        },
+      ],
+    },
+    {
+      id: 'canada-1945-1982',
+      name: 'Canada, 1945–1982',
+      description: 'Postwar prosperity, the Cold War and peacekeeping, and social and political change.',
+      outcomes: [
+        'Describe postwar economic and social change, including the baby boom',
+        'Explain Canada\u2019s roles in the Cold War and international peacekeeping',
+        'Assess key political changes such as the new flag and the October Crisis',
+      ],
+      concepts: [
+        { id: 'postwar-boom', name: 'Postwar prosperity', keywords: ['baby boom', 'suburbs', 'prosperity', 'consumer'] },
+        { id: 'cold-war', name: 'Cold War & peacekeeping', keywords: ['cold war', 'nato', 'peacekeeping', 'pearson', 'suez'] },
+        { id: 'social-political-change', name: 'Social & political change', keywords: ['maple leaf flag', 'october crisis', 'flq', 'multiculturalism', 'quiet revolution'] },
+      ],
+      flashcards: [
+        { id: 'h3-f1', concept: 'postwar-boom', front: 'What was the baby boom?', back: 'A sharp rise in birth rates after 1945 that reshaped Canadian schools, suburbs and the economy.' },
+        { id: 'h3-f2', concept: 'cold-war', front: 'What is Lester B. Pearson best known for internationally?', back: 'Proposing a UN peacekeeping force during the 1956 Suez Crisis, for which he won the Nobel Peace Prize in 1957.' },
+        { id: 'h3-f3', concept: 'cold-war', front: 'What was NATO (1949)?', back: 'A Western military alliance formed during the Cold War for collective defence against the Soviet bloc; Canada was a founding member.' },
+        { id: 'h3-f4', concept: 'social-political-change', front: 'When did Canada adopt the Maple Leaf flag?', back: 'In 1965, replacing the Red Ensign as a distinctly Canadian symbol.' },
+        { id: 'h3-f5', concept: 'social-political-change', front: 'What was the October Crisis of 1970?', back: 'The FLQ kidnapped officials in Quebec; PM Pierre Trudeau invoked the War Measures Act, suspending some civil liberties.' },
+      ],
+      questions: [
+        {
+          id: 'h3-q1', concept: 'postwar-boom', difficulty: 1,
+          prompt: 'The "baby boom" refers to:',
+          options: ['A drop in births during the war', 'A surge in births after 1945', 'A wave of immigration', 'A stock market rise'],
+          answer: 1,
+          explanation: 'Birth rates rose sharply after WWII, creating the large baby-boom generation.',
+        },
+        {
+          id: 'h3-q2', concept: 'cold-war', difficulty: 2,
+          prompt: 'Lester B. Pearson earned the 1957 Nobel Peace Prize for his role in the:',
+          options: ['Korean War', 'Suez Crisis', 'October Crisis', 'Winnipeg General Strike'],
+          answer: 1,
+          explanation: 'He proposed a UN peacekeeping force to resolve the 1956 Suez Crisis.',
+        },
+        {
+          id: 'h3-q3', concept: 'cold-war', difficulty: 2,
+          prompt: 'NATO, formed in 1949, was primarily a:',
+          options: ['Trade agreement', 'Military alliance', 'Cultural exchange', 'Environmental treaty'],
+          answer: 1,
+          explanation: 'NATO was a collective-defence military alliance of Western nations during the Cold War.',
+        },
+        {
+          id: 'h3-q4', concept: 'social-political-change', difficulty: 1,
+          prompt: 'Canada\u2019s Maple Leaf flag was first raised in:',
+          options: ['1945', '1965', '1970', '1982'],
+          answer: 1,
+          explanation: 'The current flag was adopted in 1965 after lengthy debate.',
+        },
+        {
+          id: 'h3-q5', concept: 'social-political-change', difficulty: 2,
+          prompt: 'During the 1970 October Crisis, the federal government invoked the:',
+          options: ['Military Service Act', 'War Measures Act', 'Official Languages Act', 'Constitution Act'],
+          answer: 1,
+          explanation: 'PM Pierre Trudeau invoked the War Measures Act in response to FLQ kidnappings.',
+        },
+        {
+          id: 'h3-q6', concept: 'social-political-change', difficulty: 2,
+          prompt: 'In 1971 Canada became the first country to adopt an official policy of:',
+          options: ['Free trade', 'Multiculturalism', 'Peacekeeping', 'Conscription'],
+          answer: 1,
+          explanation: 'Canada declared an official multiculturalism policy in 1971, recognizing cultural diversity.',
+        },
+      ],
+    },
+    {
+      id: 'canada-1982-present',
+      name: 'Canada, 1982 to the Present',
+      description: 'The Charter of Rights, constitutional debates, and contemporary Canada.',
+      outcomes: [
+        'Explain the significance of the 1982 Constitution Act and the Charter',
+        'Describe debates over Quebec\u2019s place in Canada',
+        'Assess efforts at reconciliation with Indigenous peoples',
+      ],
+      concepts: [
+        { id: 'charter-constitution', name: 'Charter & Constitution', keywords: ['charter of rights', 'constitution act', 'patriation', '1982', 'trudeau'] },
+        { id: 'quebec-question', name: 'Quebec and national unity', keywords: ['referendum', 'sovereignty', 'meech lake', 'national unity'] },
+        { id: 'reconciliation', name: 'Reconciliation & modern Canada', keywords: ['residential schools', 'truth and reconciliation', 'indigenous rights', 'nafta'] },
+      ],
+      flashcards: [
+        { id: 'h4-f1', concept: 'charter-constitution', front: 'What happened with the Constitution in 1982?', back: 'Canada patriated its Constitution (gaining full power to amend it) and added the Canadian Charter of Rights and Freedoms.' },
+        { id: 'h4-f2', concept: 'charter-constitution', front: 'What does "patriation" mean?', back: 'Bringing the Constitution fully under Canadian control so it no longer required approval from the British Parliament.' },
+        { id: 'h4-f3', concept: 'quebec-question', front: 'What was decided in the 1995 Quebec referendum?', back: 'Quebecers voted very narrowly (about 50.6% "No") to remain part of Canada.' },
+        { id: 'h4-f4', concept: 'reconciliation', front: 'What did the Truth and Reconciliation Commission investigate?', back: 'The history and lasting harms of Canada\u2019s residential school system for Indigenous peoples, issuing Calls to Action in 2015.' },
+        { id: 'h4-f5', concept: 'reconciliation', front: 'What was NAFTA (1994)?', back: 'The North American Free Trade Agreement removing many trade barriers among Canada, the United States and Mexico.' },
+      ],
+      questions: [
+        {
+          id: 'h4-q1', concept: 'charter-constitution', difficulty: 1,
+          prompt: 'The Canadian Charter of Rights and Freedoms became part of the Constitution in:',
+          options: ['1965', '1970', '1982', '1995'],
+          answer: 2,
+          explanation: 'The Charter was entrenched in the Constitution Act, 1982.',
+        },
+        {
+          id: 'h4-q2', concept: 'charter-constitution', difficulty: 2,
+          prompt: 'Patriating the Constitution in 1982 meant Canada could:',
+          options: ['Join the British Empire', 'Amend its own Constitution without Britain', 'Abolish Parliament', 'Leave the Commonwealth'],
+          answer: 1,
+          explanation: 'Patriation gave Canada full authority to change its own Constitution.',
+        },
+        {
+          id: 'h4-q3', concept: 'charter-constitution', difficulty: 2,
+          prompt: 'Which prime minister led the 1982 patriation of the Constitution?',
+          options: ['Lester Pearson', 'Pierre Trudeau', 'Robert Borden', 'Brian Mulroney'],
+          answer: 1,
+          explanation: 'Pierre Trudeau championed patriation and the Charter of Rights and Freedoms.',
+        },
+        {
+          id: 'h4-q4', concept: 'quebec-question', difficulty: 2,
+          prompt: 'The 1995 referendum in Quebec asked voters about:',
+          options: ['Joining NATO', 'Quebec sovereignty (separation)', 'A new flag', 'Free trade'],
+          answer: 1,
+          explanation: 'It asked whether Quebec should pursue sovereignty; the "No" side won very narrowly.',
+        },
+        {
+          id: 'h4-q5', concept: 'reconciliation', difficulty: 2,
+          prompt: 'The Truth and Reconciliation Commission focused on the legacy of:',
+          options: ['The Great Depression', 'Residential schools', 'the Cold War', 'the fur trade'],
+          answer: 1,
+          explanation: 'The TRC documented the harms of residential schools and called for reconciliation.',
+        },
+        {
+          id: 'h4-q6', concept: 'reconciliation', difficulty: 1,
+          prompt: 'NAFTA was an agreement among Canada, the United States and:',
+          options: ['Britain', 'Mexico', 'France', 'Japan'],
+          answer: 1,
+          explanation: 'NAFTA (1994) created a free-trade zone among Canada, the U.S. and Mexico.',
+        },
+      ],
+    },
+  ],
+}

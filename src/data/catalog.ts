@@ -1,9 +1,20 @@
 import type { Course, Grade, ProvinceCode, Unit } from '../types'
 import { albertaCourses } from './courses/ab'
 import { bcCourses } from './courses/bc'
+import { skCourses } from './courses/sk'
+import { mbCourses } from './courses/mb'
+import { onCourses } from './courses/on'
+import { qcCourses } from './courses/qc'
 import { FALLBACK_PROVINCE, PROVINCES } from './meta'
 
-const ALL_COURSES: Course[] = [...albertaCourses, ...bcCourses]
+const ALL_COURSES: Course[] = [
+  ...albertaCourses,
+  ...bcCourses,
+  ...skCourses,
+  ...mbCourses,
+  ...onCourses,
+  ...qcCourses,
+]
 
 /**
  * The province whose curriculum is actually served: the selection itself when

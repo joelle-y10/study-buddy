@@ -69,6 +69,39 @@ export interface Course {
   units: Unit[]
 }
 
+// ---------- learning center ----------
+
+export interface LessonSection {
+  heading: string
+  /** plain text; paragraphs separated by blank lines, bullet lines start with "• " */
+  body: string
+  /** optional highlighted teaching tip shown as a callout under the section */
+  tip?: string
+}
+
+export interface LessonTrick {
+  /** short name, e.g. "BEDMAS" */
+  name: string
+  /** the hack itself, e.g. what each letter stands for and how to use it */
+  trick: string
+}
+
+export interface Lesson {
+  id: string
+  subject: SubjectId
+  /** which grade this is usually taught in */
+  grade: Grade
+  title: string
+  emoji: string
+  /** 1-2 sentence hook: what you'll be able to do after this lesson */
+  summary: string
+  sections: LessonSection[]
+  /** memory hacks & mnemonics, e.g. BEDMAS, SOH CAH TOA */
+  tricks: LessonTrick[]
+  /** compact formula sheet lines (omit for non-formula subjects) */
+  formulas?: string[]
+}
+
 // ---------- user state ----------
 
 export interface Profile {

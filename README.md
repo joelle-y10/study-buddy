@@ -6,7 +6,8 @@ A creative, aesthetic study web app for Canadian high schoolers, built on each *
 
 ## Features
 
-- **Province-aware curriculum** — pick your province and grade; your courses, units, learning outcomes, flashcards and questions follow that province's program of studies. **Alberta** and **British Columbia** are fully supported (BC's Physics 20-equivalent content really is different from Alberta's). Other provinces fall back to Alberta with a clear notice.
+- **Province-aware curriculum** — pick your province and grade; your courses, units, learning outcomes, flashcards and questions follow that province's program of studies. **Alberta** is the deep flagship catalog, with province-specific catalogs for **BC, Saskatchewan, Manitoba, Ontario and Quebec** (Quebec's "grade 12" maps to first-year CEGEP). Territories route to the curriculum their schools actually use (Yukon → BC, NWT/Nunavut → Alberta); the Atlantic provinces fall back to Alberta with a clear notice for now.
+- **Learning Center ("StudyBuddy University")** — every subject retaught in brief, clear lessons with worked examples, "watch out" callouts, formula sheets, and memorable brain hacks like BEDMAS, SOH CAH TOA, OIL RIG and PEEL.
 - **Grade sections** — select Grade 10, 11 or 12 and see exactly the courses for that level.
 - **Course switcher** — toggle between Math, the Sciences (Physics, Chemistry, Biology), ELA, Social Studies and more.
 - **Flashcards** — flip animation, shuffle, and Know / Still-learning sorting with a review-the-misses round.
