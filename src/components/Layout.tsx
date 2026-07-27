@@ -1,7 +1,8 @@
 import { NavLink, Outlet, useNavigate } from 'react-router-dom'
 import { useApp } from '../store/AppContext'
-import { coursesFor, curriculumProvince } from '../data/catalog'
-import { PROVINCES, SUBJECTS, provinceName, isSupported } from '../data/meta'
+import { coursesFor } from '../data/catalog'
+import { PROVINCES, SUBJECTS, fallbackNote } from '../data/meta'
+import Logo from './Logo'
 import type { Grade, ProvinceCode } from '../types'
 
 const NAV = [
@@ -32,7 +33,7 @@ export default function Layout() {
           onClick={() => navigate('/')}
           className="mb-8 flex items-center gap-2 px-2 text-left"
         >
-          <span className="text-3xl">🦉</span>
+          <Logo size={34} />
           <span className="font-display text-xl font-extrabold tracking-tight text-ink-900 dark:text-white">
             Study<span className="text-brand-500">Buddy</span>
           </span>
@@ -69,8 +70,8 @@ export default function Layout() {
       <div className="flex min-h-screen flex-1 flex-col md:pl-60">
         {/* Topbar */}
         <header className="sticky top-0 z-10 flex flex-wrap items-center gap-3 border-b border-ink-100 bg-white/80 px-4 py-3 backdrop-blur md:px-8 dark:border-ink-800 dark:bg-ink-900/80">
-          <span className="font-display text-lg font-extrabold text-ink-900 md:hidden dark:text-white">
-            🦉 StudyBuddy
+          <span className="flex items-center gap-1.5 font-display text-lg font-extrabold text-ink-900 md:hidden dark:text-white">
+            <Logo size={22} /> StudyBuddy
           </span>
           <div className="flex items-center gap-2">
             <label htmlFor="course-switch" className="text-xs font-semibold uppercase tracking-wide text-ink-400">
@@ -90,9 +91,9 @@ export default function Layout() {
             </select>
           </div>
           <div className="ml-auto flex items-center gap-3">
-            {!isSupported(profile.province) && (
+            {fallbackNote(profile.province) && (
               <span className="hidden rounded-full bg-amber-500/15 px-3 py-1 text-xs font-semibold text-amber-700 sm:inline dark:text-amber-300">
-                {provinceName(profile.province)} curriculum coming soon — showing {provinceName(curriculumProvince(profile.province))}
+                {fallbackNote(profile.province)}
               </span>
             )}
             <select

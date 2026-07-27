@@ -1,13 +1,20 @@
 import type { Course, Grade, ProvinceCode, Unit } from '../types'
 import { albertaCourses } from './courses/ab'
 import { bcCourses } from './courses/bc'
-import { FALLBACK_PROVINCE, isSupported } from './meta'
+import { FALLBACK_PROVINCE, PROVINCES } from './meta'
 
 const ALL_COURSES: Course[] = [...albertaCourses, ...bcCourses]
 
-/** The province whose curriculum is actually served (falls back to Alberta). */
+/**
+ * The province whose curriculum is actually served: the selection itself when
+ * supported, the curriculum its schools really follow for territories
+ * (YT uses BC; NT/NU use AB), otherwise the Alberta fallback.
+ */
 export function curriculumProvince(selected: ProvinceCode): ProvinceCode {
-  return isSupported(selected) ? selected : FALLBACK_PROVINCE
+  const p = PROVINCES.find((x) => x.code === selected)
+  if (p?.supported) return selected
+  if (p?.usesCurriculumOf) return p.usesCurriculumOf
+  return FALLBACK_PROVINCE
 }
 
 export function coursesFor(province: ProvinceCode, grade: Grade): Course[] {

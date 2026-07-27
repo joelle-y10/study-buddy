@@ -56,7 +56,8 @@ export default function SettingsPage() {
           >
             {PROVINCES.map((p) => (
               <option key={p.code} value={p.code}>
-                {p.name}{p.supported ? '' : ' (coming soon — uses Alberta curriculum)'}
+                {p.name}
+                {p.supported ? '' : p.usesCurriculumOf ? ` (follows ${p.usesCurriculumOf} curriculum)` : ' (coming soon — uses Alberta curriculum)'}
               </option>
             ))}
           </select>

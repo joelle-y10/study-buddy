@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../store/AppContext'
 import { PROVINCES } from '../data/meta'
+import Logo from '../components/Logo'
 import type { Grade, ProvinceCode } from '../types'
 
 export default function Onboarding() {
@@ -23,7 +24,7 @@ export default function Onboarding() {
     <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-brand-600 via-brand-500 to-violet-500 p-4">
       <div className="w-full max-w-lg animate-pop-in rounded-3xl bg-white p-8 shadow-2xl dark:bg-ink-900">
         <div className="text-center">
-          <div className="text-6xl">🦉</div>
+          <div className="flex justify-center"><Logo size={76} /></div>
           <h1 className="mt-3 font-display text-3xl font-extrabold text-ink-900 dark:text-white">
             Study<span className="text-brand-500">Buddy</span>
           </h1>
@@ -79,7 +80,8 @@ export default function Onboarding() {
               <option value="" disabled>Choose…</option>
               {PROVINCES.map((p) => (
                 <option key={p.code} value={p.code}>
-                  {p.name}{p.supported ? '' : ' (coming soon — uses Alberta curriculum)'}
+                  {p.name}
+                  {p.supported ? '' : p.usesCurriculumOf ? ` (follows ${p.usesCurriculumOf} curriculum)` : ' (coming soon — uses Alberta curriculum)'}
                 </option>
               ))}
             </select>

@@ -1,6 +1,18 @@
 import type { ProvinceCode, SubjectId } from '../types'
 
-export const PROVINCES: { code: ProvinceCode; name: string; supported: boolean }[] = [
+export interface ProvinceMeta {
+  code: ProvinceCode
+  name: string
+  /** true when this province has its own authored curriculum content */
+  supported: boolean
+  /**
+   * Territories don't publish their own curricula: Yukon schools follow BC's,
+   * and NWT/Nunavut schools follow Alberta's.
+   */
+  usesCurriculumOf?: ProvinceCode
+}
+
+export const PROVINCES: ProvinceMeta[] = [
   { code: 'AB', name: 'Alberta', supported: true },
   { code: 'BC', name: 'British Columbia', supported: true },
   { code: 'SK', name: 'Saskatchewan', supported: false },
@@ -11,9 +23,9 @@ export const PROVINCES: { code: ProvinceCode; name: string; supported: boolean }
   { code: 'NS', name: 'Nova Scotia', supported: false },
   { code: 'PE', name: 'Prince Edward Island', supported: false },
   { code: 'NL', name: 'Newfoundland and Labrador', supported: false },
-  { code: 'YT', name: 'Yukon', supported: false },
-  { code: 'NT', name: 'Northwest Territories', supported: false },
-  { code: 'NU', name: 'Nunavut', supported: false },
+  { code: 'YT', name: 'Yukon', supported: false, usesCurriculumOf: 'BC' },
+  { code: 'NT', name: 'Northwest Territories', supported: false, usesCurriculumOf: 'AB' },
+  { code: 'NU', name: 'Nunavut', supported: false, usesCurriculumOf: 'AB' },
 ]
 
 export function provinceName(code: ProvinceCode): string {
@@ -26,6 +38,16 @@ export function isSupported(code: ProvinceCode): boolean {
 
 /** Province whose curriculum is used when the selected one isn't supported yet */
 export const FALLBACK_PROVINCE: ProvinceCode = 'AB'
+
+/** Short banner text shown when the selected region serves another province's curriculum. */
+export function fallbackNote(code: ProvinceCode): string | null {
+  const p = PROVINCES.find((x) => x.code === code)
+  if (!p || p.supported) return null
+  if (p.usesCurriculumOf) {
+    return `${p.name} schools follow the ${provinceName(p.usesCurriculumOf)} curriculum`
+  }
+  return `${p.name} curriculum coming soon — showing ${provinceName(FALLBACK_PROVINCE)} for now`
+}
 
 export interface SubjectMeta {
   id: SubjectId

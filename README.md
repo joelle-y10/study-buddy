@@ -1,4 +1,4 @@
-# 🦉 StudyBuddy
+# 🍁 StudyBuddy
 
 A creative, aesthetic study web app for Canadian high schoolers, built on each **province's real curriculum**. Flashcards, adaptive quizzes, timed unit tests, full final-exam mode, a note-taking academy, a study calendar, and rich progress tracking — all in the browser, no account needed.
 
