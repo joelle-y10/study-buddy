@@ -4,6 +4,117 @@ import { PROVINCES } from '../data/meta'
 import { Card, PageHeader } from '../components/ui'
 import type { Grade, ProvinceCode } from '../types'
 
+const inputCls =
+  'w-full rounded-xl border border-ink-200 px-3 py-2 dark:border-ink-700 dark:bg-ink-800 dark:text-white'
+
+function AccountCard() {
+  const app = useApp()
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [busy, setBusy] = useState(false)
+  const [message, setMessage] = useState<{ kind: 'error' | 'info'; text: string } | null>(null)
+
+  const submit = async (mode: 'in' | 'up') => {
+    if (!email.trim() || password.length < 6) {
+      setMessage({ kind: 'error', text: 'Enter your email and a password of at least 6 characters.' })
+      return
+    }
+    setBusy(true)
+    setMessage(null)
+    const err = mode === 'in' ? await app.signIn(email.trim(), password) : await app.signUp(email.trim(), password)
+    setBusy(false)
+    if (err === 'CONFIRM_EMAIL') {
+      setMessage({ kind: 'info', text: 'Almost there — check your inbox and click the confirmation link, then sign in.' })
+    } else if (err) {
+      setMessage({ kind: 'error', text: err })
+    }
+  }
+
+  if (!app.syncAvailable) {
+    return (
+      <Card className="p-6">
+        <h3 className="font-display font-bold text-ink-900 dark:text-white">☁️ Account & sync</h3>
+        <p className="mt-1 text-sm text-ink-400">
+          Cloud sync is being set up — soon you'll be able to sign in and keep your progress across devices.
+          Everything currently saves to this browser.
+        </p>
+      </Card>
+    )
+  }
+
+  if (app.user) {
+    const statusLabel =
+      app.syncStatus === 'syncing' ? '⏳ Syncing…'
+      : app.syncStatus === 'error' ? '⚠️ Sync error — will retry on your next change'
+      : `✅ Synced${app.lastSyncedAt ? ` · ${new Date(app.lastSyncedAt).toLocaleTimeString()}` : ''}`
+    return (
+      <Card className="p-6">
+        <h3 className="font-display font-bold text-ink-900 dark:text-white">☁️ Account & sync</h3>
+        <p className="mt-2 text-sm text-ink-600 dark:text-ink-200">
+          Signed in as <b>{app.user.email}</b>. Your progress syncs to the cloud and follows you to any device.
+        </p>
+        <p className="mt-1 text-sm text-ink-400">{statusLabel}</p>
+        <button
+          type="button"
+          onClick={() => app.signOut()}
+          className="mt-3 rounded-xl bg-ink-100 px-4 py-2 text-sm font-bold text-ink-600 dark:bg-ink-700 dark:text-ink-100"
+        >
+          Sign out
+        </button>
+      </Card>
+    )
+  }
+
+  return (
+    <Card className="space-y-3 p-6">
+      <h3 className="font-display font-bold text-ink-900 dark:text-white">☁️ Account & sync</h3>
+      <p className="text-sm text-ink-400">
+        Create a free account to back up your progress and sync it across devices. Without one, everything
+        stays in this browser only.
+      </p>
+      <input
+        type="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        placeholder="Email"
+        autoComplete="email"
+        className={inputCls}
+      />
+      <input
+        type="password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        placeholder="Password (6+ characters)"
+        autoComplete="current-password"
+        className={inputCls}
+      />
+      {message && (
+        <p className={`text-sm font-semibold ${message.kind === 'error' ? 'text-rose-500' : 'text-emerald-600 dark:text-emerald-400'}`}>
+          {message.text}
+        </p>
+      )}
+      <div className="flex gap-2">
+        <button
+          type="button"
+          disabled={busy}
+          onClick={() => submit('in')}
+          className="rounded-xl bg-brand-500 px-4 py-2 text-sm font-bold text-white hover:bg-brand-600 disabled:opacity-50"
+        >
+          Sign in
+        </button>
+        <button
+          type="button"
+          disabled={busy}
+          onClick={() => submit('up')}
+          className="rounded-xl bg-ink-100 px-4 py-2 text-sm font-bold text-ink-600 disabled:opacity-50 dark:bg-ink-700 dark:text-ink-100"
+        >
+          Create account
+        </button>
+      </div>
+    </Card>
+  )
+}
+
 export default function SettingsPage() {
   const app = useApp()
   const profile = app.profile!
@@ -13,6 +124,10 @@ export default function SettingsPage() {
   return (
     <div className="animate-fade-up mx-auto max-w-xl">
       <PageHeader title="⚙️ Settings" />
+
+      <div className="mb-5">
+        <AccountCard />
+      </div>
 
       <Card className="space-y-5 p-6">
         <div>

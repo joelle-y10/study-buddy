@@ -1,6 +1,8 @@
 /* eslint-disable react-refresh/only-export-components */
-import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
+import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react'
 import type { ReactNode } from 'react'
+import type { User } from '@supabase/supabase-js'
+import { supabase } from '../lib/supabase'
 import type {
   CalendarEvent, CardBucket, ConceptStat, Profile, SessionRecord, StruggleEntry,
 } from '../types'
@@ -21,6 +23,10 @@ interface PersistedState {
 }
 
 const STORAGE_KEY = 'studybuddy:v1'
+/** Timestamp of the last local edit, used to decide local vs cloud on sign-in. */
+const UPDATED_KEY = 'studybuddy:updatedAt'
+
+export type SyncStatus = 'off' | 'syncing' | 'synced' | 'error'
 
 const DEFAULT_STATE: PersistedState = {
   profile: null,
@@ -51,7 +57,20 @@ export function todayISO(): string {
   return `${d.getFullYear()}-${m}-${day}`
 }
 
+interface CloudState {
+  /** null when signed out or sync unavailable */
+  user: User | null
+  /** false until Supabase credentials are configured */
+  syncAvailable: boolean
+  syncStatus: SyncStatus
+  lastSyncedAt: number | null
+}
+
 interface AppActions {
+  /** returns an error message, 'CONFIRM_EMAIL', or null on success */
+  signUp: (email: string, password: string) => Promise<string | null>
+  signIn: (email: string, password: string) => Promise<string | null>
+  signOut: () => Promise<void>
   setProfile: (p: Profile) => void
   setTheme: (t: 'light' | 'dark') => void
   setSelectedCourse: (id: string | null) => void
@@ -66,14 +85,99 @@ interface AppActions {
   resetAll: () => void
 }
 
-const Ctx = createContext<(PersistedState & AppActions) | null>(null)
+const Ctx = createContext<(PersistedState & CloudState & AppActions) | null>(null)
 
 export function AppProvider({ children }: { children: ReactNode }) {
   const [state, setState] = useState<PersistedState>(load)
+  const [user, setUser] = useState<User | null>(null)
+  const [syncStatus, setSyncStatus] = useState<SyncStatus>('off')
+  const [lastSyncedAt, setLastSyncedAt] = useState<number | null>(null)
+  /** set while adopting cloud state so we don't immediately push it back */
+  const skipNextPush = useRef(false)
 
+  // --- auth session tracking ---
+  useEffect(() => {
+    if (!supabase) return
+    supabase.auth.getSession().then(({ data }) => setUser(data.session?.user ?? null))
+    const { data: sub } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null)
+    })
+    return () => sub.subscription.unsubscribe()
+  }, [])
+
+  // --- on sign-in: pull cloud state if it's newer than local ---
+  useEffect(() => {
+    if (!supabase || !user) {
+      setSyncStatus('off')
+      return
+    }
+    let cancelled = false
+    const client = supabase
+    ;(async () => {
+      setSyncStatus('syncing')
+      const { data, error } = await client
+        .from('user_state')
+        .select('state, updated_at')
+        .eq('user_id', user.id)
+        .maybeSingle()
+      if (cancelled) return
+      if (error) {
+        setSyncStatus('error')
+        return
+      }
+      const localAt = Number(localStorage.getItem(UPDATED_KEY) ?? 0)
+      if (data && new Date(data.updated_at).getTime() > localAt) {
+        skipNextPush.current = true
+        setState({ ...DEFAULT_STATE, ...(data.state as Partial<PersistedState>) })
+      }
+      setSyncStatus('synced')
+      setLastSyncedAt(Date.now())
+    })()
+    return () => {
+      cancelled = true
+    }
+  }, [user])
+
+  // --- persist locally always; push to cloud (debounced) when signed in ---
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state))
-  }, [state])
+    localStorage.setItem(UPDATED_KEY, String(Date.now()))
+    if (!supabase || !user) return
+    if (skipNextPush.current) {
+      skipNextPush.current = false
+      return
+    }
+    const client = supabase
+    const uid = user.id
+    const t = setTimeout(async () => {
+      setSyncStatus('syncing')
+      const { error } = await client
+        .from('user_state')
+        .upsert({ user_id: uid, state, updated_at: new Date().toISOString() })
+      setSyncStatus(error ? 'error' : 'synced')
+      if (!error) setLastSyncedAt(Date.now())
+    }, 1500)
+    return () => clearTimeout(t)
+  }, [state, user])
+
+  const signUp = useCallback(async (email: string, password: string) => {
+    if (!supabase) return 'Cloud sync is not set up yet.'
+    const { data, error } = await supabase.auth.signUp({ email, password })
+    if (error) return error.message
+    if (!data.session) return 'CONFIRM_EMAIL'
+    return null
+  }, [])
+
+  const signIn = useCallback(async (email: string, password: string) => {
+    if (!supabase) return 'Cloud sync is not set up yet.'
+    const { error } = await supabase.auth.signInWithPassword({ email, password })
+    return error ? error.message : null
+  }, [])
+
+  const signOut = useCallback(async () => {
+    // Local progress stays on this device; only the session ends.
+    await supabase?.auth.signOut()
+  }, [])
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', state.theme === 'dark')
@@ -172,10 +276,13 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const value = useMemo(
     () => ({
       ...state,
+      user, syncAvailable: supabase !== null, syncStatus, lastSyncedAt,
+      signUp, signIn, signOut,
       setProfile, setTheme, setSelectedCourse, recordAnswer, addStruggle, resolveStruggle,
       addSession, rateSession, setCardBucket, addEvent, removeEvent, resetAll,
     }),
-    [state, setProfile, setTheme, setSelectedCourse, recordAnswer, addStruggle, resolveStruggle,
+    [state, user, syncStatus, lastSyncedAt, signUp, signIn, signOut,
+      setProfile, setTheme, setSelectedCourse, recordAnswer, addStruggle, resolveStruggle,
       addSession, rateSession, setCardBucket, addEvent, removeEvent, resetAll],
   )
 
