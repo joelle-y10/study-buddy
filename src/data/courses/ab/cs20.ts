@@ -2,8 +2,9 @@ import type { Course } from '../../../types'
 
 /**
  * Alberta Computer Science 20 — CTS Computer Science (CSE) strand, intermediate level.
- * Units: Functions & Scope, Lists & String Processing, Boolean Logic & Nested Structures,
- * File Handling & Data, Searching & Sorting.
+ * Units: Languages: Python, Java, C++ & JavaScript; Functions & Scope;
+ * Lists & String Processing; Boolean Logic & Nested Structures;
+ * File Handling & Data; Searching & Sorting.
  */
 export const abCs20: Course = {
   id: 'ab-cs20',
@@ -13,8 +14,133 @@ export const abCs20: Course = {
   name: 'Computer Science 20',
   shortName: 'CS 20',
   description:
-    'Level up your programming. Organize code into functions, process lists and strings, master boolean logic and nested structures, read and write files, and meet your first real algorithms: searching and sorting.',
+    'Level up your programming. Tour the big four languages — Python, Java, C++ and JavaScript — then organize code into functions, process lists and strings, master boolean logic and nested structures, read and write files, and meet your first real algorithms: searching and sorting.',
   units: [
+    {
+      id: 'languages-tour',
+      name: 'Languages: Python, Java, C++ & JavaScript',
+      description: 'How the major languages differ: compiled vs. interpreted, static vs. dynamic typing, the same program in four syntaxes, and where each language rules.',
+      outcomes: [
+        'Explain the difference between compiled and interpreted languages',
+        'Distinguish static typing (Java, C++) from dynamic typing (Python, JavaScript)',
+        'Recognize the same simple program written in Python, Java, C++ and JavaScript',
+        'Match each language to its main real-world uses',
+        'Read and predict the output of simple Java and C++ snippets',
+      ],
+      concepts: [
+        { id: 'compiled-interpreted', name: 'Compiled vs. interpreted', keywords: ['compiled', 'interpreted', 'compiler', 'interpreter', 'machine code', 'translate', 'run directly'] },
+        { id: 'typing-systems', name: 'Static vs. dynamic typing', keywords: ['static typing', 'dynamic typing', 'declare type', 'type checking', 'int x', 'type error'] },
+        { id: 'syntax-comparison', name: 'Same program, four syntaxes', keywords: ['syntax', 'braces', 'semicolon', 'indentation', 'compare languages', 'loop in java', 'loop in c++'] },
+        { id: 'language-uses', name: 'Where each language is used', keywords: ['javascript web', 'c++ games', 'java android', 'python data', 'real world', 'which language', 'career'] },
+        { id: 'reading-code', name: 'Reading Java & C++ snippets', keywords: ['read java', 'read c++', 'cout', 'system.out.println', 'console.log', 'predict output'] },
+      ],
+      flashcards: [
+        { id: 'lang-f1', concept: 'compiled-interpreted', front: 'What does a compiler do?', back: 'It translates your ENTIRE program into machine code before it runs. C++ and Java use this approach (Java compiles to bytecode for its virtual machine).' },
+        { id: 'lang-f2', concept: 'compiled-interpreted', front: 'What does an interpreter do?', back: 'It reads and executes your program line by line as it runs, with no separate build step. Python and JavaScript work this way.' },
+        { id: 'lang-f3', concept: 'compiled-interpreted', front: 'Classic trade-off: compiled vs. interpreted', back: 'Compiled programs usually run faster; interpreted languages let you edit and re-run instantly. Speed vs. convenience.' },
+        { id: 'lang-f4', concept: 'typing-systems', front: 'What is static typing?', back: 'Every variable\u2019s type is fixed and declared up front — Java/C++: int x = 5; — and the compiler rejects type mismatches before the program runs.' },
+        { id: 'lang-f5', concept: 'typing-systems', front: 'What is dynamic typing?', back: 'Types are checked while the program runs, and a variable can hold different types over time — Python: x = 5, then x = "hi" is allowed.' },
+        { id: 'lang-f6', concept: 'syntax-comparison', front: 'A loop printing 1-5 in Python and in Java', back: 'Python: for i in range(1, 6): print(i) — Java: for (int i = 1; i <= 5; i++) { System.out.println(i); }' },
+        { id: 'lang-f7', concept: 'syntax-comparison', front: 'How do Python and the C-family languages mark code blocks?', back: 'Python uses INDENTATION. Java, C++ and JavaScript use curly braces { } and end statements with semicolons.' },
+        { id: 'lang-f8', concept: 'language-uses', front: 'Where does JavaScript run, and what is it mainly used for?', back: 'In every web browser — it\u2019s THE language of interactive web pages (and, via Node.js, servers too).' },
+        { id: 'lang-f9', concept: 'language-uses', front: 'Why do game engines and performance-critical software use C++?', back: 'C++ compiles to fast machine code and gives fine control over memory — vital when every millisecond of a frame counts.' },
+        { id: 'lang-f10', concept: 'language-uses', front: 'Main strongholds of Java and Python', back: 'Java: Android apps and large enterprise/business systems. Python: data science, AI/machine learning, scripting and automation.' },
+        { id: 'lang-f11', concept: 'reading-code', front: 'The print statement in all four languages', back: 'Python: print("Hi") — Java: System.out.println("Hi"); — C++: cout << "Hi"; — JavaScript: console.log("Hi");' },
+      ],
+      questions: [
+        {
+          id: 'lang-q1', concept: 'compiled-interpreted', difficulty: 1,
+          prompt: 'A compiled language is one where the program is:',
+          options: ['Run one line at a time with no translation', 'Translated to machine code before it runs', 'Only usable in a browser', 'Written without variables'],
+          answer: 1,
+          explanation: 'Compilation translates the whole program ahead of time; the computer then runs the fast machine-code result.',
+        },
+        {
+          id: 'lang-q2', concept: 'compiled-interpreted', difficulty: 2,
+          prompt: 'You edit a Python script and immediately re-run it — no build step. This is because Python is:',
+          options: ['Compiled to machine code first', 'Interpreted, executing your source line by line', 'Only for small programs', 'Statically typed'],
+          answer: 1,
+          explanation: 'An interpreter executes the source directly, which makes the edit-run cycle instant — great for learning and scripting.',
+        },
+        {
+          id: 'lang-q3', concept: 'compiled-interpreted', difficulty: 3,
+          prompt: 'Why does a C++ program typically run faster than the equivalent Python program?',
+          options: ['C++ programs are shorter', 'C++ is compiled to machine code ahead of time, while Python is interpreted as it runs', 'Python cannot use loops', 'C++ skips half the instructions'],
+          answer: 1,
+          explanation: 'Pre-compiled machine code runs directly on the CPU; an interpreter must translate while executing, adding overhead to every step.',
+        },
+        {
+          id: 'lang-q4', concept: 'typing-systems', difficulty: 1,
+          prompt: 'Which line declares a variable in Java?',
+          options: ['x = 5', 'int x = 5;', 'let x := 5', 'x <- 5'],
+          answer: 1,
+          explanation: 'Java is statically typed: you state the type (int) when declaring. Python\u2019s x = 5 needs no type because typing is dynamic.',
+        },
+        {
+          id: 'lang-q5', concept: 'typing-systems', difficulty: 2,
+          prompt: 'In Python, "x = 5" then "x = \u2019hello\u2019" runs fine. In Java, the same idea fails. Why?',
+          options: ['Java has no strings', 'Java\u2019s static typing fixes x as an int — it can\u2019t later hold a String', 'Python checked the types at compile time', '5 is not a valid Java value'],
+          answer: 1,
+          explanation: 'Static typing locks each variable to its declared type, and the compiler rejects mismatches. Dynamic typing (Python) allows re-binding to any type.',
+        },
+        {
+          id: 'lang-q6', concept: 'typing-systems', difficulty: 3,
+          prompt: 'A benefit of STATIC typing (Java/C++) over dynamic typing is:',
+          options: ['Programs are always shorter', 'Many type mistakes are caught at compile time, before the program ever runs', 'No variables are needed', 'It removes all bugs'],
+          answer: 1,
+          explanation: 'The compiler checks every type up front, so a whole class of errors is caught before users ever see the program. The cost: more upfront ceremony.',
+        },
+        {
+          id: 'lang-q7', concept: 'syntax-comparison', difficulty: 1,
+          prompt: 'Which language relies on INDENTATION instead of curly braces to mark code blocks?',
+          options: ['Java', 'C++', 'Python', 'JavaScript'],
+          answer: 2,
+          explanation: 'Python\u2019s blocks are defined by indentation. Java, C++ and JavaScript all use { } and semicolons.',
+        },
+        {
+          id: 'lang-q8', concept: 'syntax-comparison', difficulty: 2,
+          prompt: 'What does this Java loop print? "for (int i = 1; i <= 5; i++) { System.out.println(i); }"',
+          options: ['1 2 3 4 5', '1 2 3 4', '0 1 2 3 4', '5 4 3 2 1'],
+          answer: 0,
+          explanation: 'i starts at 1, the loop continues while i <= 5, and i++ adds 1 each pass — printing 1 through 5, just like Python\u2019s range(1, 6).',
+        },
+        {
+          id: 'lang-q9', concept: 'syntax-comparison', difficulty: 3,
+          prompt: 'Which Python code matches this JavaScript? "let n = 1; while (n <= 3) { console.log(n); n++; }"',
+          options: ['n = 1; while n <= 3: print(n); n += 1', 'for n in range(3): print(n)', 'n = 1; if n <= 3: print(n)', 'print(1, 2, 3, 4)'],
+          answer: 0,
+          explanation: 'Both start n at 1, loop while n ≤ 3, print, and add 1 — output 1 2 3. The range(3) version would print 0 1 2 instead.',
+        },
+        {
+          id: 'lang-q10', concept: 'language-uses', difficulty: 1,
+          prompt: 'Which language runs inside every web browser and powers interactive web pages?',
+          options: ['C++', 'Java', 'Python', 'JavaScript'],
+          answer: 3,
+          explanation: 'JavaScript is the browser\u2019s built-in language — buttons, menus and live updates on web pages are JavaScript at work.',
+        },
+        {
+          id: 'lang-q11', concept: 'language-uses', difficulty: 2,
+          prompt: 'A studio is building a fast 3-D game engine. The most likely main language is:',
+          options: ['C++', 'Python', 'HTML', 'JavaScript'],
+          answer: 0,
+          explanation: 'C++\u2019s compiled speed and fine-grained memory control make it the standard for engines where every frame must render in milliseconds.',
+        },
+        {
+          id: 'lang-q12', concept: 'language-uses', difficulty: 2,
+          prompt: 'Match the strongholds: Android & enterprise systems, and data science & AI — in that order:',
+          options: ['Java, then Python', 'Python, then Java', 'C++, then JavaScript', 'JavaScript, then C++'],
+          answer: 0,
+          explanation: 'Java dominates Android development and big business systems; Python\u2019s libraries make it the go-to for data and machine learning.',
+        },
+        {
+          id: 'lang-q13', concept: 'reading-code', difficulty: 2,
+          prompt: 'What does this C++ line output? "cout << 3 + 4;"',
+          options: ['3 + 4', '7', 'cout', '34'],
+          answer: 1,
+          explanation: 'cout << sends a value to the screen; 3 + 4 is evaluated first, so 7 is printed.',
+        },
+      ],
+    },
     {
       id: 'functions-scope',
       name: 'Functions & Scope',
