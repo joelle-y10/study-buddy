@@ -102,4 +102,16 @@ export const SUBJECTS: Record<SubjectId, SubjectMeta> = {
     softBg: 'bg-violet-500/10 ring-violet-500/30',
     bar: 'bg-violet-500',
   },
+  cs: {
+    id: 'cs', name: 'Computer Science', emoji: '💻',
+    color: 'text-cyan-600 dark:text-cyan-400',
+    softBg: 'bg-cyan-500/10 ring-cyan-500/30',
+    bar: 'bg-cyan-500',
+  },
+  sportsmed: {
+    id: 'sportsmed', name: 'Sports Medicine', emoji: '🏃',
+    color: 'text-orange-600 dark:text-orange-400',
+    softBg: 'bg-orange-500/10 ring-orange-500/30',
+    bar: 'bg-orange-500',
+  },
 }

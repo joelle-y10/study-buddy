@@ -11,6 +11,8 @@ export type SubjectId =
   | 'biology'
   | 'ela'
   | 'social'
+  | 'cs'
+  | 'sportsmed'
 
 export interface Flashcard {
   id: string

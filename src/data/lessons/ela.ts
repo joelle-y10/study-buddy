@@ -484,4 +484,157 @@ export const elaLessons: Lesson[] = [
       },
     ],
   },
+  {
+    id: 'ela-personal-response',
+    subject: 'ela',
+    grade: 12,
+    title: 'The Personal Response to Text (PRT)',
+    emoji: '💬',
+    summary:
+      'Assignment I of the ELA diploma exam: respond to texts with your own ideas and experiences — and choose the smartest form for YOU, whether that\u2019s personal narrative, analytical prose, or a hybrid of both.',
+    sections: [
+      {
+        heading: 'What the PRT actually asks',
+        body:
+          'You\u2019re given one or more short texts (a story excerpt, a poem, a photograph, an essay) plus a broad theme prompt like "What do these texts suggest about the ways individuals respond to adversity?"\n\nYour job has exactly two parts:\n\n• Engage with the theme in the prompt — this is non-negotiable. Every PRT must clearly explore the assigned idea.\n• Connect to the provided text(s) in some way — a direct reference, a springboard, or an echo of its situation.\n\nWhat it is NOT: a book report, a summary of the texts, or a generic essay on the theme that ignores the texts entirely. The strongest responses feel like a conversation between the texts, the theme, and your own life or thinking.',
+        tip: 'Highlight the key words of the prompt and put them (or close synonyms) in your first and last paragraph. Markers must be able to see the connection to the assignment without hunting for it.',
+      },
+      {
+        heading: 'Your three main approaches',
+        body:
+          'The PRT gives you a rare freedom: "Choose a prose form that is appropriate to the ideas you wish to express." The three most reliable choices:\n\n• Personal narrative — tell a true (or true-ish) story from your life that explores the theme. Strengths: emotional power, natural voice, easy connection to "personal response." Risks: drifting into a diary entry that never actually develops an IDEA about the theme.\n• Analytical response — a mini-essay discussing how the texts develop the theme, seasoned with your own perspective. Strengths: clear structure, comfortable if you like essays. Risks: turning so formal that there\u2019s nothing "personal" left — markers want YOUR voice and judgment.\n• Hybrid — the power move. Open with a short personal anecdote, then step back and analyze what it (and the provided texts) suggest about the theme. You get narrative\u2019s warmth plus analysis\u2019s clarity.\n\nOther forms (letters, speeches, journal entries) are allowed, but only pick one if you genuinely write well in it. Novelty earns nothing by itself.',
+        tip: 'Pick the form BEFORE you start writing, based on one question: "For this theme, do I have a story, an argument, or both?" Switching forms halfway through is the most common PRT disaster.',
+      },
+      {
+        heading: 'A structure that works every time',
+        body:
+          'Whatever form you choose, this skeleton holds up:\n\n• Opening — establish your angle on the theme and gesture at the text(s). In a narrative: drop us into the moment. In analysis: state your central idea about the theme.\n• Middle (2–3 chunks) — develop the idea. Narrative: let the story unfold with reflection woven in ("Looking back, I understand..."). Analytical: discuss how the text\u2019s character/image develops the theme, then extend it with your own experience or observations.\n• Closing — land the insight. What do you now understand about how individuals respond to adversity (or whatever the theme is)? The last paragraph should feel like arrival, not summary.\n\nLength guide: quality beats quantity, but most strong responses run 500–800 words. Leave 5 minutes to reread and fix slips.',
+      },
+      {
+        heading: 'How it\u2019s scored — and where marks hide',
+        body:
+          'The PRT is scored on two categories:\n\n• Ideas and Impressions — the quality of your exploration of the theme: insight, depth, and how well you support your ideas (with your experiences, observations, or the texts).\n• Presentation — voice, stylistic choices, and how well your writing suits the form you chose. Mechanical errors matter only when they interfere with communication.\n\nWhere students lose marks:\n\n• Ignoring the texts completely (weak connection = capped score).\n• Retelling a story with zero reflection — narrative without insight is just anecdote.\n• Safe, empty generalities ("Adversity makes people stronger") with no specific support.\n\nWhere students gain marks: a genuine, specific voice; one well-developed idea rather than five shallow ones; and reflection that shows you actually thought about the theme, not just the events.',
+        tip: 'The magic ingredient is REFLECTION. For every event or example you give, add the "so what": what it revealed, changed, or taught. Insight sentences are where Ideas & Impressions marks live.',
+      },
+    ],
+    tricks: [
+      {
+        name: 'STAR your prompt',
+        trick:
+          'Before writing: Situation (what do the texts show?), Theme (what\u2019s the prompt\u2019s key idea?), Angle (what do I believe about it?), Route (which form fits?). Four questions, two minutes, zero panic.',
+      },
+      {
+        name: 'The anecdote + lens combo',
+        trick:
+          'Hybrid formula: one paragraph of story, then the sentence "That day taught me something the text\u2019s speaker also learns: ..." — it welds narrative to analysis in a single move.',
+      },
+      {
+        name: 'Event → insight ratio',
+        trick:
+          'For roughly every three sentences of WHAT happened, write one sentence of WHY it matters. If your response is all events, it\u2019s a diary; all insight, it\u2019s a sermon. Mix them.',
+      },
+    ],
+  },
+  {
+    id: 'ela-critical-analytical',
+    subject: 'ela',
+    grade: 12,
+    title: 'The Critical/Analytical Response (CART)',
+    emoji: '🏛️',
+    summary:
+      'Assignment II of the ELA diploma exam: a full literary essay on a text YOU choose, built around a thesis on the assigned theme. Here\u2019s the architecture, the evidence game, and the marking categories.',
+    sections: [
+      {
+        heading: 'The task, decoded',
+        body:
+          'You get the same broad theme as the PRT (e.g., "the ways individuals respond to adversity"), but now the job is a formal essay: discuss how ONE literary text you\u2019ve studied develops that theme.\n\nKey decisions:\n\n• Choose your text wisely — a novel, play, or film studied in class that you know deeply. Depth beats prestige: a text you can quote and analyze beats an impressive title you half-remember.\n• Narrow the theme into a thesis — the prompt is deliberately huge. Your thesis is your specific claim about how the text develops it: "In Death of a Salesman, Miller demonstrates that individuals who respond to adversity with self-deception ultimately destroy themselves and those they love."\n\nThe whole essay then exists to prove that one sentence.',
+        tip: 'Walk into the exam with 2–3 texts pre-loaded: know each one\u2019s main characters, 4–5 key scenes, and a handful of short quotes. Then any theme they throw at you has a ready match.',
+      },
+      {
+        heading: 'Blueprint of the essay',
+        body:
+          '• Introduction — name the text and author, establish the theme, end with your thesis. Three to five sentences is plenty; don\u2019t warm up with "Since the dawn of time..."\n• Body paragraph 1 — often the character\u2019s initial situation: how the adversity (or theme pressure) is established. Topic sentence → evidence → analysis tying back to thesis.\n• Body paragraph 2 — the development or turning point: choices made, consequences building.\n• Body paragraph 3 — the outcome: what the ending reveals about the author\u2019s message on the theme.\n• Conclusion — restate the thesis in new words and answer the big "so what": what is the author ultimately saying about how people should (or shouldn\u2019t) respond?\n\nThis chronological beginning → middle → end structure is popular because it\u2019s hard to break: the text itself keeps you organized, and it naturally shows DEVELOPMENT of the theme, which is exactly what the task asks for.',
+      },
+      {
+        heading: 'Evidence from memory (yes, you can)',
+        body:
+          'No book in the exam room — so evidence works differently than in class essays:\n\n• Short memorized quotes are gold: even 3–6 words ("Attention must be paid") signal command of the text.\n• Specific paraphrase is nearly as good: "When Willy is fired by a man he watched grow up, ..." shows precise knowledge without quotation marks.\n• Vague retelling is the enemy: "Willy has a lot of problems and things get worse" proves nothing.\n\nFor every piece of evidence, run the ANALYSIS step: connect it explicitly to your thesis. The sentence pattern "This [moment/choice/image] demonstrates that..." forces the connection onto the page where markers can see it.',
+        tip: 'Prepare a "quote bank" of 6–8 short quotes per text before exam day, chosen because they\u2019re flexible — a line about pride or illusion can serve themes of adversity, identity, ambition, and more.',
+      },
+      {
+        heading: 'The five marking categories',
+        body:
+          'The CART is scored in five categories — knowing them tells you where to spend effort:\n\n• Thought and Understanding — the quality of your ideas about the theme and how insightfully you read the text. (Your thesis and analysis live here.)\n• Supporting Evidence — how specific, relevant, and well-integrated your examples are.\n• Form and Structure — the shape of the essay: coherent order, paragraphs that build, an ending that lands.\n• Matters of Choice — style: diction, sentence variety, transitions. Writing that sounds in control.\n• Matters of Correctness — grammar, spelling, punctuation. Clean enough not to distract.\n\nNotice: two whole categories (Thought + Evidence) are about WHAT you say, and two more reward clear organized delivery. A beautiful essay about nothing scores worse than a plain essay with sharp ideas and specific proof.',
+        tip: 'Budget your 2.5–3 hours: ~20 min planning, ~storming the draft, and always 10 minutes of proofreading at the end — Matters of Correctness is the cheapest category to protect.',
+      },
+    ],
+    tricks: [
+      {
+        name: 'T.E.X.T. thesis check',
+        trick:
+          'A CART thesis needs: Text named, Emphasis on the theme, X-factor (your specific claim), Trajectory (hints at how the essay will prove it). Read your thesis and tick all four before moving on.',
+      },
+      {
+        name: 'The 3-scene spine',
+        trick:
+          'Any text can be essay-ready in minutes: pick one scene from the beginning, one from the middle, one from the end that all touch your theme. Those three scenes ARE your three body paragraphs.',
+      },
+      {
+        name: 'Say the author\u2019s name',
+        trick:
+          'Write "Miller demonstrates..." not "the book shows...". Naming the author reminds you (and shows the marker) that every event is a deliberate CHOICE made to develop the theme — instant analysis upgrade.',
+      },
+    ],
+  },
+  {
+    id: 'ela-annotation',
+    subject: 'ela',
+    grade: 10,
+    title: 'Annotation: Taking Notes While You Read',
+    emoji: '✏️',
+    summary:
+      'How to mark up a short story (or any text) in the margins as you read — a fast symbol system, what\u2019s actually worth noting, and how those scribbles turn into essay gold later.',
+    sections: [
+      {
+        heading: 'Why annotate at all',
+        body:
+          'Reading with a pencil changes what your brain does: instead of letting words wash over you, you\u2019re constantly asking "is this important?" — which is the exact skill tests reward.\n\nAnnotation does three jobs:\n\n• Keeps you awake — active readers don\u2019t reach the bottom of a page having absorbed nothing.\n• Builds a map — when a question asks about the turning point or a symbol, your margins already point to it.\n• Starts your analysis early — half of a good essay is noticing things; annotation is noticing, written down.\n\nThe golden rule: annotate LESS than you think. A page that\u2019s entirely highlighted is a page where nothing stands out. Aim for 2–5 marks per page, each one meaningful.',
+        tip: 'Never just underline. An underline without a word beside it is a mystery to future-you. Every mark gets at least a one-word label: "irony," "shift," "why?"',
+      },
+      {
+        heading: 'A symbol system you can use today',
+        body:
+          'Speed matters mid-reading, so use shorthand instead of sentences:\n\n• ★ — this feels important (turning point, revelation, theme moment)\n• ? — confused here, come back (or: character\u2019s motive unclear)\n• ! — surprise, twist, or strong reaction\n• ○ around a word — unfamiliar word OR a word that repeats suspiciously often\n• → in margin — cause/effect or "this connects to page X"\n• CH beside text — character detail worth remembering (trait, motive, change)\n• SYM — possible symbol (object/image getting special attention)\n• TH — possible theme statement (a line that sounds like the story\u2019s "message")\n\nAdd a 3–5 word margin note beside the big ones: "first lie — snowballs later," "weather mirrors mood." Short enough to write in seconds, clear enough to decode next week.',
+        tip: 'Repetition is the author waving at you. The second time you circle the same image, word, or object, write "AGAIN — symbol?" in the margin. Repeated = deliberate = analyzable.',
+      },
+      {
+        heading: 'What to hunt for in a short story',
+        body:
+          'Short stories are compressed — nearly everything is doing work. As you read, track these five:\n\n• First and last paragraphs — openings establish mood and stakes; endings often contain the theme. Annotate both heavily.\n• Character changes — mark where a character wants something, decides something, or is different than before. Change is where meaning lives.\n• The turning point — the moment after which the ending becomes inevitable. Star it; questions about "climax" and "most significant event" point here.\n• Repeated images or objects — the cracked mirror, the winter light, the unopened letter. Circle and connect them with arrows.\n• Title echoes — whenever the text touches the title\u2019s idea, note "TITLE." Titles are theme in disguise.\n\nAfter reading, spend 90 seconds writing 2–3 sentences at the end of the story: what changed, what the story seems to say, one question you still have. This "exit note" is the single highest-value annotation you\u2019ll make.',
+      },
+      {
+        heading: 'Turning annotations into answers',
+        body:
+          'Annotations are raw material. When a test or essay question arrives:\n\n• Scan your ★ and TH marks first — the answer to "what is this story about?" is usually already flagged.\n• Your SYM circles + arrows = ready-made analysis of imagery and symbolism.\n• Your CH notes give you the character arc: what they were like → the pressure → what they became. That arc IS most essay answers.\n• Your ? marks show you what to reread — resolve them before writing, or steer your answer around them.\n\nFor annotated texts you\u2019re allowed to bring into a discussion or open-book test, add sticky-note tabs: one colour for theme moments, one for key quotes, one for the turning point. Ten seconds of flipping beats five minutes of frantic skimming.',
+        tip: 'When studying, don\u2019t reread the whole story — reread your margins. If your annotations can\u2019t reconstruct the story\u2019s skeleton, they were too thin; if they can, you just saved 80% of your review time.',
+      },
+    ],
+    tricks: [
+      {
+        name: 'The 2-5 rule',
+        trick:
+          'Two to five annotations per page, never more. Scarcity forces judgment — deciding what NOT to mark is the actual skill being trained.',
+      },
+      {
+        name: 'S.T.A.R.T. checklist',
+        trick:
+          'What deserves ink? Shifts (tone/time/place), Theme lines, Again-moments (repetition), Reactions (your ! and ?), Turning points. If it\u2019s not a S.T.A.R.T. item, keep reading.',
+      },
+      {
+        name: 'The exit note',
+        trick:
+          'The moment you finish reading, write three sentences at the bottom: WHAT changed, what it MEANS, what still confuses you. Memory of a story decays fast — the exit note freezes it while it\u2019s fresh.',
+      },
+    ],
+  },
 ]

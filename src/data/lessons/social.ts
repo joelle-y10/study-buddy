@@ -476,4 +476,112 @@ export const socialLessons: Lesson[] = [
       'Parliament = Crown + Senate (105, appointed) + House of Commons (343, elected)',
     ],
   },
+  {
+    id: 'soc-source-analysis',
+    subject: 'social',
+    grade: 11,
+    title: 'Source Analysis: Cartoons, Quotes & Graphs',
+    emoji: '🔎',
+    summary:
+      'The Social Studies written exam hands you sources — political cartoons, quotations, data — and asks what they mean and how they connect. Here\u2019s the exact method for decoding any source and writing the response.',
+    sections: [
+      {
+        heading: 'What a "source" is and what you\u2019re really being asked',
+        body:
+          'A source is any piece of evidence expressing a perspective: a political cartoon, a quotation from a speech or book, a photograph, a poster, a graph, or a map.\n\nThe task usually has two layers:\n\n• Interpret each source — what is its main idea, and what perspective on the course concept (globalization, nationalism, liberalism) does it take?\n• Find the relationship — how do the sources speak to each other? Do they agree, oppose, or show different sides of one issue?\n\nThe single most important habit: every source was made by SOMEONE with a viewpoint. Your job is to name that viewpoint and tie it to course ideas — not just describe what you see.',
+        tip: 'Never write "this source shows a man holding a flag." That\u2019s description. Write what it ARGUES: "the cartoonist suggests national pride is being used to mask economic problems." Interpretation earns; description doesn\u2019t.',
+      },
+      {
+        heading: 'Decoding each source type',
+        body:
+          '• Political cartoons — everything is deliberate. Check: labels and captions (read them first), symbols (bears = Russia, doves = peace, chains = oppression), size distortion (bigger = more powerful), and irony (cartoons almost always criticize something). Ask: who or what is the target?\n• Quotations — identify the speaker\u2019s position on the spectrum of the course concept. Underline loaded words ("liberation," "invasion," "progress") — word choice reveals ideology. Ask: would a nationalist, an internationalist, a classical liberal agree with this?\n• Graphs, charts & data — find the trend (rising, falling, gap widening), then ask what perspective the CHOICE of data supports. Data feels neutral but selection never is.\n• Photographs & posters — note what\u2019s framed in and left out, and whether it was made to persuade (propaganda) or record.\n\nFor every source, finish this sentence before writing: "This source would be embraced by someone who believes ______ and criticized by someone who believes ______."',
+        tip: 'In cartoons, read all text FIRST (titles, labels, speech bubbles). Cartoonists label exactly the things they don\u2019t trust you to guess — the labels are the skeleton key.',
+      },
+      {
+        heading: 'Structuring the written response',
+        body:
+          'A reliable structure for the interpret-and-relate assignment:\n\n• Paragraph 1 — Source I: main idea in your own words, the perspective it embodies (tie to course vocabulary: e.g., "a rejection of economic globalization"), and one or two specific details as proof.\n• Paragraph 2 — Source II: same treatment. If it connects to Source I, say so as you go.\n• Paragraph 3 (if three sources) — Source III: same treatment.\n• Final paragraph — the relationship: name the issue all sources address, then map their positions ("Sources I and III defend national interest, while Source II warns where that pursuit leads"). End with one sentence on why the issue matters.\n\nUse course concepts as your labels throughout — perspectives should be named with terms like ultranationalism, self-determination, laissez-faire, collective security, not vague words like "positive" and "negative."',
+      },
+      {
+        heading: 'Where marks are won and lost',
+        body:
+          'Markers reward:\n\n• Accurate interpretation — you correctly identified what each source argues.\n• Course connection — you linked each source to concepts and examples from the course (historical or current).\n• Relationship thinking — you treated the sources as a conversation, not three isolated paragraphs.\n\nCommon mark-killers:\n\n• Describing instead of interpreting (the #1 killer).\n• Ignoring one source or giving it a single rushed sentence — treat all sources with roughly equal depth.\n• Forcing agreement — sometimes sources genuinely conflict, and saying HOW they conflict is the analysis.\n• No course vocabulary — a response that never says nationalism/globalization/liberalism when those are the course\u2019s core concepts signals you\u2019re winging it.',
+        tip: 'Support interpretations with specifics from the source itself ("the label \u2018Made Everywhere\u2019 on the flag suggests...") plus ONE course example (a historical event or thinker). Source detail + course knowledge = full-mark paragraphs.',
+      },
+    ],
+    tricks: [
+      {
+        name: 'O.P.V.L.',
+        trick:
+          'For any source ask: Origin (who made it, when?), Purpose (why — persuade, record, mock?), Value (what perspective does it capture?), Limitation (what does it exaggerate or leave out?). Four questions that generate analysis automatically.',
+      },
+      {
+        name: 'The embrace/reject test',
+        trick:
+          'Finish the sentence: "A __________ would love this source; a __________ would hate it." If you can fill both blanks with course perspectives, you\u2019ve found the source\u2019s position.',
+      },
+      {
+        name: 'Labels first, laughter second',
+        trick:
+          'Political cartoon order of operations: 1) read every label and caption, 2) identify the symbols, 3) spot the exaggeration, 4) name the target of the criticism. THEN decide what it argues.',
+      },
+    ],
+  },
+  {
+    id: 'soc-position-paper',
+    subject: 'social',
+    grade: 12,
+    title: 'Writing the Position Paper',
+    emoji: '⚖️',
+    summary:
+      'The big written assignment: take a defensible stand on a course issue and argue it with evidence. Structure, evidence strategy, and how to handle the other side without weakening your own.',
+    sections: [
+      {
+        heading: 'The task: position, not survey',
+        body:
+          'You\u2019re given a source (often a quotation) and a question like "To what extent should we embrace nationalism?" Your job is to take and defend a POSITION on that question.\n\nThree legitimate stances:\n\n• Agree (embrace it) — with reasons and limits.\n• Disagree (reject it) — with reasons and limits.\n• A qualified middle — "we should embrace it only when..." — often the most defensible, because real issues rarely split cleanly.\n\nWhat you cannot do is fence-sit without a claim ("there are many sides to this issue..."). "To what extent" literally invites you to draw a line — so draw it, clearly, in your introduction, and defend that exact line for the whole paper.',
+        tip: 'Convert the prompt into your thesis by answering it in one sentence with a because-clause: "Nations should embrace internationalism to a great extent, because collective problems like climate change and security cannot be solved alone." Specific, arguable, defensible.',
+      },
+      {
+        heading: 'Architecture of the paper',
+        body:
+          '• Introduction — hook the issue, acknowledge the source\u2019s perspective (agree or disagree with it explicitly), and state your thesis with your line drawn.\n• Argument 1 + evidence — your strongest reason. One paragraph, one reason, proven with specific evidence.\n• Argument 2 + evidence — a second distinct reason (not the first one re-worded).\n• Counterargument + rebuttal — present the strongest case AGAINST your position fairly, then show why it fails or matters less ("Critics argue national interest keeps citizens safe; yet the pursuit of pure national interest in the 1930s produced exactly the insecurity it promised to prevent.")\n• Conclusion — restate the position with its significance: why does getting this right matter for citizens today?\n\nThe counterargument paragraph is not optional decoration — engaging the other side is usually an explicit expectation, and it\u2019s what separates argument from opinion.',
+        tip: 'One paragraph = one reason. If a paragraph contains the words "also" or "another reason" halfway through, split it — buried reasons earn no credit because markers can\u2019t see them.',
+      },
+      {
+        heading: 'The evidence game',
+        body:
+          'A position paper lives or dies on specific evidence. Draw from three wells:\n\n• Course history — the case studies you studied: the World Wars, the Holocaust, Quebec nationalism, residential schools, the Cold War, the EU, the UN. Use names, dates, and outcomes.\n• Current events — recent examples of the concept in action. They show the issue is alive, not museum material.\n• Thinkers and documents — Adam Smith, John Locke, the Universal Declaration of Human Rights, the Charter. A well-placed idea from a thinker adds intellectual weight.\n\nWeak: "Nationalism has caused many wars throughout history."\nStrong: "Ultranationalism transformed the 1930s: Germany\u2019s pursuit of Lebensraum and Japan\u2019s expansion into Manchuria show how loyalty to nation, unchecked, becomes license for conquest."\n\nTwo or three DEVELOPED examples beat six name-drops. Each example needs: what happened, and what it PROVES about your thesis.',
+        tip: 'Prep a flexible evidence bank before the exam: 6–8 case studies you know cold. Most course issues (nationalism, liberalism, globalization) can be argued with the same well-understood examples viewed from different angles.',
+      },
+      {
+        heading: 'Voice, judgment, and common traps',
+        body:
+          'What markers reward most is JUDGMENT: a clear position, defended proportionately, with awareness of complexity.\n\nTraps that sink papers:\n\n• The history dump — retelling events without connecting them to the thesis. Every example must end by serving your argument.\n• The flip-flop — arguing "embrace" in paragraph two and "reject" in paragraph three with no controlling line. Qualified positions are fine; incoherent ones are not.\n• Ignoring the source — the quotation you\u2019re given must be addressed: name its perspective and position yourself relative to it.\n• Moral outrage instead of argument — passion is welcome, but "this is obviously wrong and evil" persuades no one without evidence.\n\nStyle notes: write in confident third person mostly ("the evidence suggests"), define course terms the first time you deploy them, and keep the tone of a lawyer, not a protester.',
+        tip: 'End every evidence paragraph with a linking sentence that contains a key word from your thesis. It forces relevance and makes the paper feel relentlessly on-message — which is exactly how top papers read.',
+      },
+    ],
+    tricks: [
+      {
+        name: 'P.E.C.C. paragraph order',
+        trick:
+          'Position → Evidence → Counterargument → Conclusion. If you blank on structure under exam pressure, P.E.C.C. rebuilds the whole paper skeleton in ten seconds.',
+      },
+      {
+        name: 'The "to what extent" dial',
+        trick:
+          'Picture a dial from 0 (fully reject) to 10 (fully embrace). Your thesis is a number on the dial plus the reason: "an 8, because..." You don\u2019t write the number, but deciding it first makes every paragraph consistent.',
+      },
+      {
+        name: 'Steel-man, then swing',
+        trick:
+          'Present the OPPOSITE view at its strongest (steel-man, not straw-man) before rebutting. "Critics rightly note X... however, Y outweighs it because Z." Fair + firm = top-band argument.',
+      },
+      {
+        name: 'What-proves-what check',
+        trick:
+          'After each example ask: "What does this PROVE about my thesis?" If the answer isn\u2019t one clean sentence, the example is decoration — cut it or connect it.',
+      },
+    ],
+  },
 ]
