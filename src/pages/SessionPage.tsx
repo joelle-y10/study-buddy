@@ -187,6 +187,25 @@ export default function SessionPage() {
   const correctCount = answers.filter((a) => a.correct).length
   const struggledSet = struggledConceptIds(courseStruggles)
 
+  // per-concept results for this session, used by the verdict + breakdown cards
+  const conceptResults = Object.entries(
+    answers.reduce<Record<string, { correct: number; total: number }>>((acc, a) => {
+      const b = acc[a.q.concept] ?? { correct: 0, total: 0 }
+      b.total++; if (a.correct) b.correct++
+      acc[a.q.concept] = b
+      return acc
+    }, {}),
+  ).map(([cid, r]) => ({
+    cid,
+    name: allConcepts.find((c) => c.id === cid)?.name ?? cid,
+    ...r,
+    acc: r.correct / r.total,
+  }))
+  // tie-break toward the concept with more questions (stronger signal)
+  const strongest = [...conceptResults].sort((a, b) => b.acc - a.acc || b.total - a.total)[0]
+  const weakest = [...conceptResults].sort((a, b) => a.acc - b.acc || b.total - a.total)[0]
+  const weakestUnit = weakest ? units.find((u) => u.concepts.some((c) => c.id === weakest.cid)) : undefined
+
   return (
     <div className="animate-fade-up">
       <PageHeader
@@ -377,34 +396,61 @@ export default function SessionPage() {
             </p>
           </Card>
 
+          {strongest && weakest && strongest.cid !== weakest.cid && (
+            <div className="grid gap-4 sm:grid-cols-2">
+              <Card className="border-2 border-emerald-300/60 p-5 dark:border-emerald-700/60">
+                <div className="text-xs font-bold uppercase tracking-wide text-emerald-600 dark:text-emerald-400">
+                  💪 Strongest on this {kind === 'quiz' ? 'quiz' : 'test'}
+                </div>
+                <div className="mt-1.5 font-display text-lg font-extrabold text-ink-900 dark:text-white">
+                  {strongest.name}
+                </div>
+                <p className="mt-1 text-sm text-ink-500 dark:text-ink-300">
+                  {strongest.correct}/{strongest.total} correct{strongest.acc === 1 ? ' — flawless. Keep it up!' : ' — this one\u2019s clicking for you.'}
+                </p>
+              </Card>
+              <Card className="border-2 border-rose-300/60 p-5 dark:border-rose-700/60">
+                <div className="text-xs font-bold uppercase tracking-wide text-rose-600 dark:text-rose-400">
+                  🎯 Needs work
+                </div>
+                <div className="mt-1.5 font-display text-lg font-extrabold text-ink-900 dark:text-white">
+                  {weakest.name}
+                </div>
+                <p className="mt-1 text-sm text-ink-500 dark:text-ink-300">
+                  {weakest.correct}/{weakest.total} correct
+                  {weakest.acc >= 0.8
+                    ? ' — honestly still solid. No real weak spots today.'
+                    : ' — worth a review before the real thing.'}
+                </p>
+                {weakestUnit && weakest.acc < 0.8 && (
+                  <Link
+                    to={`/learn?course=${course.id}&unit=${weakestUnit.id}`}
+                    className="mt-3 inline-block rounded-lg bg-rose-500/10 px-3 py-1.5 text-xs font-bold text-rose-600 hover:bg-rose-500/20 dark:text-rose-300"
+                  >
+                    📖 Relearn {weakest.name}
+                  </Link>
+                )}
+              </Card>
+            </div>
+          )}
+
           <Card className="p-6">
             <h3 className="mb-3 font-display font-bold text-ink-900 dark:text-white">Concept breakdown</h3>
             <div className="space-y-3">
-              {Object.entries(
-                answers.reduce<Record<string, { correct: number; total: number }>>((acc, a) => {
-                  const b = acc[a.q.concept] ?? { correct: 0, total: 0 }
-                  b.total++; if (a.correct) b.correct++
-                  acc[a.q.concept] = b
-                  return acc
-                }, {}),
-              ).map(([cid, r]) => {
-                const concept = allConcepts.find((c) => c.id === cid)
-                const acc = r.correct / r.total
-                return (
-                  <div key={cid}>
-                    <div className="mb-1 flex justify-between text-sm">
-                      <span className="font-semibold text-ink-700 dark:text-ink-100">
-                        {concept?.name ?? cid} {struggledSet.has(cid) && '🎯'}
-                      </span>
-                      <span className="text-ink-400">{r.correct}/{r.total}</span>
-                    </div>
-                    <ProgressBar
-                      value={acc}
-                      barClass={acc >= 0.8 ? 'bg-emerald-500' : acc >= 0.5 ? 'bg-amber-500' : 'bg-rose-500'}
-                    />
+              {[...conceptResults].sort((a, b) => b.acc - a.acc).map((r) => (
+                <div key={r.cid}>
+                  <div className="mb-1 flex justify-between text-sm">
+                    <span className="font-semibold text-ink-700 dark:text-ink-100">
+                      {r.name} {struggledSet.has(r.cid) && '🎯'}
+                    </span>
+                    <span className="text-ink-400">{r.correct}/{r.total}</span>
                   </div>
-                )
-              })}
+                  <ProgressBar
+                    value={r.acc}
+                    barClass={r.acc >= 0.8 ? 'bg-emerald-500' : r.acc >= 0.5 ? 'bg-amber-500' : 'bg-rose-500'}
+                  />
+                </div>
+              ))}
             </div>
           </Card>
 
