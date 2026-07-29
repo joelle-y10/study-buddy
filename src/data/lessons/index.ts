@@ -6,6 +6,7 @@ import { chemistryLessons } from './chemistry'
 import { scienceLessons } from './science'
 import { elaLessons } from './ela'
 import { socialLessons } from './social'
+import { csLessons } from './cs'
 
 export const ALL_LESSONS: Lesson[] = [
   ...mathLessons,
@@ -15,6 +16,7 @@ export const ALL_LESSONS: Lesson[] = [
   ...biologyLessons,
   ...elaLessons,
   ...socialLessons,
+  ...csLessons,
 ]
 
 export function getLesson(id: string): Lesson | undefined {

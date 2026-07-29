@@ -55,6 +55,30 @@ function shortError(raw: string): string {
   return m ? `${last} (around line ${m[1]})` : last
 }
 
+/**
+ * Plain-English explanations of the errors beginners hit most,
+ * with the usual cause and the usual fix.
+ */
+const ERROR_DECODER: [string, string][] = [
+  ['IndentationError', 'Python cares about spacing. Lines inside an if, loop, or function must be indented (4 spaces), and lines that should line up must match exactly. Check the spaces at the start of the flagged line.'],
+  ['SyntaxError', 'Python couldn\u2019t understand a line. The usual suspects: a missing colon : at the end of an if/elif/else/for/while/def line, an unclosed bracket ( [ { or quote, or using = where you meant == in a condition.'],
+  ['NameError', 'You used a name Python has never seen. It\u2019s almost always a typo (Print vs print, nmae vs name) or using a variable before the line that creates it.'],
+  ['TypeError', 'Two things that don\u2019t mix were combined — like "5" + 5 (text + number) or calling something that isn\u2019t a function. Convert types first: int("5"), str(5).'],
+  ['ValueError', 'The type was right but the value made no sense — like int("hello"). Check what value actually reached that line.'],
+  ['IndexError', 'You asked a list for a position it doesn\u2019t have. Remember indexing starts at 0, so a 3-item list has positions 0, 1, 2 — there is no position 3.'],
+  ['KeyError', 'You asked a dictionary for a key that isn\u2019t in it. Check the spelling, or use .get(key) which returns None instead of crashing.'],
+  ['AttributeError', 'That object doesn\u2019t have the method or property you called — like "abc".append(). Check the type you\u2019re working with and its methods.'],
+  ['ZeroDivisionError', 'Somewhere you divided by zero. Check the value of the bottom of your division right before that line.'],
+  ['RecursionError', 'A function kept calling itself and never stopped. Every recursive function needs a base case that returns WITHOUT calling itself — and each call must move toward it.'],
+  ['UnboundLocalError', 'You used a variable inside a function before assigning it there. If you meant a variable from outside, pass it in as a parameter instead.'],
+]
+
+/** Friendly one-liner explaining a Python error message, or null if unknown. */
+export function explainError(errorMsg: string): string | null {
+  const hit = ERROR_DECODER.find(([name]) => errorMsg.includes(name))
+  return hit ? hit[1] : null
+}
+
 /** Run code in a fresh namespace, capturing stdout/stderr. */
 export async function runPython(code: string): Promise<RunResult> {
   const py = await loadPython()

@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom'
 import { useApp } from '../store/AppContext'
 import { getCourse } from '../data/catalog'
 import { getChallenges } from '../data/challenges'
-import { outputMatches, runPython } from '../lib/python'
+import { explainError, outputMatches, runPython } from '../lib/python'
 import { Card, Chip, EmptyState, PageHeader } from '../components/ui'
 
 type RunStatus = 'idle' | 'loading-python' | 'running' | 'pass' | 'fail' | 'error'
@@ -223,6 +223,11 @@ export default function CodeLabPage() {
         <Card className="border-2 border-rose-400/60 p-5">
           <p className="font-display font-bold text-rose-600 dark:text-rose-400">🐞 Python hit an error — read it, find the line, fix it, run again:</p>
           <pre className="mt-2 whitespace-pre-wrap rounded-lg bg-ink-50 px-3 py-2 font-mono text-sm text-rose-600 dark:bg-ink-900 dark:text-rose-400">{errorMsg}</pre>
+          {errorMsg && explainError(errorMsg) && (
+            <div className="mt-3 rounded-xl bg-sky-500/10 p-3.5 text-sm leading-relaxed text-sky-800 dark:text-sky-200">
+              🧭 <b>What this usually means:</b> {explainError(errorMsg)}
+            </div>
+          )}
           {output && (
             <>
               <div className="mt-2 text-xs font-bold uppercase tracking-wide text-ink-400">Printed before the error</div>
