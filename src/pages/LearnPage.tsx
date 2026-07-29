@@ -2,9 +2,29 @@ import { useNavigate, useSearchParams } from 'react-router-dom'
 import { ALL_LESSONS, getLesson } from '../data/lessons'
 import { allCoursesFor, getCourse } from '../data/catalog'
 import { SUBJECTS } from '../data/meta'
+import { diagramsForLesson, diagramsForUnit, type DiagramEntry } from '../data/diagrams'
 import { useApp } from '../store/AppContext'
 import { Card, Chip, EmptyState, PageHeader } from '../components/ui'
 import type { Grade, Lesson, SubjectId } from '../types'
+
+/** A gallery of accurate SVG diagrams for visual learners. */
+function DiagramGallery({ entries }: { entries: DiagramEntry[] }) {
+  if (entries.length === 0) return null
+  return (
+    <div className="space-y-4">
+      {entries.map((d) => (
+        <div key={d.id} className="overflow-hidden rounded-2xl border border-ink-100 dark:border-ink-700">
+          {/* keep a light panel in both themes: diagram colors are tuned for it */}
+          <div className="flex justify-center bg-white p-4 dark:bg-ink-100">{d.node}</div>
+          <div className="border-t border-ink-100 bg-ink-50 px-4 py-3 dark:border-ink-700 dark:bg-ink-800">
+            <p className="text-sm font-bold text-ink-800 dark:text-ink-100">{d.title}</p>
+            <p className="mt-0.5 text-sm leading-relaxed text-ink-500 dark:text-ink-300">{d.caption}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
 
 /** Renders lesson body text: blank-line paragraphs, "• " bullet lines. */
 function Body({ text }: { text: string }) {
@@ -51,6 +71,7 @@ function SectionCard({ n, title, children }: { n: number; title: string; childre
 /** Reader for a hand-authored "brain hacks" lesson. */
 function AuthoredLesson({ lesson, onBack }: { lesson: Lesson; onBack: () => void }) {
   const meta = SUBJECTS[lesson.subject]
+  const visuals = diagramsForLesson(lesson.id)
   return (
     <div className="animate-fade-up mx-auto max-w-3xl">
       <button type="button" onClick={onBack} className="mb-4 text-sm font-bold text-brand-500 hover:underline">
@@ -67,6 +88,12 @@ function AuthoredLesson({ lesson, onBack }: { lesson: Lesson; onBack: () => void
         <p className="mt-4 text-sm leading-relaxed text-white/90">{lesson.summary}</p>
       </div>
       <div className="space-y-4">
+        {visuals.length > 0 && (
+          <Card className="p-6">
+            <h2 className="mb-3 font-display text-lg font-bold text-ink-900 dark:text-white">👀 See it</h2>
+            <DiagramGallery entries={visuals} />
+          </Card>
+        )}
         {lesson.sections.map((s, i) => (
           <SectionCard key={s.heading} n={i + 1} title={s.heading}>
             <Body text={s.body} />
@@ -132,6 +159,7 @@ export default function LearnPage() {
     const meta = SUBJECTS[course.subject]
     const related = ALL_LESSONS.filter((l) => l.subject === course.subject).slice(0, 4)
     const examples = [...unit.questions].sort((a, b) => a.difficulty - b.difficulty).slice(0, 3)
+    const visuals = diagramsForUnit(course.id, unit.id)
     let sectionN = 0
     return (
       <div className="animate-fade-up mx-auto max-w-3xl">
@@ -165,6 +193,12 @@ export default function LearnPage() {
               ))}
             </ul>
           </SectionCard>
+
+          {visuals.length > 0 && (
+            <SectionCard n={++sectionN} title="See it — diagrams">
+              <DiagramGallery entries={visuals} />
+            </SectionCard>
+          )}
 
           {unit.concepts.map((c) => {
             const cards = unit.flashcards.filter((f) => f.concept === c.id)
@@ -269,6 +303,7 @@ export default function LearnPage() {
               <div className="mt-3 flex gap-2">
                 <Chip tone="brand">📖 {u.outcomes.length} outcomes</Chip>
                 <Chip>{u.flashcards.length} key ideas</Chip>
+                {diagramsForUnit(course.id, u.id).length > 0 && <Chip tone="good">📊 visuals</Chip>}
               </div>
             </Card>
           ))}
