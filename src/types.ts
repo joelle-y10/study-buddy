@@ -127,10 +127,18 @@ export interface Lesson {
 
 // ---------- user state ----------
 
+/** Profile picture: an emoji tile, a colour tile with the user's initial, or an uploaded image. */
+export interface Avatar {
+  kind: 'emoji' | 'color' | 'image'
+  /** emoji character, hex colour, or a small data-URL image */
+  value: string
+}
+
 export interface Profile {
   name: string
   grade: Grade
   province: ProvinceCode
+  avatar?: Avatar
 }
 
 /** per-concept stats accumulated from answering questions */

@@ -3,6 +3,7 @@ import { useApp } from '../store/AppContext'
 import { coursesFor } from '../data/catalog'
 import { PROVINCES, SUBJECTS, fallbackNote } from '../data/meta'
 import Logo from './Logo'
+import Avatar from './Avatar'
 import type { Grade, ProvinceCode } from '../types'
 
 const NAV = [
@@ -128,6 +129,14 @@ export default function Layout() {
               aria-label="Toggle dark mode"
             >
               {app.theme === 'dark' ? '☀️' : '🌙'}
+            </button>
+            <button
+              type="button"
+              onClick={() => navigate('/settings')}
+              className="rounded-full transition-transform hover:scale-105"
+              aria-label="Profile and settings"
+            >
+              <Avatar avatar={profile.avatar} name={profile.name} size={34} />
             </button>
           </div>
         </header>

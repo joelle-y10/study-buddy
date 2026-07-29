@@ -20,3 +20,18 @@ create policy "insert own state" on public.user_state
 
 create policy "update own state" on public.user_state
   for update using (auth.uid() = user_id);
+
+-- Self-service account deletion (called from the app after the user re-enters
+-- their password). SECURITY DEFINER lets it remove the auth.users row; the
+-- user_state row cascades away with it. Only ever deletes the caller.
+create or replace function public.delete_user()
+returns void
+language sql
+security definer
+set search_path = ''
+as $$
+  delete from auth.users where id = auth.uid();
+$$;
+
+revoke execute on function public.delete_user() from public, anon;
+grant execute on function public.delete_user() to authenticated;

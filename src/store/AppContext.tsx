@@ -67,6 +67,8 @@ interface CloudState {
   syncAvailable: boolean
   syncStatus: SyncStatus
   lastSyncedAt: number | null
+  /** true when the user arrived via a password-reset email link */
+  passwordRecovery: boolean
 }
 
 interface AppActions {
@@ -74,6 +76,16 @@ interface AppActions {
   signUp: (email: string, password: string) => Promise<string | null>
   signIn: (email: string, password: string) => Promise<string | null>
   signOut: () => Promise<void>
+  /** Supabase emails confirmation links to BOTH the old and new address. */
+  changeEmail: (newEmail: string) => Promise<string | null>
+  /** requires the current password (re-authentication) before updating */
+  changePassword: (currentPassword: string, newPassword: string) => Promise<string | null>
+  /** sends a password-reset link to the given email */
+  forgotPassword: (email: string) => Promise<string | null>
+  /** sets the new password after arriving via a reset link */
+  completeRecovery: (newPassword: string) => Promise<string | null>
+  /** permanently deletes the account (cloud data included); requires the password */
+  deleteAccount: (password: string) => Promise<string | null>
   setProfile: (p: Profile) => void
   setTheme: (t: 'light' | 'dark') => void
   setSelectedCourse: (id: string | null) => void
@@ -96,6 +108,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null)
   const [syncStatus, setSyncStatus] = useState<SyncStatus>('off')
   const [lastSyncedAt, setLastSyncedAt] = useState<number | null>(null)
+  const [passwordRecovery, setPasswordRecovery] = useState(false)
   /** set while adopting cloud state so we don't immediately push it back */
   const skipNextPush = useRef(false)
 
@@ -103,8 +116,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (!supabase) return
     supabase.auth.getSession().then(({ data }) => setUser(data.session?.user ?? null))
-    const { data: sub } = supabase.auth.onAuthStateChange((_event, session) => {
+    const { data: sub } = supabase.auth.onAuthStateChange((event, session) => {
       setUser(session?.user ?? null)
+      if (event === 'PASSWORD_RECOVERY') setPasswordRecovery(true)
     })
     return () => sub.subscription.unsubscribe()
   }, [])
@@ -182,6 +196,52 @@ export function AppProvider({ children }: { children: ReactNode }) {
     // Local progress stays on this device; only the session ends.
     await supabase?.auth.signOut()
   }, [])
+
+  const changeEmail = useCallback(async (newEmail: string) => {
+    if (!supabase) return 'Cloud sync is not set up yet.'
+    const { error } = await supabase.auth.updateUser({ email: newEmail })
+    return error ? error.message : null
+  }, [])
+
+  const changePassword = useCallback(async (currentPassword: string, newPassword: string) => {
+    if (!supabase || !user?.email) return 'You need to be signed in.'
+    // re-authenticate so a stolen open session can't silently change the password
+    const { error: authErr } = await supabase.auth.signInWithPassword({
+      email: user.email,
+      password: currentPassword,
+    })
+    if (authErr) return 'Current password is incorrect.'
+    const { error } = await supabase.auth.updateUser({ password: newPassword })
+    return error ? error.message : null
+  }, [user])
+
+  const forgotPassword = useCallback(async (email: string) => {
+    if (!supabase) return 'Cloud sync is not set up yet.'
+    const redirectTo = `${window.location.origin}${import.meta.env.BASE_URL}`
+    const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo })
+    return error ? error.message : null
+  }, [])
+
+  const completeRecovery = useCallback(async (newPassword: string) => {
+    if (!supabase) return 'Cloud sync is not set up yet.'
+    const { error } = await supabase.auth.updateUser({ password: newPassword })
+    if (!error) setPasswordRecovery(false)
+    return error ? error.message : null
+  }, [])
+
+  const deleteAccount = useCallback(async (password: string) => {
+    if (!supabase || !user?.email) return 'You need to be signed in.'
+    const { error: authErr } = await supabase.auth.signInWithPassword({
+      email: user.email,
+      password,
+    })
+    if (authErr) return 'Password is incorrect.'
+    // security-definer RPC deletes the auth user; user_state cascades with it
+    const { error } = await supabase.rpc('delete_user')
+    if (error) return error.message
+    await supabase.auth.signOut()
+    return null
+  }, [user])
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', state.theme === 'dark')
@@ -289,12 +349,14 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const value = useMemo(
     () => ({
       ...state,
-      user, syncAvailable: supabase !== null, syncStatus, lastSyncedAt,
+      user, syncAvailable: supabase !== null, syncStatus, lastSyncedAt, passwordRecovery,
       signUp, signIn, signOut,
+      changeEmail, changePassword, forgotPassword, completeRecovery, deleteAccount,
       setProfile, setTheme, setSelectedCourse, recordAnswer, addStruggle, resolveStruggle,
       addSession, rateSession, setCardBucket, markChallengeDone, addEvent, removeEvent, resetAll,
     }),
-    [state, user, syncStatus, lastSyncedAt, signUp, signIn, signOut,
+    [state, user, syncStatus, lastSyncedAt, passwordRecovery, signUp, signIn, signOut,
+      changeEmail, changePassword, forgotPassword, completeRecovery, deleteAccount,
       setProfile, setTheme, setSelectedCourse, recordAnswer, addStruggle, resolveStruggle,
       addSession, rateSession, setCardBucket, markChallengeDone, addEvent, removeEvent, resetAll],
   )
