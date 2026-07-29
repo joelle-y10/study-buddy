@@ -49,7 +49,22 @@ function TapingGuides({ guides }: { guides: TapeGuide[] }) {
             </p>
           )}
 
-          <ol className="mt-4 space-y-6">
+          <figure className="mt-4">
+            <p className="mb-1.5 text-xs font-semibold uppercase tracking-wide text-ink-400 dark:text-ink-500">
+              Finished example — match this look
+            </p>
+            <img
+              src={`${import.meta.env.BASE_URL}${g.image.src}`}
+              alt={g.image.alt}
+              loading="lazy"
+              className="h-auto w-full max-w-md rounded-xl border border-ink-100 object-cover dark:border-ink-700"
+            />
+            <figcaption className="mt-1.5 text-xs text-ink-400 dark:text-ink-500">
+              {g.image.credit}
+            </figcaption>
+          </figure>
+
+          <ol className="mt-5 space-y-5">
             {g.steps.map((s, i) => (
               <li key={i} className="space-y-2">
                 <div className="flex gap-2.5">
@@ -65,11 +80,6 @@ function TapingGuides({ guides }: { guides: TapeGuide[] }) {
                     )}
                   </div>
                 </div>
-                {g.stepDiagrams?.[i] != null && (
-                  <div className="ml-7 overflow-hidden rounded-xl border border-ink-100 bg-white dark:border-ink-700">
-                    {g.stepDiagrams[i]}
-                  </div>
-                )}
                 {g.stepPhotos?.[i] != null && (
                   <figure className="ml-7">
                     <img
@@ -86,21 +96,6 @@ function TapingGuides({ guides }: { guides: TapeGuide[] }) {
               </li>
             ))}
           </ol>
-
-          <figure className="mt-5">
-            <p className="mb-1.5 text-xs font-semibold uppercase tracking-wide text-ink-400 dark:text-ink-500">
-              Finished example — match this look
-            </p>
-            <img
-              src={`${import.meta.env.BASE_URL}${g.image.src}`}
-              alt={g.image.alt}
-              loading="lazy"
-              className="h-auto w-full max-w-md rounded-xl border border-ink-100 object-cover dark:border-ink-700"
-            />
-            <figcaption className="mt-1.5 text-xs text-ink-400 dark:text-ink-500">
-              {g.image.credit}
-            </figcaption>
-          </figure>
         </div>
       ))}
     </div>
