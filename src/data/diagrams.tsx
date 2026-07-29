@@ -1,8 +1,7 @@
 import type { ReactNode } from 'react'
 import {
   FunctionGraph, RightTriangle, MotionGraphs, ProjectileScene, Molecule,
-  AnatomicalPosition, AnkleTape, BoxModel, PlotArc, PoliticalSpectrum,
-  EnergyPyramid, CellDiagram,
+  BoxModel, PlotArc, PoliticalSpectrum, EnergyPyramid, CellDiagram, Figure,
 } from '../components/diagrams'
 
 export interface DiagramEntry {
@@ -10,6 +9,8 @@ export interface DiagramEntry {
   title: string
   caption: string
   node: ReactNode
+  /** attribution line for openly-licensed images (source + license). */
+  credit?: string
 }
 
 /** Every visual in the app, keyed by id. */
@@ -92,17 +93,47 @@ export const DIAGRAMS: Record<string, DiagramEntry> = {
     caption: 'In NaCl, sodium transfers its lone valence electron to chlorine; the resulting + and − ions attract. Covalent bonds share electrons instead — transfer vs. share is the whole distinction.',
     node: <Molecule kind="NaCl" />,
   },
-  'anatomical-position': {
-    id: 'anatomical-position',
+  'anatomy-directional': {
+    id: 'anatomy-directional',
     title: 'Anatomical position and directional terms',
-    caption: 'Every directional term assumes this pose: standing, facing forward, palms forward. Superior/inferior run up–down, medial/lateral relate to the midline, proximal/distal measure distance from where a limb attaches.',
-    node: <AnatomicalPosition />,
+    caption: 'Every directional term assumes this pose: standing, facing forward, palms forward. Superior/inferior run up–down, anterior/posterior are front/back, medial/lateral relate to the midline, and proximal/distal measure distance from where a limb attaches.',
+    node: <Figure src="images/anatomy/directional-terms.jpg" alt="Human body in anatomical position with directional terms labeled" />,
+    credit: 'OpenStax Anatomy & Physiology, via Wikimedia Commons — CC BY 3.0',
   },
-  'ankle-tape': {
-    id: 'ankle-tape',
-    title: 'Closed basketweave ankle tape — the layers',
-    caption: 'Order matters: anchors first (around the lower leg), stirrups from medial to lateral pulling the foot outward against inversion sprains, then figure-8 and heel locks to close it up. Ankle stays at 90° the whole time.',
-    node: <AnkleTape />,
+  'anatomy-planes': {
+    id: 'anatomy-planes',
+    title: 'The three planes of the body',
+    caption: 'The sagittal plane splits left/right, the frontal (coronal) plane splits front/back, and the transverse plane splits top/bottom. Movements and imaging are always described relative to these planes.',
+    node: <Figure src="images/anatomy/planes.jpg" alt="Sagittal, frontal, and transverse planes through a human body" />,
+    credit: 'OpenStax Anatomy & Physiology, via Wikimedia Commons — CC BY 4.0',
+  },
+  skeleton: {
+    id: 'skeleton',
+    title: 'The human skeleton',
+    caption: 'The axial skeleton (skull, spine, ribs) forms the core; the appendicular skeleton (arms, legs, girdles) hangs off it. Knowing bone names is the foundation for describing injuries.',
+    node: <Figure src="images/anatomy/skeleton-front.svg" alt="Labeled front view of the human skeleton" maxW="max-w-sm" />,
+    credit: 'Mariana Ruiz (LadyofHats), via Wikimedia Commons — Public domain',
+  },
+  muscles: {
+    id: 'muscles',
+    title: 'The major muscles (anterior and posterior)',
+    caption: 'Superficial muscles you can name and palpate: deltoid, biceps and triceps, pectorals, quadriceps, hamstrings, gastrocnemius. Most sports injuries involve one of these or the tendon attaching it.',
+    node: <Figure src="images/anatomy/muscles.jpg" alt="Labeled anterior and posterior views of the major muscles of the body" maxW="max-w-sm" />,
+    credit: 'OpenStax Anatomy & Physiology, via Wikimedia Commons — CC BY 4.0',
+  },
+  photosynthesis: {
+    id: 'photosynthesis',
+    title: 'Photosynthesis overview',
+    caption: 'Light reactions capture sunlight to make ATP and NADPH; the Calvin cycle uses them to build sugar from CO₂. Inputs: light, water, CO₂. Outputs: glucose and oxygen.',
+    node: <Figure src="images/science/photosynthesis.svg" alt="Diagram of photosynthesis: light reactions feeding the Calvin cycle" />,
+    credit: 'Daniel Mayer & Yerpo, via Wikimedia Commons — CC BY-SA 4.0',
+  },
+  'cell-photo': {
+    id: 'cell-photo',
+    title: 'A simple animal cell',
+    caption: 'The cell membrane holds in the cytoplasm; the nucleus stores DNA; mitochondria release energy. A clean reference for the parts you name most often.',
+    node: <Figure src="images/science/animal-cell.svg" alt="Labeled diagram of a simple animal cell" />,
+    credit: 'domdomegg, via Wikimedia Commons — CC BY 4.0',
   },
   'css-box-model': {
     id: 'css-box-model',
@@ -208,13 +239,13 @@ const UNIT_DIAGRAMS: Record<string, string[]> = {
   'ab-chem20:bonding': ['molecule-h2o', 'molecule-co2', 'molecule-ch4', 'ionic-nacl'],
   'ab-science10:chemical-change': ['ionic-nacl', 'molecule-h2o'],
   // biology
-  'ab-bio20:photosynthesis-respiration': ['cell-diagram'],
+  'ab-bio20:photosynthesis-respiration': ['photosynthesis', 'cell-diagram'],
   'ab-bio20:ecosystems-populations': ['energy-pyramid'],
-  'ab-science10:living-systems': ['cell-diagram'],
-  // sports med
-  'ab-sportsmed15:anatomical-foundations': ['anatomical-position'],
-  'ab-sportsmed25:taping-techniques': ['ankle-tape'],
-  'ab-sportsmed15:first-response-taping': ['ankle-tape'],
+  'ab-science10:living-systems': ['cell-photo', 'cell-diagram'],
+  // sports med — real, openly-licensed anatomy
+  'ab-sportsmed15:anatomical-foundations': ['anatomy-directional', 'anatomy-planes', 'skeleton', 'muscles'],
+  'ab-sportsmed15:musculoskeletal-basics': ['skeleton', 'muscles'],
+  'ab-sportsmed35:biomechanics': ['skeleton', 'muscles'],
   // cs
   'ab-cs10:web-html-css': ['css-box-model'],
   // ela / social
@@ -235,4 +266,95 @@ export function diagramsForUnit(courseId: string, unitId: string): DiagramEntry[
 
 export function diagramsForLesson(lessonId: string): DiagramEntry[] {
   return (LESSON_DIAGRAMS[lessonId] ?? []).map((id) => DIAGRAMS[id]).filter(Boolean)
+}
+
+// ---------------------------------------------------------------- taping guides
+
+export interface TapeGuide {
+  id: string
+  name: string
+  emoji: string
+  /** when and why it's used */
+  use: string
+  steps: string[]
+  /** authoritative external demonstration */
+  link?: { url: string; label: string }
+  /** embedded openly-licensed photo, if one exists */
+  image?: { src: string; alt: string; credit: string }
+}
+
+const ANKLE: TapeGuide = {
+  id: 'ankle',
+  name: 'Ankle (closed basketweave)',
+  emoji: '🦶',
+  use: 'The most common athletic tape — supports the ankle after, or to help prevent, a lateral (inversion) sprain.',
+  steps: [
+    'Prep: clean, dry (ideally shaved) skin. Hold the foot at 90° and apply pre-wrap/underwrap so tape never sticks straight to skin.',
+    'Anchors: one strip around the lower shin (~10 cm above the ankle) and one around the midfoot.',
+    'Stirrups: 2–3 strips from the inside (medial) anchor, straight down under the heel, up to the outside (lateral) anchor — this resists the foot rolling inward.',
+    'Horseshoes / figure-6: strips across the front of the ankle and under the arch to lock the stirrups down.',
+    'Heel locks: angled wraps around the heel for rotational control.',
+    'Close-up strips to fill gaps. Then check the toes — no numbness, tingling, or colour change.',
+  ],
+  link: { url: 'https://physioadvisor.com.au/health/taping-techniques-lower-body/ankle', label: 'See the full illustrated guide (PhysioAdvisor)' },
+}
+const WRIST: TapeGuide = {
+  id: 'wrist',
+  name: 'Wrist',
+  emoji: '✋',
+  use: 'Supports the wrist and limits over-bending after a sprain, common in gymnastics, football, and gym work.',
+  steps: [
+    'Prep: clean, dry skin; optional underwrap. Keep the wrist in slight extension (bent back ~30°).',
+    'Anchors: one around the forearm just above the wrist, one around the palm (never over the knuckles/fingers).',
+    'Dorsal crosses: 1–2 strips crossing the back of the wrist between the anchors to limit over-flexion.',
+    'Close-up strips over the anchors. Check the hand stays pink and warm with no pins and needles.',
+  ],
+  link: { url: 'https://physioadvisor.com.au/health/taping-techniques-upper-body/wrist', label: 'See the full illustrated guide (PhysioAdvisor)' },
+}
+const THUMB: TapeGuide = {
+  id: 'thumb',
+  name: 'Thumb (spica)',
+  emoji: '👍',
+  use: "Protects the thumb's base ligament — the classic “skier's / goalkeeper's thumb” injury.",
+  steps: [
+    'Prep: clean, dry skin; optional underwrap. Wrist and thumb in a comfortable neutral position.',
+    'Anchor: one strip around the wrist, just below the hand.',
+    'Thumb spica / figure-8: loop from the wrist anchor around the base of the thumb and back, so the thumb can’t bend too far back or out.',
+    'Repeat 1–3 loops as needed; finish over the wrist anchor. Check circulation in the thumb.',
+  ],
+  link: { url: 'https://physioadvisor.com.au/health/taping-techniques-upper-body/thumb', label: 'See the full illustrated guide (PhysioAdvisor)' },
+}
+const ELBOW: TapeGuide = {
+  id: 'elbow',
+  name: 'Elbow (hyperextension)',
+  emoji: '💪',
+  use: 'Limits painful hyperextension of the elbow while still allowing it to bend.',
+  steps: [
+    'Prep: clean, dry skin; optional underwrap. Hold the elbow slightly bent (never fully straight).',
+    'Anchors: one around the upper arm and one around the forearm.',
+    'Check-rein / fan strips: several strips across the front (inside) of the elbow between the anchors to block the last few degrees of straightening.',
+    'Close-up strips over the anchors. Check the forearm and hand for numbness or colour change.',
+  ],
+  link: { url: 'https://physioadvisor.com.au/health/taping-techniques-upper-body/elbow', label: 'See the full illustrated guide (PhysioAdvisor)' },
+}
+const BUDDY: TapeGuide = {
+  id: 'buddy',
+  name: 'Buddy taping (fingers)',
+  emoji: '🖐️',
+  use: 'Splints a jammed or mildly sprained finger to a healthy neighbour. NOT for an obviously broken or deformed finger — that needs medical care first.',
+  steps: [
+    'Place a small pad of gauze between the injured finger and the one next to it (stops the skin rubbing).',
+    'Tape the two fingers together with a strip above the injured knuckle and one below it — never directly over the swollen joint.',
+    'Leave the fingertip and each knuckle visible so the fingers can still bend a little.',
+    'Snug, not tight: the fingertip must stay pink and warm. Re-check after a few minutes.',
+  ],
+  image: { src: 'images/taping/buddy-taping.png', alt: 'Two fingers buddy-taped together above and below the middle joint', credit: 'Redlinux, via Wikimedia Commons — CC BY 3.0' },
+}
+
+const TAPING: Record<string, TapeGuide[]> = {
+  'ab-sportsmed25:taping-techniques': [ANKLE, WRIST, THUMB, ELBOW, BUDDY],
+}
+
+export function tapingForUnit(courseId: string, unitId: string): TapeGuide[] {
+  return TAPING[`${courseId}:${unitId}`] ?? []
 }

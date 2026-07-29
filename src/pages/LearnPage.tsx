@@ -2,7 +2,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom'
 import { ALL_LESSONS, getLesson } from '../data/lessons'
 import { allCoursesFor, getCourse } from '../data/catalog'
 import { SUBJECTS } from '../data/meta'
-import { diagramsForLesson, diagramsForUnit, type DiagramEntry } from '../data/diagrams'
+import { diagramsForLesson, diagramsForUnit, tapingForUnit, type DiagramEntry, type TapeGuide } from '../data/diagrams'
 import { useApp } from '../store/AppContext'
 import { Card, Chip, EmptyState, PageHeader } from '../components/ui'
 import type { Grade, Lesson, SubjectId } from '../types'
@@ -19,7 +19,58 @@ function DiagramGallery({ entries }: { entries: DiagramEntry[] }) {
           <div className="border-t border-ink-100 bg-ink-50 px-4 py-3 dark:border-ink-700 dark:bg-ink-800">
             <p className="text-sm font-bold text-ink-800 dark:text-ink-100">{d.title}</p>
             <p className="mt-0.5 text-sm leading-relaxed text-ink-500 dark:text-ink-300">{d.caption}</p>
+            {d.credit && <p className="mt-1.5 text-xs text-ink-400 dark:text-ink-500">Image: {d.credit}</p>}
           </div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+/** Step-by-step taping guides: written steps + real anatomy, with an authoritative demo link. */
+function TapingGuides({ guides }: { guides: TapeGuide[] }) {
+  return (
+    <div className="space-y-4">
+      <div className="rounded-xl bg-rose-500/10 p-3.5 text-sm text-rose-800 dark:text-rose-200">
+        ⚠️ <b>Theory only.</b> Taping is a hands-on skill — practise on a partner with a certified athletic therapist or instructor before taping for real. Remove tape immediately if you feel numbness, tingling, or see any colour change.
+      </div>
+      {guides.map((g) => (
+        <div key={g.id} className="rounded-2xl border border-ink-100 p-5 dark:border-ink-700">
+          <h3 className="flex items-center gap-2 font-display text-lg font-bold text-ink-900 dark:text-white">
+            <span className="text-2xl">{g.emoji}</span> {g.name}
+          </h3>
+          <p className="mt-1 text-sm leading-relaxed text-ink-500 dark:text-ink-300">{g.use}</p>
+          {g.image && (
+            <figure className="mt-3">
+              <img
+                src={`${import.meta.env.BASE_URL}${g.image.src}`}
+                alt={g.image.alt}
+                loading="lazy"
+                className="h-auto w-full max-w-xs rounded-xl border border-ink-100 dark:border-ink-700"
+              />
+              <figcaption className="mt-1 text-xs text-ink-400 dark:text-ink-500">Image: {g.image.credit}</figcaption>
+            </figure>
+          )}
+          <ol className="mt-3 space-y-2">
+            {g.steps.map((s, i) => (
+              <li key={i} className="flex gap-2.5 text-sm leading-relaxed text-ink-600 dark:text-ink-200">
+                <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-500/10 text-xs font-bold text-brand-600 dark:text-brand-300">
+                  {i + 1}
+                </span>
+                <span>{s}</span>
+              </li>
+            ))}
+          </ol>
+          {g.link && (
+            <a
+              href={g.link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-3 inline-flex items-center gap-1.5 rounded-lg bg-brand-500/10 px-3.5 py-2 text-sm font-bold text-brand-600 hover:bg-brand-500/20 dark:text-brand-300"
+            >
+              ▶ {g.link.label} ↗
+            </a>
+          )}
         </div>
       ))}
     </div>
@@ -160,6 +211,7 @@ export default function LearnPage() {
     const related = ALL_LESSONS.filter((l) => l.subject === course.subject).slice(0, 4)
     const examples = [...unit.questions].sort((a, b) => a.difficulty - b.difficulty).slice(0, 3)
     const visuals = diagramsForUnit(course.id, unit.id)
+    const tapes = tapingForUnit(course.id, unit.id)
     let sectionN = 0
     return (
       <div className="animate-fade-up mx-auto max-w-3xl">
@@ -197,6 +249,12 @@ export default function LearnPage() {
           {visuals.length > 0 && (
             <SectionCard n={++sectionN} title="See it — diagrams">
               <DiagramGallery entries={visuals} />
+            </SectionCard>
+          )}
+
+          {tapes.length > 0 && (
+            <SectionCard n={++sectionN} title="Taping techniques, step by step">
+              <TapingGuides guides={tapes} />
             </SectionCard>
           )}
 
@@ -304,6 +362,7 @@ export default function LearnPage() {
                 <Chip tone="brand">📖 {u.outcomes.length} outcomes</Chip>
                 <Chip>{u.flashcards.length} key ideas</Chip>
                 {diagramsForUnit(course.id, u.id).length > 0 && <Chip tone="good">📊 visuals</Chip>}
+                {tapingForUnit(course.id, u.id).length > 0 && <Chip tone="good">🩹 taping guide</Chip>}
               </div>
             </Card>
           ))}

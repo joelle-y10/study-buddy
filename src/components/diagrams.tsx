@@ -93,11 +93,36 @@ export function FunctionGraph({
     <svg viewBox={`0 0 ${W} ${H}`} className="w-full max-w-md" role="img">
       {gridLines}
       {shadePath && <path d={shadePath} fill={(shade?.color ?? EMERALD)} opacity={0.25} />}
-      {/* axes */}
-      {yMin <= 0 && yMax >= 0 && <line x1={sx(xMin)} y1={sy(0)} x2={sx(xMax)} y2={sy(0)} stroke={INK} strokeWidth={1.4} />}
-      {xMin <= 0 && xMax >= 0 && <line x1={sx(0)} y1={sy(yMin)} x2={sx(0)} y2={sy(yMax)} stroke={INK} strokeWidth={1.4} />}
-      <text x={sx(xMax) - 4} y={sy(0) - 6} textAnchor="end" style={lblB}>{xLabel}</text>
-      <text x={sx(0) + 6} y={sy(yMax) + 12} style={lblB}>{yLabel}</text>
+      {/* axes with arrowheads */}
+      {yMin <= 0 && yMax >= 0 && (
+        <g>
+          <line x1={sx(xMin)} y1={sy(0)} x2={sx(xMax)} y2={sy(0)} stroke={INK} strokeWidth={1.4} />
+          <polygon points={`${sx(xMax) + 7},${sy(0)} ${sx(xMax) - 1},${sy(0) - 4} ${sx(xMax) - 1},${sy(0) + 4}`} fill={INK} />
+        </g>
+      )}
+      {xMin <= 0 && xMax >= 0 && (
+        <g>
+          <line x1={sx(0)} y1={sy(yMin)} x2={sx(0)} y2={sy(yMax)} stroke={INK} strokeWidth={1.4} />
+          <polygon points={`${sx(0)},${sy(yMax) - 7} ${sx(0) - 4},${sy(yMax) + 1} ${sx(0) + 4},${sy(yMax) + 1}`} fill={INK} />
+        </g>
+      )}
+      {/* integer tick numbers, thinned on wide ranges */}
+      {yMin <= 0 && yMax >= 0 && xMin <= 0 && xMax >= 0 && (() => {
+        const xStep = xMax - xMin > 12 ? 2 : 1
+        const yStep = yMax - yMin > 12 ? 2 : 1
+        const ticks = []
+        for (let gx = Math.ceil(xMin); gx <= Math.floor(xMax); gx += xStep) {
+          if (gx === 0) continue
+          ticks.push(<text key={`tx${gx}`} x={sx(gx)} y={sy(0) + 13} textAnchor="middle" style={{ ...lbl, fontSize: 8.5, ...halo }}>{gx}</text>)
+        }
+        for (let gy = Math.ceil(yMin); gy <= Math.floor(yMax); gy += yStep) {
+          if (gy === 0) continue
+          ticks.push(<text key={`ty${gy}`} x={sx(0) - 5} y={sy(gy) + 3} textAnchor="end" style={{ ...lbl, fontSize: 8.5, ...halo }}>{gy}</text>)
+        }
+        return ticks
+      })()}
+      <text x={sx(xMax) - 4} y={sy(0) - 7} textAnchor="end" style={lblB}>{xLabel}</text>
+      <text x={sx(0) + 7} y={sy(yMax) + 12} style={lblB}>{yLabel}</text>
       {paths}
       {points.map((p, i) => (
         <g key={i}>
@@ -275,6 +300,22 @@ export function Molecule({ kind }: { kind: 'H2O' | 'CO2' | 'CH4' | 'NaCl' }) {
   )
 }
 
+// ---------------------------------------------------------------- image figure
+
+/** A raster/vector figure loaded from /public/images (openly-licensed sources). */
+export function Figure({ src, alt, maxW = 'max-w-md' }: { src: string; alt: string; maxW?: string }) {
+  // optional chaining keeps this renderable outside Vite (e.g. the dev render script)
+  const base = import.meta.env?.BASE_URL ?? '/'
+  return (
+    <img
+      src={`${base}${src}`}
+      alt={alt}
+      loading="lazy"
+      className={`h-auto w-full ${maxW}`}
+    />
+  )
+}
+
 // ---------------------------------------------------------------- sports med
 
 export function AnatomicalPosition() {
@@ -305,28 +346,6 @@ export function AnatomicalPosition() {
       <text x={240} y={80} style={lbl}>Anatomical position:</text>
       <text x={240} y={94} style={lbl}>standing, facing you,</text>
       <text x={240} y={108} style={lbl}>palms forward</text>
-    </svg>
-  )
-}
-
-export function AnkleTape() {
-  return (
-    <svg viewBox="0 0 340 230" className="w-full max-w-md" role="img">
-      {/* lower leg + foot, side view */}
-      <path d="M140 20 L140 130 Q140 158 168 165 L235 165 Q245 165 245 175 L245 188 L120 188 Q104 188 106 168 L110 20 Z" fill={INK_SOFT} opacity={0.45} stroke={INK} strokeWidth={1.5} />
-      {/* anchors (top of leg) */}
-      <rect x={106} y={38} width={36} height={10} rx={2} fill={BLUE} opacity={0.85} />
-      <rect x={105} y={52} width={37} height={10} rx={2} fill={BLUE} opacity={0.85} />
-      <text x={150} y={50} style={{ ...lblB, fill: BLUE }}>1. anchors</text>
-      {/* stirrup (under heel, up both sides) */}
-      <path d="M112 62 L112 150 Q113 178 140 181 L143 181 L143 62" fill="none" stroke={EMERALD} strokeWidth={9} opacity={0.8} />
-      <text x={152} y={120} style={{ ...lblB, fill: EMERALD }}>2. stirrups</text>
-      <text x={152} y={134} style={{ ...lbl, fill: EMERALD }}>(medial → lateral)</text>
-      {/* figure-8 */}
-      <path d="M122 158 Q170 138 220 172 Q170 196 124 172 Q118 165 122 158" fill="none" stroke={AMBER} strokeWidth={7} opacity={0.85} />
-      <text x={228} y={150} style={{ ...lblB, fill: AMBER }}>3. figure-8</text>
-      <text x={228} y={164} style={{ ...lbl, fill: AMBER }}>+ heel locks</text>
-      <text x={170} y={216} textAnchor="middle" style={lbl}>Ankle at 90°, pre-wrap first, no wrinkles or gaps</text>
     </svg>
   )
 }

@@ -11,6 +11,7 @@ mkdirSync(OUT, { recursive: true })
 
 for (const [id, entry] of Object.entries(DIAGRAMS)) {
   let svg = renderToStaticMarkup(entry.node as React.ReactElement)
+  if (!svg.startsWith('<svg')) continue // image-based entries aren't inline SVG
   svg = svg.replace('<svg ', '<svg xmlns="http://www.w3.org/2000/svg" style="background:#ffffff" ')
   writeFileSync(`${OUT}/${id}.svg`, svg)
   console.log(`wrote ${id}.svg`)
