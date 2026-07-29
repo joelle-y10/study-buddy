@@ -3,6 +3,19 @@ import {
   FunctionGraph, RightTriangle, MotionGraphs, ProjectileScene, Molecule,
   BoxModel, PlotArc, PoliticalSpectrum, EnergyPyramid, CellDiagram, Figure,
 } from '../components/diagrams'
+import { ANKLE_STEP_DIAGRAMS, ANKLE_STEP_PHOTOS } from '../components/ankleTapeSteps'
+import { THUMB_STEP_DIAGRAMS } from '../components/thumbTapeSteps'
+import {
+  WRIST_STEP_DIAGRAMS,
+  ELBOW_STEP_DIAGRAMS,
+  BUDDY_STEP_DIAGRAMS,
+  KNEE_STEP_DIAGRAMS,
+  PATELLA_STEP_DIAGRAMS,
+  SHOULDER_STEP_DIAGRAMS,
+  HIP_STEP_DIAGRAMS,
+  ARCH_STEP_DIAGRAMS,
+  AC_STEP_DIAGRAMS,
+} from '../components/basicTapeSteps'
 
 export interface DiagramEntry {
   id: string
@@ -277,8 +290,17 @@ export interface TapeGuide {
   emoji: string
   /** when and why it's used */
   use: string
+  /** short materials line shown under the use blurb */
+  materials?: string
+  /** concise step titles (shown bold) */
   steps: string[]
-  /** local photo in /public */
+  /** detailed teaching notes — same length as steps */
+  stepNotes?: string[]
+  /** optional per-step placement diagrams (same length as steps) */
+  stepDiagrams?: ReactNode[]
+  /** optional classroom photos under specific steps */
+  stepPhotos?: Array<{ src: string; alt: string; credit: string } | null>
+  /** local photo in /public — finished example */
   image: { src: string; alt: string; credit: string }
 }
 
@@ -286,183 +308,282 @@ const ANKLE: TapeGuide = {
   id: 'ankle',
   name: 'Ankle — closed basketweave',
   emoji: '🦶',
-  use: 'Alberta Sports Med / REC classic: limits inversion after (or to help prevent) a lateral ankle sprain. Foot held at 90° the whole time.',
+  use: 'Limits inversion after (or to help prevent) a lateral ankle sprain. Match the finished photo: foot at 90°, calf + midfoot anchors, woven stirrups/horseshoes, then heel-lock X over the malleolus. Follow blue arrows for pull direction.',
+  materials: 'Adhesive spray · underwrap · heel & lace pads · 1½″ white athletic tape',
   steps: [
-    'Prep: clean & dry skin; shave if needed; adhesive/tough skin if used; underwrap plus heel/lace pads. Keep the ankle at 90°.',
-    'Anchors: one above the ankle, plus one across the top of the foot behind the metatarsal heads.',
-    'Basketweave: alternate stirrups (medial → under heel → lateral) with horseshoe strips, overlapping about half each pass.',
-    'Figure-6 / half figure-8, then a pair of heel locks.',
-    'Close loose ends with anchors, conform the tape, and check toes for colour, warmth, and sensation.',
+    'Position & prep (90°)',
+    'Calf + midfoot anchors',
+    'Stirrups (medial → under heel → lateral)',
+    'Horseshoes — weave the basket',
+    'Heel locks / figure-8s',
+    'Close & circulation check',
   ],
+  stepNotes: [
+    'Clean and dry the skin; shave if needed. Spray adherent, then underwrap from midfoot to lower calf with heel and lace pads in place. Hold the ankle at 90° (toes up) for the entire job — the finished wrap only works if you tape in this position.',
+    'Lay 2–3 overlapping circumferential strips on the lower calf above the malleoli, then a midfoot strip behind the metatarsal heads. Snug, never tourniquet-tight. These anchors are the “rails” every later strip returns to.',
+    'Start on the medial (inside) calf anchor, run under the heel, and finish on the lateral (outside) calf anchor — pull against inversion. Repeat 2–3 stirrups, overlapping about half the tape width each pass.',
+    'Alternate horizontal U-shaped horseshoes around the heel with the stirrups so they weave together (basketweave). Cover the heel while leaving the toes free, matching the finished photo.',
+    'Add figure-6 / half figure-8 strips, then heel locks on each side. Pull each lock strip toward and around the heel (blue arrows in the classroom photo). You should see diagonal X patterns over the lateral malleolus.',
+    'Re-anchor any loose ends on the calf and midfoot, rub the tape to conform, and check toes for colour, warmth, and sensation. Pale / numb / tingling = loosen immediately.',
+  ],
+  stepDiagrams: ANKLE_STEP_DIAGRAMS,
+  stepPhotos: ANKLE_STEP_PHOTOS,
   image: {
     src: 'images/taping/ankle-basketweave.png',
     alt: 'Closed basketweave ankle tape with white athletic tape on a foot held at 90 degrees',
-    credit: 'StudyBuddy instructional photo (hosted on this site)',
+    credit: 'Finished example — StudyBuddy instructional photo (hosted on this site)',
   },
 }
 const WRIST: TapeGuide = {
   id: 'wrist',
-  name: 'Wrist — hyperextension',
+  name: 'Wrist — X support',
   emoji: '✋',
-  use: 'Alberta REC wrist tape: limits painful hyperextension after a sprain.',
+  use: 'Matches the finished wrist photo: a firm wrist-band anchor plus a crisp dorsal X that leaves the knuckles free. Limits painful end-range after a sprain.',
+  materials: 'Adhesive spray · optional pro-wrap · 1–1½″ white athletic tape',
   steps: [
-    'Hand up and wide open; spray adhesive and pro-wrap (thumb hole) as taught.',
-    'Forearm anchor, then a second anchor just below the knuckles (do not cover the knuckles).',
-    'Center strip plus diagonal X strips across the wrist; repeat overlapping layers.',
-    'Test that painful motion is limited, then close/lock the X strips.',
-    'Check fingers stay pink and warm with normal sensation.',
+    'Prep — fingers splayed',
+    'Wrist / forearm anchor band',
+    'First diagonal through the thumb web',
+    'Second diagonal — complete the X',
+    'Smooth, test, circulation check',
   ],
+  stepNotes: [
+    'Hand up, fingers spread wide. Clean skin; spray adherent. Optional thin pro-wrap with a thumb hole. Keep MCP knuckles uncovered for the whole job.',
+    'Wrap 2–3 firm turns around the distal forearm / wrist to build the thick white band shown in the photo. Firm support — not so tight that fingers go pale.',
+    'From the thumb side of the wrist anchor, pull a strip diagonally across the back of the hand, through the thumb–index web, and back to the opposite side of the wrist anchor.',
+    'From the pinky side of the wrist anchor, pull a second diagonal across the dorsum, around the base of the 5th metacarpal, and back to the wrist. The two strips must cross mid-hand to form the X in the photo. Add a second overlapping set if more support is needed.',
+    'Rub every edge flat. Have the athlete test the painful motion. Check finger colour, warmth, and sensation — never leave a tourniquet forearm.',
+  ],
+  stepDiagrams: WRIST_STEP_DIAGRAMS,
   image: {
     src: 'images/taping/wrist-tape.png',
-    alt: 'Wrist athletic tape with anchors and X support strips on a hand and forearm',
-    credit: 'StudyBuddy instructional photo (hosted on this site)',
+    alt: 'Wrist athletic tape with a wrist-band anchor and X support strips on the back of the hand',
+    credit: 'Finished example — StudyBuddy instructional photo (hosted on this site)',
   },
 }
 const THUMB: TapeGuide = {
   id: 'thumb',
-  name: 'Thumb — spica',
+  name: 'Thumb — hyperextension / spica',
   emoji: '👍',
-  use: 'Alberta REC thumb spica for UCL / skier’s or goalkeeper’s thumb support.',
+  use: 'Dense thumb job matching the finished photo: wrist anchors, overlapping spica/X strips over the MCP and dorsum, tip free. For UCL / skier’s or goalkeeper’s thumb — not a minimal 2-loop wrap.',
+  materials: 'Adherent spray · 1″ (or torn ½″) white athletic tape — usually no pro-wrap',
   steps: [
-    'Hand in a comfortable “C” position; clean skin / adherent as taught.',
-    'Anchors on the thumb and wrist.',
-    'Overlapping spica / figure-8 loops around the thumb MCP back to the wrist.',
-    'Finish on the wrist and check thumb-tip circulation.',
+    'C position & prep',
+    'Thumb + wrist anchors (+ web strip)',
+    'Overlapping X / pigtail strips',
+    'Hood strips (dorsal wrist → palm)',
+    'Close & tip check',
   ],
+  stepNotes: [
+    'Hand in a comfortable “C” / hold-a-cup shape. Mist adherent on thumb, thenar, palm, and wrist. Tape goes on skin for this denser job.',
+    'Thin circumferential strip around the proximal thumb phalanx; full strip(s) around the wrist; then a crimped strip through the web space across the palm back to the wrist so circulation isn’t choked.',
+    'From the medial then lateral sides of the thumb anchor, run strips to the wrist so they cross over the MCP. Repeat the X about three times with slight overlap — this builds the herringbone look on the back of the hand in the photo.',
+    'Add 3–4 hood strips from the dorsal wrist anchor across the thenar / web toward the palm, working toward the thumb. Coverage should reach about the IP joint, leaving the tip free.',
+    'Re-anchor thumb and wrist. Recheck the C position. Tip must stay pink and warm with normal sensation.',
+  ],
+  stepDiagrams: THUMB_STEP_DIAGRAMS,
   image: {
     src: 'images/taping/thumb-spica.png',
-    alt: 'Thumb spica athletic tape with figure-8 loops around the thumb and wrist',
-    credit: 'StudyBuddy instructional photo (hosted on this site)',
+    alt: 'Dense thumb hyperextension tape with wrist anchors, X strips, and hood strips covering the base of the thumb',
+    credit: 'Finished example — StudyBuddy instructional photo (hosted on this site)',
   },
 }
 const ELBOW: TapeGuide = {
   id: 'elbow',
-  name: 'Elbow — hyperextension',
+  name: 'Elbow — hyperextension X / fan',
   emoji: '💪',
-  use: 'Blocks the last painful degrees of elbow extension while still allowing flexion.',
+  use: 'Matches the finished photo: upper-arm and forearm anchors with overlapping diagonal X/fan strips crossing the joint line so the arm can bend but painful end-range extension is blocked.',
+  materials: 'Adhesive spray · optional underwrap · 1½″ white athletic tape',
   steps: [
-    'Elbow in slight flexion (~15–20°); contract biceps/forearm when applying anchors.',
-    'Anchors on upper arm and mid-forearm.',
-    'Fan / X checkrein strips across the front of the elbow crease.',
-    'Lock with closing anchors; check hand colour, warmth, and sensation.',
+    'Slight flexion + muscle fill',
+    'Upper-arm & forearm anchors',
+    'Overlapping X / fan checkreins',
+    'Lock & hand check',
   ],
+  stepNotes: [
+    'Hold the elbow in slight flexion (~15–20°). Have the athlete gently contract the biceps and forearm while you place anchors so the tape doesn’t loosen when the muscles fill out.',
+    'Apply 2+ overlapping circumferential strips on the upper arm (~3″ above the joint) and 2+ on mid-forearm (~3″ below). These match the two white bands in the photo.',
+    'Connect the anchors with diagonal strips that cross over the joint line (support side). Fan additional overlapping strips until painful extension is limited. Ends tuck under or are locked by the anchors.',
+    'Add closing anchor strips. Flexion should still feel free. Check hand colour, warmth, and sensation.',
+  ],
+  stepDiagrams: ELBOW_STEP_DIAGRAMS,
   image: {
     src: 'images/taping/elbow-tape.png',
-    alt: 'Elbow hyperextension tape with anchors and fan strips across the front of the elbow',
-    credit: 'StudyBuddy instructional photo (hosted on this site)',
+    alt: 'Elbow support with upper and lower anchors and overlapping X strips across the joint',
+    credit: 'Finished example — StudyBuddy instructional photo (hosted on this site)',
   },
 }
 const BUDDY: TapeGuide = {
   id: 'buddy',
   name: 'Buddy taping (fingers)',
   emoji: '🖐️',
-  use: 'Splints a jammed or mildly sprained finger to its neighbour. Not for an obviously broken finger.',
+  use: 'Classroom photo: neighbour finger acts as a living splint. Foam/gauze BETWEEN the two fingers, then two bands around BOTH — never one finger taped to a big pad alone. Not for an obviously broken or deformed finger.',
+  materials: 'Thin foam or gauze spacer · ½–1″ white athletic tape',
   steps: [
-    'Gauze or foam between the fingers so skin doesn’t rub.',
-    'Tape above and below the injured joint — never directly over a swollen joint.',
-    'Leave fingertips free; check colour and warmth.',
+    'Spacer between the fingers',
+    'Tape around BOTH (above & below the joint)',
+    'Tips free · circulation check',
   ],
+  stepNotes: [
+    'Choose the injured finger and its healthy neighbour. Slide a thin foam or gauze spacer between them from the web toward the tips — padding is a spacer only, not a wrap around one finger.',
+    'Wrap one band around both fingers on the proximal phalanges and a second band on the middle phalanges. Stay off swollen joints (leave PIP/DIP free to bend a little). Serrated torn edges are fine.',
+    'Fingertips stay uncovered. Check colour and warmth on both digits. Remove if either tip goes pale, blue, or numb.',
+  ],
+  stepDiagrams: BUDDY_STEP_DIAGRAMS,
   image: {
     src: 'images/taping/buddy-fingers.png',
-    alt: 'Buddy taping: two fingers taped together with gauze between them',
-    credit: 'StudyBuddy instructional photo (hosted on this site)',
+    alt: 'Buddy taping: two fingers taped together with foam between them and two white tape bands',
+    credit: 'Classroom demo photo (hosted on this site)',
   },
 }
 const KNEE: TapeGuide = {
   id: 'knee',
   name: 'Knee — collateral support',
   emoji: '🦵',
-  use: 'Sports Med 15 basic: light collateral support with X strips over the joint line.',
+  use: 'Matches the finished photo: broad thigh and calf anchors with a crisp X crossing the collateral joint line. Patella stays uncovered.',
+  materials: 'Adhesive spray · optional underwrap · 1½″ white athletic tape',
   steps: [
-    'Knee slightly flexed; clean skin / underwrap as needed.',
-    'Anchors above and below the joint line.',
-    'X strips crossing the collateral side of the joint line.',
-    'Close lightly and check toe circulation.',
+    'Slight flexion & prep',
+    'Thigh + calf anchors',
+    'X strips on the injured side',
+    'Close & toe check',
   ],
+  stepNotes: [
+    'Knee slightly flexed. Clean skin (underwrap if taught). Identify the injured collateral side (medial or lateral).',
+    'Lay 1–2 overlapping circumferential strips on the lower thigh (~2–3″ above the patella) and 1–2 on the upper calf below the tibial tuberosity — matching the broad white bands in the photo.',
+    'Run two diagonals so they cross exactly over the joint line on the injured side (same X logic as wrist/elbow). Add overlapping layers if more support is needed. Keep the kneecap free.',
+    'Light closing strips over the anchors. Check toe colour, warmth, and sensation.',
+  ],
+  stepDiagrams: KNEE_STEP_DIAGRAMS,
   image: {
     src: 'images/taping/knee-collateral.png',
-    alt: 'Collateral knee support with white athletic tape anchors and X strips',
-    credit: 'StudyBuddy instructional photo (hosted on this site)',
+    alt: 'Collateral knee support with white athletic tape anchors and X strips on the side of the knee',
+    credit: 'Finished example — StudyBuddy instructional photo (hosted on this site)',
   },
 }
 const PATELLA: TapeGuide = {
   id: 'patella',
-  name: 'Patella (kneecap) tape',
+  name: 'Patella — infrapatellar strap',
   emoji: '🟡',
-  use: 'Guides or unloads the kneecap for patellofemoral pain patterns — not for a fractured kneecap.',
+  use: 'Classroom photo: cohesive/elastic tape twisted into a firm cord that presses on the soft patellar tendon just below the kneecap (jumper’s knee / Osgood-type). Not McConnell tracking strips; not for a fractured kneecap.',
+  materials: 'Cohesive / elastic bandage (or elastic adhesive) — not rigid zinc oxide for the twisted cord',
   steps: [
-    'Knee slightly flexed; assess which correction feels better with your instructor.',
-    'Apply a rigid strip that holds the corrected patella position.',
-    'Cover with locking strips; recheck comfort.',
+    'Slight flexion — find the soft spot',
+    'Wrap at tendon level',
+    'Twist into a front cord',
+    'Flatten at the back & check',
   ],
+  stepNotes: [
+    'Knee slightly flexed. Palpate the soft groove between the bottom of the patella and the tibial tuberosity — that soft tendon is your target.',
+    'Start wrapping the cohesive strip around the knee at that height. Keep tension even; do not tourniquet.',
+    'As the strip crosses the front, twist/roll it into a narrow cord so it digs gently into the soft tendon (exactly as in the classroom photo). Keep twisting through the front pass.',
+    'Flatten the strip again at the back of the knee to anchor. Ask about comfort, then check distal colour/warmth. Remove if too tight or painful.',
+  ],
+  stepDiagrams: PATELLA_STEP_DIAGRAMS,
   image: {
     src: 'images/taping/patella-tape.png',
-    alt: 'Patella taping strips on the front of the knee guiding the kneecap',
-    credit: 'StudyBuddy instructional photo (hosted on this site)',
+    alt: 'Infrapatellar strap: twisted white cohesive tape pressing on the soft tendon below the kneecap',
+    credit: 'Classroom demo photo (hosted on this site)',
   },
 }
 const SHOULDER: TapeGuide = {
   id: 'shoulder',
-  name: 'Shoulder — spica',
+  name: 'Shoulder — spica / deltoid lattice',
   emoji: '🏋️',
-  use: 'Large-area chest-to-arm spica for mild instability support. A brace is often more reliable.',
+  use: 'Matches the finished photo: overlapping deltoid lattice, chest-to-acromion strips, then upper-arm anchors locking the ends. Mild instability support only — a brace is often more reliable for return to play.',
+  materials: 'Adhesive spray · 1½″ white athletic tape (large coverage)',
   steps: [
-    'Anchors on trunk/chest and upper arm.',
-    'Overlapping spica loops from chest around the shoulder onto the arm.',
-    'Close and check hand colour and sensation.',
+    'Prep & arm position',
+    'Deltoid lattice (side X net)',
+    'Chest → shoulder strips',
+    'Upper-arm anchors & hand check',
   ],
+  stepNotes: [
+    'Athlete standing/seated, arm slightly abducted in a comfortable pain-free position. Clean chest, deltoid, and upper arm thoroughly — hairless contact helps adhesion.',
+    'Lay alternating diagonal strips over the lateral deltoid so they weave into a net/X pattern from the top of the shoulder down toward mid-arm. Overlap ~½ each pass.',
+    'Add long strips from the upper chest / midline, over the acromion (top of the shoulder), weaving with the lattice. These help pull the joint toward the trunk.',
+    'Finish with 2–3 circumferential anchors on the upper arm to lock every loose end (the bands mid-bicep in the photo). Check hand colour and sensation. Remind the athlete tape loosens with sweat/motion.',
+  ],
+  stepDiagrams: SHOULDER_STEP_DIAGRAMS,
   image: {
     src: 'images/taping/shoulder-spica.png',
-    alt: 'Shoulder spica athletic tape looping from chest around the shoulder to the upper arm',
-    credit: 'StudyBuddy instructional photo (hosted on this site)',
+    alt: 'Shoulder spica with deltoid lattice and chest-to-shoulder strips locked by upper-arm anchors',
+    credit: 'Finished example — StudyBuddy instructional photo (hosted on this site)',
   },
 }
 const AC_JOINT: TapeGuide = {
   id: 'ac-joint',
   name: 'AC joint support',
   emoji: '🦴',
-  use: 'Temporary support for a mild AC sprain. Higher grades need medical care.',
+  use: 'Matches the finished photo: short trap/neck anchor with split tails forming a Y over the AC, crossing on the deltoid and leaving a small diamond of skin on top. Temporary support for a mild sprain only.',
+  materials: 'Adhesive spray · 1½″ white athletic tape',
   steps: [
-    'Support strips over the distal clavicle / AC joint.',
-    'Lock with chest/shoulder anchors.',
-    'Refer for deformity, severe pain, or inability to use the arm.',
+    'Locate AC & screen severity',
+    'Upper-trap / neck anchor',
+    'Split Y tails over the AC',
+    'Lock, check, know referral flags',
   ],
+  stepNotes: [
+    'Palpate the AC (distal clavicle meeting the acromion). This job is only for mild sprains. Step deformity, severe pain, or inability to use the arm = medical care, not tape.',
+    'Place a short horizontal anchor on the upper trapezius near the base of the neck — the rectangular base in the photo.',
+    'From that anchor, run two tails (or tear a Y) so one passes slightly posterior over the top of the shoulder and one slightly anterior over the front of the deltoid. They cross on the lateral upper arm. Leave a small diamond of skin over the joint peak.',
+    'Smooth all edges. Check hand colour/sensation. Reassess — if pain or dysfunction is high-grade, stop and refer.',
+  ],
+  stepDiagrams: AC_STEP_DIAGRAMS,
   image: {
     src: 'images/taping/ac-joint-tape.png',
-    alt: 'AC joint support tape over the top of the shoulder and clavicle',
-    credit: 'StudyBuddy instructional photo (hosted on this site)',
+    alt: 'AC joint support with a neck anchor and Y tails crossing over the top of the shoulder',
+    credit: 'Finished example — StudyBuddy instructional photo (hosted on this site)',
   },
 }
 const HIP_GROIN: TapeGuide = {
   id: 'hip-groin',
-  name: 'Hip / groin wrap',
+  name: 'Hip / groin spica wrap',
   emoji: '🪢',
-  use: 'Cloth or elastic wrap for a mild groin/adductor or hip flexor strain.',
+  use: 'Matches the finished photo: thigh base → figure-8 / spica across the hip → waistband lock. For a mild groin/adductor or hip-flexor strain.',
+  materials: 'Elastic adhesive bandage or cloth wrap (wider roll)',
   steps: [
-    'Injured side slightly flexed and adducted (pain-free).',
-    'Spiral or figure from thigh toward pelvis, overlapping by half.',
-    'Lock the end; recheck after walking a few steps.',
+    'Pain-free position',
+    'Thigh circular base',
+    'Spica up across the hip',
+    'Waist lock, overlap, recheck',
   ],
+  stepNotes: [
+    'Injured side slightly flexed and adducted in a pain-free posture (standing or lying as taught).',
+    'Start with several circular turns around the mid- to upper-thigh to create the base layers visible in the photo.',
+    'From the front/inner thigh, pull the wrap diagonally up across the groin and hip, around the back of the waist, across the lower abdomen, and back down toward the outer thigh — figure-8 / spica that builds the X over the hip.',
+    'Repeat 2–3 overlapping passes (half to two-thirds overlap). Finish with a waist or thigh circular lock. Have the athlete walk a few steps and recheck comfort/support.',
+  ],
+  stepDiagrams: HIP_STEP_DIAGRAMS,
   image: {
     src: 'images/taping/hip-groin-wrap.png',
-    alt: 'Hip and groin wrap spiraling from the thigh to the pelvis',
-    credit: 'StudyBuddy instructional photo (hosted on this site)',
+    alt: 'Hip and groin spica wrap from the thigh across the hip to a waistband lock',
+    credit: 'Finished example — StudyBuddy instructional photo (hosted on this site)',
   },
 }
 const ARCH: TapeGuide = {
   id: 'arch',
   name: 'Longitudinal arch / plantar',
   emoji: '🦶',
-  use: 'Supports the medial longitudinal arch and can unload plantar fascia stress.',
+  use: 'Matches the finished photo: one main longitudinal strip along the medial arch from heel to the ball of the foot, locked by vertical anchors at each end. Supports the medial longitudinal arch / plantar fascia load.',
+  materials: '1½″ white athletic tape',
   steps: [
-    'Anchors near the ball of the foot and/or heel.',
-    'Longitudinal strips under the arch.',
-    'Close lightly; check toes.',
+    'Neutral, non-weight-bearing foot',
+    'Longitudinal strip along the medial arch',
+    'Heel + MTP vertical anchors',
+    'Smooth & toe check',
   ],
+  stepNotes: [
+    'Foot relaxed off the ground (or lightly resting). Keep a functional 90° at the ankle if taught. Trace the medial arch path from heel to first MTP.',
+    'Start at the posterior-medial heel, pull forward with moderate tension along the medial border of the arch, and finish at the medial ball of the foot just behind the big toe. Stay above the weight-bearing sole to avoid wrinkles/blisters.',
+    'Lock the rear end with a vertical strip around the heel; lock the front end with a vertical strip at the first MTP wrapping slightly onto the dorsum — matching the photo.',
+    'Rub flat. Check toe colour and warmth. Retape if any wrinkle sits under a weight-bearing surface.',
+  ],
+  stepDiagrams: ARCH_STEP_DIAGRAMS,
   image: {
     src: 'images/taping/arch-tape.png',
-    alt: 'Longitudinal arch athletic tape under the medial arch of the foot',
-    credit: 'StudyBuddy instructional photo (hosted on this site)',
+    alt: 'Longitudinal arch athletic tape along the medial arch locked by heel and MTP anchors',
+    credit: 'Finished example — StudyBuddy instructional photo (hosted on this site)',
   },
 }
 

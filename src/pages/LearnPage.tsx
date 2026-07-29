@@ -43,7 +43,54 @@ function TapingGuides({ guides }: { guides: TapeGuide[] }) {
             <span className="text-2xl">{g.emoji}</span> {g.name}
           </h3>
           <p className="mt-1 text-sm leading-relaxed text-ink-500 dark:text-ink-300">{g.use}</p>
-          <figure className="mt-3">
+          {g.materials && (
+            <p className="mt-2 text-xs font-medium text-ink-400 dark:text-ink-500">
+              Materials: {g.materials}
+            </p>
+          )}
+
+          <ol className="mt-4 space-y-6">
+            {g.steps.map((s, i) => (
+              <li key={i} className="space-y-2">
+                <div className="flex gap-2.5">
+                  <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-500/10 text-xs font-bold text-brand-600 dark:text-brand-300">
+                    {i + 1}
+                  </span>
+                  <div className="min-w-0 space-y-1">
+                    <p className="text-sm font-semibold text-ink-800 dark:text-ink-100">{s}</p>
+                    {g.stepNotes?.[i] && (
+                      <p className="text-sm leading-relaxed text-ink-600 dark:text-ink-300">
+                        {g.stepNotes[i]}
+                      </p>
+                    )}
+                  </div>
+                </div>
+                {g.stepDiagrams?.[i] != null && (
+                  <div className="ml-7 overflow-hidden rounded-xl border border-ink-100 bg-white dark:border-ink-700">
+                    {g.stepDiagrams[i]}
+                  </div>
+                )}
+                {g.stepPhotos?.[i] != null && (
+                  <figure className="ml-7">
+                    <img
+                      src={`${import.meta.env.BASE_URL}${g.stepPhotos[i]!.src}`}
+                      alt={g.stepPhotos[i]!.alt}
+                      loading="lazy"
+                      className="h-auto w-full max-w-md rounded-xl border border-ink-100 object-cover dark:border-ink-700"
+                    />
+                    <figcaption className="mt-1.5 text-xs text-ink-400 dark:text-ink-500">
+                      {g.stepPhotos[i]!.credit}
+                    </figcaption>
+                  </figure>
+                )}
+              </li>
+            ))}
+          </ol>
+
+          <figure className="mt-5">
+            <p className="mb-1.5 text-xs font-semibold uppercase tracking-wide text-ink-400 dark:text-ink-500">
+              Finished example — match this look
+            </p>
             <img
               src={`${import.meta.env.BASE_URL}${g.image.src}`}
               alt={g.image.alt}
@@ -54,16 +101,6 @@ function TapingGuides({ guides }: { guides: TapeGuide[] }) {
               {g.image.credit}
             </figcaption>
           </figure>
-          <ol className="mt-3 space-y-2">
-            {g.steps.map((s, i) => (
-              <li key={i} className="flex gap-2.5 text-sm leading-relaxed text-ink-600 dark:text-ink-200">
-                <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-500/10 text-xs font-bold text-brand-600 dark:text-brand-300">
-                  {i + 1}
-                </span>
-                <span>{s}</span>
-              </li>
-            ))}
-          </ol>
         </div>
       ))}
     </div>

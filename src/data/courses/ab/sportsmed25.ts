@@ -165,13 +165,13 @@ export const abSportsMed25: Course = {
       flashcards: [
         { id: 'sm25t-f1', concept: 'tape-vs-brace', front: 'When does bracing often beat taping?', back: 'On large, highly mobile joints (especially the shoulder) — tape covers a huge area, loosens with sweat/motion, and may not hold for a full game.' },
         { id: 'sm25t-f2', concept: 'tape-vs-brace', front: 'What is still true for every tape or wrap?', back: 'Prep the skin, position the joint correctly, and check distal circulation/comfort when finished.' },
-        { id: 'sm25t-f3', concept: 'shoulder-spica', front: 'What is a shoulder spica trying to do?', back: 'Use overlapping chest-to-arm loops to limit the painful direction of shoulder motion (often excessive abduction/ER) after mild instability — temporary support only.' },
+        { id: 'sm25t-f3', concept: 'shoulder-spica', front: 'Sequence a shoulder spica matching the finished photo.', back: 'Prep → overlapping deltoid lattice (side X net) → chest-to-acromion strips → upper-arm circumferential anchors locking the ends → hand circulation check.' },
         { id: 'sm25t-f4', concept: 'shoulder-spica', front: 'Why do shoulder spicas loosen quickly?', back: 'Large surface area, lots of movement, and sweat under the tape — which is why many athletes prefer a brace for return-to-play.' },
         { id: 'sm25t-f5', concept: 'hip-groin-wrap', front: 'How do you position for a groin/adductor wrap?', back: 'Slight flexion and adduction on the injured side (pain-free) so the wrap’s tension opposes the painful stretch.' },
-        { id: 'sm25t-f6', concept: 'hip-groin-wrap', front: 'Typical path of a hip/groin wrap?', back: 'Start on the thigh and spiral or figure toward the pelvis/waist, overlapping by half, then lock the end.' },
+        { id: 'sm25t-f6', concept: 'hip-groin-wrap', front: 'Typical path of a hip/groin spica wrap?', back: 'Thigh circular base → figure-8/spica up across the hip and around the waist → overlap 2–3 passes → lock → recheck after walking.' },
         { id: 'sm25t-f7', concept: 'arch-taping', front: 'What does longitudinal arch tape support?', back: 'The medial longitudinal arch — can help unload plantar fascia stress or support a “fallen” arch during activity.' },
-        { id: 'sm25t-f8', concept: 'arch-taping', front: 'Where do the working strips of an arch tape run?', back: 'Under the arch (often with medial-to-lateral lift), between anchors near the ball of the foot and/or heel.' },
-        { id: 'sm25t-f9', concept: 'knee-review', front: 'Quick review: collateral knee tape?', back: 'Anchors above/below the joint and X strips crossing the joint line on the injured collateral side — then circulation check.' },
+        { id: 'sm25t-f8', concept: 'arch-taping', front: 'Where do the strips of the finished arch tape run?', back: 'One main longitudinal strip along the medial arch from heel to the ball of the foot, locked by vertical anchors at the heel and first MTP.' },
+        { id: 'sm25t-f9', concept: 'knee-review', front: 'Quick review: collateral knee tape?', back: 'Broad thigh/calf anchors and X strips crossing the joint line on the injured collateral side — patella free — then circulation check.' },
         { id: 'sm25t-f10', concept: 'tape-vs-brace', front: 'Is intermediate taping a substitute for diagnosis?', back: 'No — tape/wrap supports; red flags (deformity, numbness, inability to bear weight, severe pain) still need referral.' },
       ],
       questions: [
