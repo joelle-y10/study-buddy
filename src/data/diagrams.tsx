@@ -409,7 +409,7 @@ const BUDDY: TapeGuide = {
   id: 'buddy',
   name: 'Buddy taping (fingers)',
   emoji: '🖐️',
-  use: 'Classroom photo: neighbour finger acts as a living splint. Foam/gauze BETWEEN the two fingers, then two bands around BOTH — never one finger taped to a big pad alone. Not for an obviously broken or deformed finger.',
+  use: 'Splints a jammed or mildly sprained finger to its healthy neighbour — two fingers taped together with thin foam/gauze BETWEEN them. Never tape one finger alone to a big gauze pad. Not for an obviously broken or deformed finger.',
   materials: 'Thin foam or gauze spacer · ½–1″ white athletic tape',
   steps: [
     'Spacer between the fingers',
@@ -417,14 +417,14 @@ const BUDDY: TapeGuide = {
     'Tips free · circulation check',
   ],
   stepNotes: [
-    'Choose the injured finger and its healthy neighbour. Slide a thin foam or gauze spacer between them from the web toward the tips — padding is a spacer only, not a wrap around one finger.',
-    'Wrap one band around both fingers on the proximal phalanges and a second band on the middle phalanges. Stay off swollen joints (leave PIP/DIP free to bend a little). Serrated torn edges are fine.',
+    'Pick the injured finger and its healthy neighbour (often middle + ring). Slide a thin foam or gauze spacer BETWEEN them — padding is only a spacer so skin doesn’t rub.',
+    'Wrap one band around BOTH fingers on the proximal phalanges and a second band on the middle phalanges. Leave the joints free to bend a little — never tape directly over a swollen joint.',
     'Fingertips stay uncovered. Check colour and warmth on both digits. Remove if either tip goes pale, blue, or numb.',
   ],
   image: {
     src: 'images/taping/buddy-fingers.png',
-    alt: 'Buddy taping: two fingers taped together with foam between them and two white tape bands',
-    credit: 'Classroom demo photo (hosted on this site)',
+    alt: 'Buddy taping: middle and ring fingers taped together with foam between them and two white tape bands',
+    credit: 'Finished example — two fingers taped together (hosted on this site)',
   },
 }
 const KNEE: TapeGuide = {
@@ -455,7 +455,7 @@ const PATELLA: TapeGuide = {
   id: 'patella',
   name: 'Patella — infrapatellar strap',
   emoji: '🟡',
-  use: 'Classroom photo: cohesive/elastic tape twisted into a firm cord that presses on the soft patellar tendon just below the kneecap (jumper’s knee / Osgood-type). Not McConnell tracking strips; not for a fractured kneecap.',
+  use: 'Twisted cohesive/elastic tape presses on the soft patellar tendon just below the kneecap (jumper’s knee / Osgood-type). Match the photo: twist into a cord across the front soft spot. Not McConnell tracking strips; not for a fractured kneecap.',
   materials: 'Cohesive / elastic bandage (or elastic adhesive) — not rigid zinc oxide for the twisted cord',
   steps: [
     'Slight flexion — find the soft spot',
@@ -464,15 +464,15 @@ const PATELLA: TapeGuide = {
     'Flatten at the back & check',
   ],
   stepNotes: [
-    'Knee slightly flexed. Palpate the soft groove between the bottom of the patella and the tibial tuberosity — that soft tendon is your target.',
+    'Knee slightly flexed. Palpate the soft groove between the bottom of the patella and the tibial tuberosity — that soft tendon is your target (not the kneecap bone itself).',
     'Start wrapping the cohesive strip around the knee at that height. Keep tension even; do not tourniquet.',
-    'As the strip crosses the front, twist/roll it into a narrow cord so it digs gently into the soft tendon (exactly as in the classroom photo). Keep twisting through the front pass.',
+    'As the strip crosses the front, twist/roll it into a narrow cord so it digs gently into the soft tendon — exactly as in the photo. Keep twisting through the front pass.',
     'Flatten the strip again at the back of the knee to anchor. Ask about comfort, then check distal colour/warmth. Remove if too tight or painful.',
   ],
   image: {
     src: 'images/taping/patella-tape.png',
-    alt: 'Infrapatellar strap: twisted white cohesive tape pressing on the soft tendon below the kneecap',
-    credit: 'Classroom demo photo (hosted on this site)',
+    alt: 'Infrapatellar strap: twisted white cohesive tape pressing on the soft tendon just below the kneecap',
+    credit: 'Classroom demo — twisted cord on the soft spot below the kneecap (hosted on this site)',
   },
 }
 const SHOULDER: TapeGuide = {
