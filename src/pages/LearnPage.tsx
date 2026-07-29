@@ -27,7 +27,7 @@ function DiagramGallery({ entries }: { entries: DiagramEntry[] }) {
   )
 }
 
-/** Step-by-step Alberta taping guides: in-app diagrams + written REC sequences. */
+/** Step-by-step Alberta taping guides with hosted instructional photos. */
 function TapingGuides({ guides }: { guides: TapeGuide[] }) {
   return (
     <div className="space-y-4">
@@ -43,27 +43,17 @@ function TapingGuides({ guides }: { guides: TapeGuide[] }) {
             <span className="text-2xl">{g.emoji}</span> {g.name}
           </h3>
           <p className="mt-1 text-sm leading-relaxed text-ink-500 dark:text-ink-300">{g.use}</p>
-          {g.diagram && (
-            <div className="mt-3 overflow-hidden rounded-xl border border-ink-100 dark:border-ink-700">
-              <div className="flex justify-center bg-white p-3 dark:bg-ink-100">{g.diagram}</div>
-              <p className="border-t border-ink-100 bg-ink-50 px-3 py-2 text-xs text-ink-400 dark:border-ink-700 dark:bg-ink-800 dark:text-ink-500">
-                StudyBuddy diagram — Alberta curriculum taping sequence (hosted on this site)
-              </p>
-            </div>
-          )}
-          {g.image && (
-            <figure className="mt-3">
-              <img
-                src={`${import.meta.env.BASE_URL}${g.image.src}`}
-                alt={g.image.alt}
-                loading="lazy"
-                className="h-auto w-full max-w-xs rounded-xl border border-ink-100 dark:border-ink-700"
-              />
-              <figcaption className="mt-1 text-xs text-ink-400 dark:text-ink-500">
-                Photo: {g.image.credit}
-              </figcaption>
-            </figure>
-          )}
+          <figure className="mt-3">
+            <img
+              src={`${import.meta.env.BASE_URL}${g.image.src}`}
+              alt={g.image.alt}
+              loading="lazy"
+              className="h-auto w-full max-w-md rounded-xl border border-ink-100 object-cover dark:border-ink-700"
+            />
+            <figcaption className="mt-1.5 text-xs text-ink-400 dark:text-ink-500">
+              {g.image.credit}
+            </figcaption>
+          </figure>
           <ol className="mt-3 space-y-2">
             {g.steps.map((s, i) => (
               <li key={i} className="flex gap-2.5 text-sm leading-relaxed text-ink-600 dark:text-ink-200">
