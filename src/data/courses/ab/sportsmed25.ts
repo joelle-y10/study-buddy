@@ -3,8 +3,9 @@ import type { Course } from '../../../types'
 /**
  * Alberta Sports Medicine 25 — locally developed course (CTS HSS / Recreation
  * Leadership pathway), grade 11 assessment & injuries.
- * Units: Injury Assessment (HOPS/SOAP), Common Injuries by Region, The Healing
- * Process, Therapeutic Modalities, Sport Nutrition & Hydration.
+ * Units: Injury Assessment (HOPS/SOAP), Taping Techniques Lab, Common Injuries
+ * by Region, The Healing Process, Therapeutic Modalities, Sport Nutrition &
+ * Hydration.
  */
 export const abSportsMed25: Course = {
   id: 'ab-sportsmed25',
@@ -14,7 +15,7 @@ export const abSportsMed25: Course = {
   name: 'Sports Medicine 25',
   shortName: 'Sports Med 25',
   description:
-    'Building on the foundations: how to assess injuries systematically (HOPS and SOAP), recognize common injuries by body region including concussion, understand the phases of healing, choose therapeutic modalities like heat and ice, and fuel and hydrate for sport.',
+    'Building on the foundations: how to assess injuries systematically (HOPS and SOAP), master the classic athletic taping techniques for ankle, wrist, thumb, finger, elbow, and knee/shoulder, recognize common injuries by body region including concussion, understand the phases of healing, choose therapeutic modalities like heat and ice, and fuel and hydrate for sport. Theory lives here — but practice hands-on skills like CPR and taping with a certified instructor before using them for real.',
   units: [
     {
       id: 'injury-assessment',
@@ -142,6 +143,181 @@ export const abSportsMed25: Course = {
       ],
     },
     {
+      id: 'taping-techniques',
+      name: 'Taping Techniques Lab',
+      description: 'Hands-on knowledge of the classic athletic tape jobs: preparation, anchors, and the step-by-step sequences for ankle, wrist, thumb, finger, elbow, and knee/shoulder tapes.',
+      outcomes: [
+        'Describe the preparation steps before applying any tape job',
+        'Explain the purpose of anchor strips, stirrups, horseshoes, heel locks, and figure-8s',
+        'Sequence the steps of a closed basketweave ankle tape',
+        'Describe the key steps of wrist tape and thumb spica tape jobs',
+        'Explain when and how to buddy tape an injured finger',
+        'Describe hyperextension taping for the elbow and collateral-support taping for the knee, and explain when bracing beats taping for large joints',
+        'Check circulation and comfort after taping and recognize the signs a tape job is too tight',
+      ],
+      concepts: [
+        { id: 'taping-prep', name: 'Preparation & skin care', keywords: ['pre-wrap', 'prewrap', 'adhesive spray', 'skin prep', 'shave', 'clean', 'positioning', 'circulation check', 'capillary refill', 'tape prep'] },
+        { id: 'anchors-strips', name: 'Anchors & structural strips', keywords: ['anchor', 'anchor strips', 'stirrup', 'stirrups', 'horseshoe', 'heel lock', 'figure-8', 'figure 8', 'strips'] },
+        { id: 'ankle-taping', name: 'Ankle taping', keywords: ['ankle tape', 'basketweave', 'closed basketweave', '90 degrees', 'neutral', 'inversion', 'heel locks', 'stirrups'] },
+        { id: 'wrist-thumb-taping', name: 'Wrist & thumb taping', keywords: ['wrist tape', 'thumb spica', 'spica', 'fan strips', 'x strips', 'hyperextension'] },
+        { id: 'finger-buddy', name: 'Finger & buddy taping', keywords: ['buddy tape', 'buddy taping', 'finger tape', 'splint', 'neighbour finger', 'jammed finger'] },
+        { id: 'elbow-taping', name: 'Elbow taping', keywords: ['elbow tape', 'elbow hyperextension', 'hyperextension tape', 'elbow crease', 'fan strips', 'slight flexion', 'terminal extension'] },
+        { id: 'knee-shoulder-taping', name: 'Knee & shoulder tapes', keywords: ['knee tape', 'collateral support', 'joint line', 'x strips', 'shoulder spica', 'shoulder tape', 'brace', 'bracing', 'body tapes'] },
+      ],
+      flashcards: [
+        { id: 'sm-tp-f1', concept: 'taping-prep', front: 'What preparation steps come BEFORE applying any tape job?', back: 'Clean (and if needed shave) the skin, apply adhesive spray, cover with pre-wrap, and position the joint correctly before the first strip goes on.' },
+        { id: 'sm-tp-f2', concept: 'taping-prep', front: 'What is pre-wrap and why is it used?', back: 'A thin foam underwrap applied before tape. It protects the skin and hair from the tape\u2019s adhesive while still letting the tape support the joint.' },
+        { id: 'sm-tp-f3', concept: 'taping-prep', front: 'What should you check AFTER finishing any tape job?', back: 'Circulation (capillary refill and skin colour beyond the tape) and comfort — plus make sure there are no wrinkles or gaps that could blister.' },
+        { id: 'sm-tp-f4', concept: 'taping-prep', front: 'What are the warning signs that a tape job is too tight?', back: 'Numbness, tingling, throbbing, or colour change (pale/blue) beyond the tape — remove and reapply it looser.' },
+        { id: 'sm-tp-f5', concept: 'anchors-strips', front: 'What are anchor strips and why do they go on FIRST?', back: 'Strips applied around the limb at the top and bottom of the tape job. They go on first so the stirrups and other strips have something secure to stick to.' },
+        { id: 'sm-tp-f6', concept: 'anchors-strips', front: 'What is a stirrup and which direction does it run in an ankle tape?', back: 'A vertical strip running under the heel from the inside (medial) anchor to the outside (lateral) anchor — the direction pulls against inversion.' },
+        { id: 'sm-tp-f7', concept: 'anchors-strips', front: 'What do heel locks and figure-8s add to an ankle tape?', back: 'Extra stability: heel locks anchor the heel against rolling, and the figure-8 closes the job and supports the whole joint.' },
+        { id: 'sm-tp-f8', concept: 'ankle-taping', front: 'What position should the ankle be in for a closed basketweave?', back: '90 degrees (neutral dorsiflexion) — toes pulled up so the ankle is taped in its most stable, functional position.' },
+        { id: 'sm-tp-f9', concept: 'ankle-taping', front: 'Sequence the closed basketweave ankle tape.', back: 'Anchors → stirrups (medial to lateral) alternating/woven with horseshoes → heel locks → figure-8 → close-up strips, then check circulation.' },
+        { id: 'sm-tp-f10', concept: 'wrist-thumb-taping', front: 'What are the key steps of a wrist tape for hyperextension?', back: 'Anchor strips around the wrist (and hand), then fan/X strips across the palm side to block hyperextension, then close over the top.' },
+        { id: 'sm-tp-f11', concept: 'wrist-thumb-taping', front: 'What is a thumb spica?', back: 'A taping technique where overlapping figure-8 strips wrap around the thumb and wrist to support and limit motion of the injured thumb.' },
+        { id: 'sm-tp-f12', concept: 'finger-buddy', front: 'What is buddy taping and when is it used?', back: 'Taping an injured finger to its healthy neighbour so the neighbour acts as a splint — commonly used for a jammed or mildly sprained finger.' },
+        { id: 'sm-tp-f13', concept: 'elbow-taping', front: 'Sequence an elbow hyperextension tape.', back: 'Position the elbow in slight flexion, apply anchors above and below the joint, run fan/X strips across the front of the elbow crease, close over the anchors, then check circulation.' },
+        { id: 'sm-tp-f14', concept: 'elbow-taping', front: 'Why is the elbow taped in SLIGHT flexion for a hyperextension tape?', back: 'The fan strips then pull tight just before full extension, blocking the painful terminal degrees of extension while still letting the arm work.' },
+        { id: 'sm-tp-f15', concept: 'knee-shoulder-taping', front: 'How does a collateral-support knee tape work, and when does bracing beat taping?', back: 'Anchors above and below the knee with X strips crossing over the joint line support the collateral ligament. For large joints like the shoulder (a spica covers a huge area), a brace often gives more reliable support than tape.' },
+      ],
+      questions: [
+        {
+          id: 'sm-tp-q1', concept: 'taping-prep', difficulty: 1,
+          prompt: 'What is the FIRST step before applying ANY tape job?',
+          options: ['Apply the figure-8', 'Clean (and if needed shave) the skin', 'Apply heel locks', 'Check capillary refill'],
+          answer: 1,
+          explanation: 'Skin preparation comes first — clean, dry, hair-free skin lets the tape (or adhesive spray and pre-wrap) stick properly.',
+        },
+        {
+          id: 'sm-tp-q2', concept: 'taping-prep', difficulty: 1,
+          prompt: 'The main purpose of pre-wrap is to:',
+          options: ['Replace the tape entirely', 'Protect the skin and hair from the tape\u2019s adhesive', 'Make the tape tighter', 'Add colour to the tape job'],
+          answer: 1,
+          explanation: 'Pre-wrap is a thin foam barrier between skin and tape, preventing adhesive irritation and painful hair removal.',
+        },
+        {
+          id: 'sm-tp-q3', concept: 'taping-prep', difficulty: 2,
+          prompt: 'What should you check after finishing ANY tape job?',
+          options: ['The brand of tape used', 'Circulation (capillary refill/skin colour) and comfort', 'Whether the athlete likes the colour', 'The time of day'],
+          answer: 1,
+          explanation: 'Every tape job ends with a circulation and comfort check — tape that restricts blood flow must be removed and reapplied.',
+        },
+        {
+          id: 'sm-tp-q4', concept: 'taping-prep', difficulty: 3,
+          prompt: 'Minutes after you tape an ankle, the athlete reports tingling toes that look pale. You should:',
+          options: ['Tell them it will pass', 'Add another figure-8', 'Remove the tape and reapply it looser — it is restricting circulation', 'Have them run to warm up the foot'],
+          answer: 2,
+          explanation: 'Numbness, tingling, and colour change beyond the tape mean it is too tight and cutting off circulation — take it off and redo it.',
+        },
+        {
+          id: 'sm-tp-q5', concept: 'anchors-strips', difficulty: 1,
+          prompt: 'Which comes FIRST: stirrups or anchors?',
+          options: ['Stirrups', 'Anchors', 'They go on at the same time', 'Neither is needed'],
+          answer: 1,
+          explanation: 'Anchors always go on first — they create the base the stirrups and other strips attach to.',
+        },
+        {
+          id: 'sm-tp-q6', concept: 'anchors-strips', difficulty: 2,
+          prompt: 'The purpose of anchor strips is to:',
+          options: ['Close up the tape job at the end', 'Give the other strips a secure base to stick to', 'Resist inversion by themselves', 'Replace pre-wrap'],
+          answer: 1,
+          explanation: 'Anchors frame the top and bottom of the tape job so stirrups, fans, and closing strips have something to anchor onto.',
+        },
+        {
+          id: 'sm-tp-q7', concept: 'anchors-strips', difficulty: 2,
+          prompt: 'Heel locks and the figure-8 are added to an ankle tape to:',
+          options: ['Decorate the tape job', 'Add stability and lock the heel against rolling', 'Loosen the stirrups', 'Replace the anchors'],
+          answer: 1,
+          explanation: 'Heel locks stabilize the heel and the figure-8 ties the whole job together, adding overall joint stability.',
+        },
+        {
+          id: 'sm-tp-q8', concept: 'ankle-taping', difficulty: 1,
+          prompt: 'What position should the ankle be in while being taped?',
+          options: ['Fully pointed (plantar flexed)', '90 degrees (neutral dorsiflexion)', 'Rolled inward', 'Whatever is comfortable, even relaxed'],
+          answer: 1,
+          explanation: 'The ankle is held at 90\u00b0 (neutral) so it is taped in its most stable, functional position.',
+        },
+        {
+          id: 'sm-tp-q9', concept: 'ankle-taping', difficulty: 2,
+          prompt: 'In a closed basketweave, stirrups run in which direction?',
+          options: ['Lateral to medial (outside to inside)', 'Medial to lateral (inside, under the heel, to the outside)', 'Around the toes', 'Straight up the shin only'],
+          answer: 1,
+          explanation: 'Stirrups run from the medial anchor under the heel to the lateral anchor — that pull direction resists inversion, the most common sprain mechanism.',
+        },
+        {
+          id: 'sm-tp-q10', concept: 'ankle-taping', difficulty: 3,
+          prompt: 'Which is the correct SEQUENCE for a closed basketweave ankle tape?',
+          options: ['Figure-8 \u2192 heel locks \u2192 stirrups \u2192 anchors', 'Anchors \u2192 stirrups and horseshoes \u2192 heel locks \u2192 figure-8 close', 'Stirrups \u2192 anchors \u2192 figure-8 \u2192 heel locks', 'Heel locks \u2192 figure-8 \u2192 anchors \u2192 stirrups'],
+          answer: 1,
+          explanation: 'The basketweave builds from anchors, weaves stirrups with horseshoes, then finishes with heel locks and a figure-8 close.',
+        },
+        {
+          id: 'sm-tp-q11', concept: 'wrist-thumb-taping', difficulty: 1,
+          prompt: 'Which tape job uses a spica (overlapping figure-8) pattern?',
+          options: ['The thumb', 'The shin', 'Buddy taping', 'The horseshoe'],
+          answer: 0,
+          explanation: 'The thumb spica wraps overlapping figure-8 strips around the thumb and wrist to support the injured thumb.',
+        },
+        {
+          id: 'sm-tp-q12', concept: 'wrist-thumb-taping', difficulty: 2,
+          prompt: 'What is the FIRST step of a wrist tape (after skin prep and pre-wrap)?',
+          options: ['Fan/X strips across the palm', 'Anchor strips around the wrist', 'A figure-8 around the thumb', 'Buddy taping the fingers'],
+          answer: 1,
+          explanation: 'Like every tape job, the wrist tape starts with anchors — strips around the wrist that the fan/X strips will attach to.',
+        },
+        {
+          id: 'sm-tp-q13', concept: 'wrist-thumb-taping', difficulty: 3,
+          prompt: 'The fan or X strips on the palm side of a wrist tape are there to:',
+          options: ['Make the wrist look bigger', 'Block excessive hyperextension of the wrist', 'Hold the pre-wrap down', 'Support the thumb only'],
+          answer: 1,
+          explanation: 'The fan/X strips run across the palm side and pull tight when the wrist bends back, limiting painful hyperextension.',
+        },
+        {
+          id: 'sm-tp-q14', concept: 'finger-buddy', difficulty: 1,
+          prompt: 'Buddy taping is best for:',
+          options: ['A fresh ankle sprain', 'Splinting an injured finger to its healthy neighbour', 'Preventing wrist hyperextension', 'Supporting the thumb'],
+          answer: 1,
+          explanation: 'Buddy taping uses the adjacent healthy finger as a splint for a jammed or mildly sprained finger.',
+        },
+        {
+          id: 'sm-tp-q15', concept: 'elbow-taping', difficulty: 1,
+          prompt: 'What is the first step of an elbow hyperextension tape (after skin prep and pre-wrap)?',
+          options: ['Fan strips across the elbow crease', 'Anchor strips above and below the joint', 'A figure-8 around the wrist', 'Heel locks'],
+          answer: 1,
+          explanation: 'As with every tape job, anchors go on first — above and below the elbow — so the fan strips have a base to attach to.',
+        },
+        {
+          id: 'sm-tp-q16', concept: 'elbow-taping', difficulty: 2,
+          prompt: 'In an elbow hyperextension tape, where do the fan/X strips go?',
+          options: ['Around the fingers', 'Across the FRONT of the elbow crease, between the anchors', 'Behind the elbow, over the point of the olecranon', 'Around the shoulder'],
+          answer: 1,
+          explanation: 'The fan sits over the front of the elbow crease so it pulls tight and blocks the joint from straightening past the taped position.',
+        },
+        {
+          id: 'sm-tp-q17', concept: 'elbow-taping', difficulty: 3,
+          prompt: 'Why is the elbow held in SLIGHT flexion while a hyperextension tape is applied?',
+          options: ['It is more comfortable for the taper', 'So the fan strips stop the last, painful degrees of extension while the arm can still function', 'To stretch the tape further', 'Because full extension uses too much tape'],
+          answer: 1,
+          explanation: 'Taping in slight flexion means the fan becomes taut just before terminal extension — exactly the range a hyperextension injury needs blocked.',
+        },
+        {
+          id: 'sm-tp-q18', concept: 'knee-shoulder-taping', difficulty: 2,
+          prompt: 'In a collateral-support knee tape, the X strips are placed:',
+          options: ['Crossing over the joint line on the injured side', 'Under the heel', 'Around the ankle', 'Only above the kneecap'],
+          answer: 0,
+          explanation: 'X strips cross directly over the joint line so their pull reinforces the collateral ligament beneath them.',
+        },
+        {
+          id: 'sm-tp-q19', concept: 'knee-shoulder-taping', difficulty: 3,
+          prompt: 'For an athlete with an unstable shoulder returning to play, the usual recommendation is:',
+          options: ['A shoulder spica tape alone — tape always beats bracing', 'A brace, because tape alone cannot reliably stabilize such a large joint', 'Buddy taping the arm to the trunk', 'No support at all'],
+          answer: 1,
+          explanation: 'The shoulder is a large, mobile joint; a spica tape covers a huge area and loosens quickly, so a brace usually provides more reliable support.',
+        },
+      ],
+    },
+    {
       id: 'common-injuries',
       name: 'Common Injuries by Region',
       description: 'The injuries you will see most: ankle sprains and their grades, knee ligaments (ACL/MCL), shoulder injuries, and concussion recognition and protocol.',
@@ -171,6 +347,8 @@ export const abSportsMed25: Course = {
         { id: 'sm2-f10', concept: 'concussion', front: 'List common signs and symptoms of concussion.', back: 'Headache, dizziness, confusion, nausea, sensitivity to light/noise, balance problems, memory issues, feeling "in a fog." A loss of consciousness is NOT required.' },
         { id: 'sm2-f11', concept: 'concussion', front: 'What is the "Recognize, Remove, Refer" rule?', back: 'Recognize possible concussion signs, immediately Remove the athlete from play, and Refer to a medical professional. "When in doubt, sit them out."' },
         { id: 'sm2-f12', concept: 'concussion', front: 'What is graduated return-to-learn and return-to-play?', back: 'A stepwise progression (per Canadian guidelines) through increasing school and activity demands, advancing only if symptom-free at each stage, with medical clearance before full contact.' },
+        { id: 'sm2-f13', concept: 'concussion', front: 'Can an athlete with a suspected concussion return to play the same day?', back: 'No. Under the Canadian Guideline on Concussion in Sport there is NO same-day return to play — even if symptoms seem to clear, the athlete is done for the day and must be medically assessed.' },
+        { id: 'sm2-f14', concept: 'concussion', front: 'Which concussion "red flags" mean call 911 / go to the emergency department?', back: 'Worsening or severe headache, repeated vomiting, a seizure, increasing confusion or deteriorating consciousness, weakness/numbness/tingling in the arms or legs, slurred speech, or neck pain — any of these needs emergency care.' },
       ],
       questions: [
         {
@@ -270,6 +448,20 @@ export const abSportsMed25: Course = {
           options: ['Losing fitness', 'A second, more serious brain injury while still vulnerable', 'A minor bruise', 'Nothing significant'],
           answer: 1,
           explanation: 'A repeat head injury before recovery can cause far more serious harm, which is why premature return is avoided.',
+        },
+        {
+          id: 'sm2-q15', concept: 'concussion', difficulty: 2,
+          prompt: 'A player with a suspected concussion says their headache is gone 20 minutes later and wants back in. You should:',
+          options: ['Let them return — symptoms cleared', 'Keep them out for the rest of the day; there is no same-day return to play', 'Let them return only if the coach agrees', 'Have them do sprints to test it'],
+          answer: 1,
+          explanation: 'Canadian guidelines require NO same-day return to play after a suspected concussion, regardless of how quickly symptoms appear to resolve.',
+        },
+        {
+          id: 'sm2-q16', concept: 'concussion', difficulty: 3,
+          prompt: 'After a head hit, an athlete has repeated vomiting, worsening headache, and numbness in one arm. This means:',
+          options: ['Watch them on the bench for an hour', 'Call 911 / go to the emergency department immediately — these are red flags', 'Give fluids and return to play', 'Apply ice and continue the game'],
+          answer: 1,
+          explanation: 'Repeated vomiting, a worsening headache, and limb numbness are red flags for a serious brain or spine injury requiring emergency care.',
         },
       ],
     },

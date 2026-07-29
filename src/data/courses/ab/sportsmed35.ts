@@ -14,7 +14,7 @@ export const abSportsMed35: Course = {
   name: 'Sports Medicine 35',
   shortName: 'Sports Med 35',
   description:
-    'Advanced sports medicine: biomechanics and movement analysis, structured rehabilitation and return-to-play, emergency action planning and CPR/AED basics, performance and wellness factors including mental health, and the careers and ethics that shape the profession.',
+    'Advanced sports medicine: biomechanics and movement analysis, structured rehabilitation and return-to-play, emergency action planning and CPR/AED basics, performance and wellness factors including mental health, and the careers and ethics that shape the profession. Theory lives here — but practice hands-on skills like CPR and taping with a certified instructor before using them for real.',
   units: [
     {
       id: 'biomechanics',

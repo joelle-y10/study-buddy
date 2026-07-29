@@ -1,5 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom'
 import { useApp } from '../store/AppContext'
+import { unitHasChallenges } from '../data/challenges'
 import { coursesFor, getCourse } from '../data/catalog'
 import { SUBJECTS, provinceName } from '../data/meta'
 import { curriculumProvince } from '../data/catalog'
@@ -147,6 +148,15 @@ export function CourseDetailPage() {
                     >
                       📝 Unit test
                     </button>
+                    {unitHasChallenges(course.id, unit.id) && (
+                      <button
+                        type="button"
+                        onClick={() => navigate(`/codelab?course=${course.id}&unit=${unit.id}`)}
+                        className="rounded-lg bg-cyan-500/10 px-3 py-1.5 text-xs font-bold text-cyan-600 hover:bg-cyan-500/20 dark:text-cyan-300"
+                      >
+                        ⌨️ Code lab
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>

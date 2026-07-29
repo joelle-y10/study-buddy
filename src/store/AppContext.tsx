@@ -20,6 +20,8 @@ interface PersistedState {
   events: CalendarEvent[]
   /** ISO dates (yyyy-mm-dd) with at least one study action, for streaks */
   activeDays: string[]
+  /** code lab: challengeId -> completion timestamp */
+  completedChallenges: Record<string, number>
 }
 
 const STORAGE_KEY = 'studybuddy:v1'
@@ -38,6 +40,7 @@ const DEFAULT_STATE: PersistedState = {
   cardBuckets: {},
   events: [],
   activeDays: [],
+  completedChallenges: {},
 }
 
 function load(): PersistedState {
@@ -80,6 +83,7 @@ interface AppActions {
   addSession: (s: Omit<SessionRecord, 'id' | 'finishedAt'>) => string
   rateSession: (id: string, rating: number) => void
   setCardBucket: (courseId: string, cardId: string, bucket: CardBucket) => void
+  markChallengeDone: (challengeId: string) => void
   addEvent: (e: Omit<CalendarEvent, 'id'>) => void
   removeEvent: (id: string) => void
   resetAll: () => void
@@ -263,6 +267,15 @@ export function AppProvider({ children }: { children: ReactNode }) {
     )
   }, [])
 
+  const markChallengeDone = useCallback((challengeId: string) => {
+    setState((s) =>
+      touchToday({
+        ...s,
+        completedChallenges: { ...s.completedChallenges, [challengeId]: Date.now() },
+      }),
+    )
+  }, [])
+
   const addEvent = useCallback((e: Omit<CalendarEvent, 'id'>) => {
     setState((s) => ({ ...s, events: [...s.events, { ...e, id: crypto.randomUUID() }] }))
   }, [])
@@ -279,11 +292,11 @@ export function AppProvider({ children }: { children: ReactNode }) {
       user, syncAvailable: supabase !== null, syncStatus, lastSyncedAt,
       signUp, signIn, signOut,
       setProfile, setTheme, setSelectedCourse, recordAnswer, addStruggle, resolveStruggle,
-      addSession, rateSession, setCardBucket, addEvent, removeEvent, resetAll,
+      addSession, rateSession, setCardBucket, markChallengeDone, addEvent, removeEvent, resetAll,
     }),
     [state, user, syncStatus, lastSyncedAt, signUp, signIn, signOut,
       setProfile, setTheme, setSelectedCourse, recordAnswer, addStruggle, resolveStruggle,
-      addSession, rateSession, setCardBucket, addEvent, removeEvent, resetAll],
+      addSession, rateSession, setCardBucket, markChallengeDone, addEvent, removeEvent, resetAll],
   )
 
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>

@@ -46,6 +46,27 @@ export interface Concept {
   keywords: string[]
 }
 
+// ---------- code lab ----------
+
+export interface CodeChallenge {
+  id: string
+  /** concept tag from the unit's concept list, for adaptive stats */
+  concept: string
+  difficulty: Difficulty
+  title: string
+  /** what to build, in plain language */
+  task: string
+  /** code pre-filled in the editor */
+  starter: string
+  /** hidden code appended after the user's code (e.g. test calls that print) */
+  harness?: string
+  /** expected stdout; compared line-by-line, trailing whitespace ignored */
+  expectedOutput: string
+  /** shown when the student gives up */
+  solution: string
+  hint?: string
+}
+
 export interface Unit {
   id: string
   name: string
