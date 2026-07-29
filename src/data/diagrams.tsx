@@ -3,6 +3,19 @@ import {
   FunctionGraph, RightTriangle, MotionGraphs, ProjectileScene, Molecule,
   BoxModel, PlotArc, PoliticalSpectrum, EnergyPyramid, CellDiagram, Figure,
 } from '../components/diagrams'
+import {
+  AnkleBasketweaveDiagram,
+  WristTapeDiagram,
+  ThumbSpicaDiagram,
+  ElbowTapeDiagram,
+  BuddyTapeDiagram,
+  KneeCollateralDiagram,
+  PatellaTapeDiagram,
+  ShoulderSpicaDiagram,
+  ACJointTapeDiagram,
+  HipGroinWrapDiagram,
+  ArchTapeDiagram,
+} from '../components/tapingDiagrams'
 
 export interface DiagramEntry {
   id: string
@@ -269,6 +282,8 @@ export function diagramsForLesson(lessonId: string): DiagramEntry[] {
 }
 
 // ---------------------------------------------------------------- taping guides
+// Alberta Sports Med / REC Injury Management sequences — diagrams hosted in-app
+// (no external AU clinic pages; those techniques don't match Alberta teaching).
 
 export interface TapeGuide {
   id: string
@@ -277,82 +292,174 @@ export interface TapeGuide {
   /** when and why it's used */
   use: string
   steps: string[]
-  /** authoritative external demonstration */
-  link?: { url: string; label: string }
-  /** embedded openly-licensed photo, if one exists */
+  /** in-app Alberta-curriculum diagram */
+  diagram?: ReactNode
+  /** optional local photo already in /public */
   image?: { src: string; alt: string; credit: string }
 }
 
 const ANKLE: TapeGuide = {
   id: 'ankle',
-  name: 'Ankle (closed basketweave)',
+  name: 'Ankle — closed basketweave',
   emoji: '🦶',
-  use: 'The most common athletic tape — supports the ankle after, or to help prevent, a lateral (inversion) sprain.',
+  use: 'Alberta Sports Med / REC classic: limits inversion after (or to help prevent) a lateral ankle sprain. Foot held at 90° the whole time.',
   steps: [
-    'Prep: clean, dry (ideally shaved) skin. Hold the foot at 90° and apply pre-wrap/underwrap so tape never sticks straight to skin.',
-    'Anchors: one strip around the lower shin (~10 cm above the ankle) and one around the midfoot.',
-    'Stirrups: 2–3 strips from the inside (medial) anchor, straight down under the heel, up to the outside (lateral) anchor — this resists the foot rolling inward.',
-    'Horseshoes / figure-6: strips across the front of the ankle and under the arch to lock the stirrups down.',
-    'Heel locks: angled wraps around the heel for rotational control.',
-    'Close-up strips to fill gaps. Then check the toes — no numbness, tingling, or colour change.',
+    'Prep (video-aligned): clean & dry skin; shave if needed; use skin toughener/adhesive if you do that in clinic; add underwrap (pre-wrap) plus heel/lace pads on friction spots. Keep the ankle at 90°.',
+    'Anchors (basketweave base): one anchor above the ankle, plus a second anchor across the top of the foot just behind the metatarsal heads.',
+    'Basketweave weave: alternate stirrups (medial → under heel → lateral) with horseshoe/horizontal strips. Overlay each pass by about half as you build up the job.',
+    'Finish with figure-6 / half figure-8: continue the ankle pattern with a figure-6, then a half figure-8 (under the foot, across the front, finishing on the medial side).',
+    'Heel locks: add a pair of heel locks to lock the heel against rolling/side-to-side movement.',
+    'Tidy + check: close any loose ends with extra anchors (across the front of the foot, then up the ankle), conform the tape to the shape, and check toes for colour/warmth/sensation and normal circulation.',
   ],
-  link: { url: 'https://physioadvisor.com.au/health/taping-techniques-lower-body/ankle', label: 'See the full illustrated guide (PhysioAdvisor)' },
+  diagram: <AnkleBasketweaveDiagram />,
 }
 const WRIST: TapeGuide = {
   id: 'wrist',
-  name: 'Wrist',
+  name: 'Wrist — hyperextension',
   emoji: '✋',
-  use: 'Supports the wrist and limits over-bending after a sprain, common in gymnastics, football, and gym work.',
+  use: 'Alberta REC wrist tape: limits painful hyperextension after a sprain (common in gymnastics, contact sports, weight room).',
   steps: [
-    'Prep: clean, dry skin; optional underwrap. Keep the wrist in slight extension (bent back ~30°).',
-    'Anchors: one around the forearm just above the wrist, one around the palm (never over the knuckles/fingers).',
-    'Dorsal crosses: 1–2 strips crossing the back of the wrist between the anchors to limit over-flexion.',
-    'Close-up strips over the anchors. Check the hand stays pink and warm with no pins and needles.',
+    'Position + prep (SportMedBC): have the athlete’s hand up and as wide open as possible; keep it firm during the tape job. Use spray adhesive / tough skin and pro-wrap (pop a small opening for the thumb through the pro-wrap).',
+    'Anchors: (1) first anchor is about “half the tape” on the forearm just over pro-wrap; (2) second anchor just below the knuckles (do not cover the knuckles so fingers can move). Use moderate tension—never enough to compromise circulation.',
+    'Build the support X: apply a center strip, then two diagonal strips (pinky → thumb, then thumb → pinky) across the wrist to make the X. Repeat this two more times, overlapping about half each time.',
+    'Test support: ask the athlete to flex the wrist and confirm the tape limits motion into the painful range (not numbness/tingling; fingers must still move).',
+    'Close off: return to where you started and close/lock the X strips with overlapping strips (angle the tape upward as you come into the wrist).',
+    'Finish: use a last strip that mimics the finger-side anchor—fold over at the thumb side, wrap around the base of the thumb, and finish on the pinky side. Check circulation (pink/warm, normal sensation).',
   ],
-  link: { url: 'https://physioadvisor.com.au/health/taping-techniques-upper-body/wrist', label: 'See the full illustrated guide (PhysioAdvisor)' },
+  diagram: <WristTapeDiagram />,
 }
 const THUMB: TapeGuide = {
   id: 'thumb',
-  name: 'Thumb (spica)',
+  name: 'Thumb — spica',
   emoji: '👍',
-  use: "Protects the thumb's base ligament — the classic “skier's / goalkeeper's thumb” injury.",
+  use: 'Alberta REC thumb spica: supports the UCL / base of thumb after hyperextension or hyperabduction (“skier’s / goalkeeper’s thumb”).',
   steps: [
-    'Prep: clean, dry skin; optional underwrap. Wrist and thumb in a comfortable neutral position.',
-    'Anchor: one strip around the wrist, just below the hand.',
-    'Thumb spica / figure-8: loop from the wrist anchor around the base of the thumb and back, so the thumb can’t bend too far back or out.',
-    'Repeat 1–3 loops as needed; finish over the wrist anchor. Check circulation in the thumb.',
+    'Prep + hand position: clean skin and apply quick-drying adherent/skin toughener to thumb/palm/wrist. Hold the hand in a neutral “C” position (like holding a can) so circulation stays comfortable.',
+    'Anchors: (1) anchor around the proximal phalanx of the thumb (small strip, ~0.5-inch); (2) anchor around the wrist (full strip).',
+    'Thumb web connector: apply another small strip from the back of the wrist anchor, through the thumb webspace (fold/tweak the tape here to avoid bulk/circulation issues), across the palm, around the wrist, and end back at the wrist anchor.',
+    'Spica support (X over MCP): using split roll tape, place one strip from the medial thumb anchor to the wrist anchor and another from the lateral thumb anchor to the wrist anchor (an X across the MCP). Repeat the X strips about 3 times, overlapping slightly each time.',
+    'Hoods / finishing strips: apply 3–4 “hoods” from the posterior wrist anchor to the palm, moving distally while overlapping slightly.',
+    'Final spica loop + check: finish with a locking loop on the wrist side and then re-check thumb sensation/colour/circulation after you move the hand.',
   ],
-  link: { url: 'https://physioadvisor.com.au/health/taping-techniques-upper-body/thumb', label: 'See the full illustrated guide (PhysioAdvisor)' },
+  diagram: <ThumbSpicaDiagram />,
 }
 const ELBOW: TapeGuide = {
   id: 'elbow',
-  name: 'Elbow (hyperextension)',
+  name: 'Elbow — hyperextension',
   emoji: '💪',
-  use: 'Limits painful hyperextension of the elbow while still allowing it to bend.',
+  use: 'Alberta sequence: blocks the last painful degrees of elbow extension while still allowing flexion for sport.',
   steps: [
-    'Prep: clean, dry skin; optional underwrap. Hold the elbow slightly bent (never fully straight).',
-    'Anchors: one around the upper arm and one around the forearm.',
-    'Check-rein / fan strips: several strips across the front (inside) of the elbow between the anchors to block the last few degrees of straightening.',
-    'Close-up strips over the anchors. Check the forearm and hand for numbness or colour change.',
+    'Position + prep: clean skin and (if you use it) adhesive/underwrap. Position the elbow in ~15–20° of flexion (slightly bent, never locked straight). Contract the biceps/forearm during application.',
+    'Anchors: apply anchor strips to the biceps area and to the mid-forearm (typically 2 anchors on biceps + 2 anchors on forearm).',
+    'Fan / checkrein across the front: apply multiple overlapping crossed/fan strips across the anterior elbow (cubital fossa) between the anchors to block terminal extension.',
+    'Anchor after support strips: after you place the support/fan strips, lock them down with additional anchor strips so nothing migrates.',
+    'Close/finish: close the tape job (often with figure-8 style loops and cover strips) so the elbow can bend, but cannot straighten fully.',
+    'Final safety check: verify circulation (colour/warmth/sensation) and that the athlete can move functionally without the elbow going into full extension.',
   ],
-  link: { url: 'https://physioadvisor.com.au/health/taping-techniques-upper-body/elbow', label: 'See the full illustrated guide (PhysioAdvisor)' },
+  diagram: <ElbowTapeDiagram />,
 }
 const BUDDY: TapeGuide = {
   id: 'buddy',
   name: 'Buddy taping (fingers)',
   emoji: '🖐️',
-  use: 'Splints a jammed or mildly sprained finger to a healthy neighbour. NOT for an obviously broken or deformed finger — that needs medical care first.',
+  use: 'Alberta REC buddy support: splints a jammed or mildly sprained finger to its neighbour. Not for an obviously fractured or deformed finger — get medical care first.',
   steps: [
-    'Place a small pad of gauze between the injured finger and the one next to it (stops the skin rubbing).',
-    'Tape the two fingers together with a strip above the injured knuckle and one below it — never directly over the swollen joint.',
-    'Leave the fingertip and each knuckle visible so the fingers can still bend a little.',
-    'Snug, not tight: the fingertip must stay pink and warm. Re-check after a few minutes.',
+    'Place gauze or foam padding between the injured finger and its neighbour so skin doesn’t rub.',
+    'Tape the two fingers together with a strip proximal to the injured joint and one distal — never directly over a swollen joint.',
+    'Leave the fingertip free and allow some bend at the joints.',
+    'Snug, not tight: fingertip must stay pink and warm. Re-check after a few minutes.',
   ],
-  image: { src: 'images/taping/buddy-taping.png', alt: 'Two fingers buddy-taped together above and below the middle joint', credit: 'Redlinux, via Wikimedia Commons — CC BY 3.0' },
+  diagram: <BuddyTapeDiagram />,
+  image: {
+    src: 'images/taping/buddy-taping.png',
+    alt: 'Buddy taping: gauze between fingers, tape above and below the middle joint',
+    credit: 'Hosted on StudyBuddy — Alberta-style buddy tape demo',
+  },
+}
+const KNEE: TapeGuide = {
+  id: 'knee',
+  name: 'Knee — collateral support',
+  emoji: '🦵',
+  use: 'Sports Med 15 basic: light collateral support with X strips over the joint line (MCL/LCL side).',
+  steps: [
+    'Prep: clean, dry skin; underwrap as needed. Knee slightly flexed.',
+    'Anchors: above and below the joint line.',
+    'X strips: crossing over the collateral ligament / joint line between the anchors.',
+    'Close lightly. Check distal circulation (toes pink/warm, no numbness).',
+  ],
+  diagram: <KneeCollateralDiagram />,
+}
+const PATELLA: TapeGuide = {
+  id: 'patella',
+  name: 'Patella (kneecap) tape',
+  emoji: '🟡',
+  use: 'Sports Med 15 basic: helps unload or guide the kneecap for patellofemoral pain (runner’s / jumper’s knee patterns). Not for a fractured kneecap.',
+  steps: [
+    'Prep: clean, dry skin around the front of the knee. Athlete standing or sitting with the knee slightly flexed.',
+    'Assess which direction of patellar pressure feels better (your instructor will show the usual medial-glide pattern for many PFPS cases).',
+    'Apply a rigid strip that holds that corrected position of the patella (often pulling the kneecap medially / unloading the painful track).',
+    'Cover with one or two locking strips so the correction stays put during activity. Recheck comfort and circulation.',
+  ],
+  diagram: <PatellaTapeDiagram />,
+}
+const SHOULDER: TapeGuide = {
+  id: 'shoulder',
+  name: 'Shoulder — spica',
+  emoji: '🏋️',
+  use: 'Sports Med 25/35: large-area spica from chest to upper arm for mild instability support. Often a brace is more reliable for return-to-play.',
+  steps: [
+    'Prep: clean skin on chest, shoulder, and upper arm; underwrap as needed. Arm in a comfortable functional position.',
+    'Anchors: trunk/chest strip and upper-arm strip (contract deltoid lightly so the job isn’t too tight at rest).',
+    'Spica loops: overlapping figure-8 / spiral strips from chest around the shoulder and onto the arm, limiting the painful direction (often excessive abduction/external rotation).',
+    'Close and check hand colour, warmth, and sensation. If the job loosens quickly or covers too much area, recommend a brace.',
+  ],
+  diagram: <ShoulderSpicaDiagram />,
+}
+const AC_JOINT: TapeGuide = {
+  id: 'ac-joint',
+  name: 'AC joint support',
+  emoji: '🦴',
+  use: 'Sports Med 35: temporary support for a mild AC (acromioclavicular) sprain. Higher grades need medical assessment — tape is not a fix.',
+  steps: [
+    'Prep: clean skin over the distal clavicle and top of the shoulder.',
+    'Support strips: apply rigid strips that gently depress / stabilize the distal clavicle and cross over the AC joint.',
+    'Lock with anchors across the chest/shoulder so strips don’t peel during arm motion.',
+    'Check comfort and distal neurovascular status. Refer for deformity, severe pain, or inability to use the arm.',
+  ],
+  diagram: <ACJointTapeDiagram />,
+}
+const HIP_GROIN: TapeGuide = {
+  id: 'hip-groin',
+  name: 'Hip / groin wrap',
+  emoji: '🪢',
+  use: 'Sports Med 25: cloth or elastic wrap (often finished with tape) to support a mild groin/adductor or hip flexor strain.',
+  steps: [
+    'Prep: athlete standing with the injured side slightly flexed and adducted (pain-free).',
+    'Start on the thigh and spiral / figure toward the pelvis so tension opposes the painful stretch.',
+    'Overlap by half; finish high on the hip/waist with a secure end (tape lock if using cloth).',
+    'Confirm the athlete can walk without the wrap cutting in; recheck after a few minutes of movement.',
+  ],
+  diagram: <HipGroinWrapDiagram />,
+}
+const ARCH: TapeGuide = {
+  id: 'arch',
+  name: 'Longitudinal arch / plantar',
+  emoji: '🦶',
+  use: 'Sports Med 25: supports the medial longitudinal arch and can unload plantar fascia stress.',
+  steps: [
+    'Prep: clean, dry foot; optional underwrap. Foot relaxed, toes neutral.',
+    'Anchors near the ball of the foot and/or heel as taught in class.',
+    'Longitudinal strips under the arch (often medial to lateral tension) to “lift” and support the arch.',
+    'Close with light circumferential strips; check toes for colour and sensation.',
+  ],
+  diagram: <ArchTapeDiagram />,
 }
 
+/** Basics → Sports Med 15. Intermediate → 25. Advanced large-joint / clinical → 35. */
 const TAPING: Record<string, TapeGuide[]> = {
-  'ab-sportsmed25:taping-techniques': [ANKLE, WRIST, THUMB, ELBOW, BUDDY],
+  'ab-sportsmed15:basic-taping': [ANKLE, WRIST, THUMB, ELBOW, BUDDY, KNEE, PATELLA],
+  'ab-sportsmed25:taping-techniques': [SHOULDER, HIP_GROIN, ARCH, KNEE],
+  'ab-sportsmed35:advanced-taping': [SHOULDER, AC_JOINT, PATELLA],
 }
 
 export function tapingForUnit(courseId: string, unitId: string): TapeGuide[] {

@@ -4,7 +4,8 @@ import type { Course } from '../../../types'
  * Alberta Sports Medicine 15 — locally developed course (CTS HSS / Recreation
  * Leadership pathway), grade 10 foundations.
  * Units: Anatomical Foundations, Musculoskeletal Basics, Injury Prevention &
- * Warm-Up, First Response & Basic Taping, Fitness & Training Principles.
+ * Warm-Up, First Response & Basic Taping, Basic Taping Lab, Fitness & Training
+ * Principles.
  */
 export const abSportsMed15: Course = {
   id: 'ab-sportsmed15',
@@ -14,7 +15,7 @@ export const abSportsMed15: Course = {
   name: 'Sports Medicine 15',
   shortName: 'Sports Med 15',
   description:
-    'The foundations of sports medicine: anatomical language, the musculoskeletal system, how to prevent injuries and warm up properly, first response basics like RICE, and the principles behind safe, effective training. Theory lives here — but practice hands-on skills like CPR and taping with a certified instructor before using them for real.',
+    'The foundations of sports medicine: anatomical language, the musculoskeletal system, how to prevent injuries and warm up properly, first response basics like RICE, the classic basic tape jobs (ankle, wrist, thumb, elbow, finger, knee, and patella), and the principles behind safe, effective training. Theory lives here — but practice hands-on skills like CPR and taping with a certified instructor before using them for real.',
   units: [
     {
       id: 'anatomical-foundations',
@@ -597,6 +598,107 @@ export const abSportsMed15: Course = {
           options: ['Leave it — that is normal', 'Loosen or reapply the tape and recheck circulation', 'Add more tape', 'Apply heat over the tape'],
           answer: 1,
           explanation: 'Numbness and pale colour signal the tape is too tight and restricting blood flow; loosen and reassess.',
+        },
+      ],
+    },
+    {
+      id: 'basic-taping',
+      name: 'Basic Taping Lab',
+      description:
+        'Sports Med 15 basics: prep, anchors, and the classic tape jobs — closed basketweave ankle, wrist, thumb spica, elbow hyperextension, buddy finger, collateral knee, and patella. Step-by-step diagrams live in this lesson; practise only with a certified instructor.',
+      outcomes: [
+        'Describe skin prep, pre-wrap, anchors, and the post-tape circulation check',
+        'Sequence a closed basketweave ankle tape',
+        'Describe wrist hyperextension tape and thumb spica steps',
+        'Describe elbow hyperextension tape and buddy taping',
+        'Describe basic collateral knee support and patella (kneecap) tape',
+        'Recognize when tape is too tight or when the injury needs referral instead of taping',
+      ],
+      concepts: [
+        { id: 'taping-prep', name: 'Prep & circulation check', keywords: ['pre-wrap', 'adhesive spray', 'skin prep', 'anchors', 'circulation', 'capillary refill'] },
+        { id: 'ankle-taping', name: 'Ankle taping', keywords: ['ankle', 'basketweave', 'stirrups', 'horseshoe', 'heel lock', 'figure-8', '90 degrees'] },
+        { id: 'wrist-taping', name: 'Wrist taping', keywords: ['wrist tape', 'hyperextension', 'X strips', 'anchors'] },
+        { id: 'thumb-taping', name: 'Thumb spica', keywords: ['thumb', 'spica', 'MCP', 'figure-8'] },
+        { id: 'elbow-taping', name: 'Elbow taping', keywords: ['elbow', 'hyperextension', 'fan strips', 'slight flexion'] },
+        { id: 'finger-buddy', name: 'Buddy taping', keywords: ['buddy tape', 'finger', 'splint'] },
+        { id: 'knee-taping', name: 'Knee collateral tape', keywords: ['knee tape', 'collateral', 'joint line', 'X strips'] },
+        { id: 'patella-taping', name: 'Patella tape', keywords: ['patella', 'kneecap', 'patellofemoral', 'McConnell', 'tracking'] },
+      ],
+      flashcards: [
+        { id: 'sm15t-f1', concept: 'taping-prep', front: 'What prep comes BEFORE any tape job?', back: 'Clean (and shave if needed) skin, adhesive/tough skin if used, pre-wrap, and put the joint in the correct position before the first strip.' },
+        { id: 'sm15t-f2', concept: 'taping-prep', front: 'What do you check AFTER every tape job?', back: 'Circulation and comfort distal to the tape — colour, warmth, capillary refill, and no numbness/tingling.' },
+        { id: 'sm15t-f3', concept: 'ankle-taping', front: 'What position is the ankle in for a closed basketweave?', back: '90° (neutral dorsiflexion) — toes up so the joint is taped in a stable, functional position.' },
+        { id: 'sm15t-f4', concept: 'ankle-taping', front: 'Sequence a closed basketweave ankle tape.', back: 'Anchors → stirrups (medial to lateral) woven with horseshoes → heel locks → figure-8 / close-up → circulation check.' },
+        { id: 'sm15t-f5', concept: 'wrist-taping', front: 'Key idea of a wrist hyperextension tape?', back: 'Forearm + hand anchors, then fan/X support strips that block the painful hyperextension range; close and check fingers.' },
+        { id: 'sm15t-f6', concept: 'thumb-taping', front: 'What is a thumb spica?', back: 'Overlapping figure-8 / spica strips from wrist around the thumb MCP to limit hyperextension or hyperabduction (skier’s / goalkeeper’s thumb).' },
+        { id: 'sm15t-f7', concept: 'elbow-taping', front: 'Why tape the elbow in slight flexion?', back: 'So the fan strips across the front of the crease stop the last painful degrees of extension while the arm can still bend and function.' },
+        { id: 'sm15t-f8', concept: 'finger-buddy', front: 'When is buddy taping used?', back: 'To splint a jammed or mildly sprained finger to its healthy neighbour — not for an obviously broken or deformed finger.' },
+        { id: 'sm15t-f9', concept: 'knee-taping', front: 'How does basic collateral knee tape work?', back: 'Anchors above and below the joint with X strips crossing the joint line on the injured (collateral) side.' },
+        { id: 'sm15t-f10', concept: 'patella-taping', front: 'What is patella tape mainly for?', back: 'Guiding or unloading the kneecap for patellofemoral pain patterns — not for a fractured patella or major ligament tear.' },
+      ],
+      questions: [
+        {
+          id: 'sm15t-q1', concept: 'taping-prep', difficulty: 1,
+          prompt: 'What is the FIRST step before applying tape?',
+          options: ['Figure-8', 'Clean (and if needed shave) the skin', 'Heel locks', 'Buddy tape'],
+          answer: 1,
+          explanation: 'Skin prep always comes first so tape/adhesive can stick safely.',
+        },
+        {
+          id: 'sm15t-q2', concept: 'ankle-taping', difficulty: 2,
+          prompt: 'In a closed basketweave, stirrups usually run:',
+          options: ['Lateral to medial only around the toes', 'Medial → under the heel → lateral', 'Only around the calf', 'Across the fingers'],
+          answer: 1,
+          explanation: 'Medial-to-lateral stirrups under the heel resist the common inversion sprain.',
+        },
+        {
+          id: 'sm15t-q3', concept: 'wrist-taping', difficulty: 2,
+          prompt: 'Fan/X strips on a wrist hyperextension tape are meant to:',
+          options: ['Decorate the hand', 'Block painful hyperextension', 'Replace anchors', 'Immobilize the elbow'],
+          answer: 1,
+          explanation: 'The support strips limit the painful end-range the athlete needs blocked.',
+        },
+        {
+          id: 'sm15t-q4', concept: 'thumb-taping', difficulty: 1,
+          prompt: 'A spica pattern is classic for which joint?',
+          options: ['Shin', 'Thumb', 'Ear', 'Spine'],
+          answer: 1,
+          explanation: 'Thumb spica uses overlapping figure-8 loops around the thumb and wrist.',
+        },
+        {
+          id: 'sm15t-q5', concept: 'elbow-taping', difficulty: 2,
+          prompt: 'Elbow hyperextension fan strips go:',
+          options: ['Across the FRONT of the elbow crease', 'Only around the fingers', 'Under the heel', 'Around the neck'],
+          answer: 0,
+          explanation: 'Anterior fan/checkrein strips block terminal extension.',
+        },
+        {
+          id: 'sm15t-q6', concept: 'finger-buddy', difficulty: 1,
+          prompt: 'Buddy taping is best for:',
+          options: ['A fresh grade-3 ankle sprain', 'Splinting an injured finger to its neighbour', 'A spinal injury', 'Cardiac arrest'],
+          answer: 1,
+          explanation: 'The healthy finger acts as a living splint for a mild finger injury.',
+        },
+        {
+          id: 'sm15t-q7', concept: 'knee-taping', difficulty: 2,
+          prompt: 'Collateral knee support X strips should cross:',
+          options: ['The joint line on the injured side', 'Only the toes', 'The opposite shoulder', 'The forehead'],
+          answer: 0,
+          explanation: 'X strips reinforce the collateral ligament along the joint line.',
+        },
+        {
+          id: 'sm15t-q8', concept: 'patella-taping', difficulty: 2,
+          prompt: 'Patella tape is most appropriate for:',
+          options: ['An open fracture of the kneecap', 'Patellofemoral pain / tracking issues (with instructor guidance)', 'An unconscious athlete', 'A neck injury'],
+          answer: 1,
+          explanation: 'Patella tape can unload or guide the kneecap for PFPS-type pain; fractures and emergencies need medical care.',
+        },
+        {
+          id: 'sm15t-q9', concept: 'taping-prep', difficulty: 3,
+          prompt: 'Toes go pale and tingly after an ankle tape. Best action?',
+          options: ['Ignore it', 'Remove/loosen and retape looser, then recheck circulation', 'Add more stirrups', 'Apply heat under the tape'],
+          answer: 1,
+          explanation: 'Distal colour/sensation changes mean the job is too tight.',
         },
       ],
     },

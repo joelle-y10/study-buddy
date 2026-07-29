@@ -4,7 +4,8 @@ import type { Course } from '../../../types'
  * Alberta Sports Medicine 35 — locally developed course (CTS HSS / Recreation
  * Leadership pathway), grade 12 advanced practice.
  * Units: Advanced Anatomy & Biomechanics, Injury Management & Rehabilitation,
- * Emergency Care, Performance Factors, Careers & Ethics in Sports Medicine.
+ * Advanced Taping Lab, Emergency Care, Performance Factors, Careers & Ethics
+ * in Sports Medicine.
  */
 export const abSportsMed35: Course = {
   id: 'ab-sportsmed35',
@@ -14,7 +15,7 @@ export const abSportsMed35: Course = {
   name: 'Sports Medicine 35',
   shortName: 'Sports Med 35',
   description:
-    'Advanced sports medicine: biomechanics and movement analysis, structured rehabilitation and return-to-play, emergency action planning and CPR/AED basics, performance and wellness factors including mental health, and the careers and ethics that shape the profession. Theory lives here — but practice hands-on skills like CPR and taping with a certified instructor before using them for real.',
+    'Advanced sports medicine: biomechanics and movement analysis, structured rehabilitation and return-to-play, advanced large-joint and clinical taping (shoulder spica, AC joint, complex patella decisions), emergency action planning and CPR/AED basics, performance and wellness factors including mental health, and the careers and ethics that shape the profession. Theory lives here — but practice hands-on skills like CPR and taping with a certified instructor before using them for real.',
   units: [
     {
       id: 'biomechanics',
@@ -255,6 +256,79 @@ export const abSportsMed35: Course = {
           options: ['Measure flexibility', 'Functionally assess strength/control symmetry before return', 'Test aerobic fitness', 'Check hydration'],
           answer: 1,
           explanation: 'Hop tests are functional measures of limb symmetry and control used to gauge return readiness.',
+        },
+      ],
+    },
+    {
+      id: 'advanced-taping',
+      name: 'Advanced Taping Lab',
+      description:
+        'Sports Med 35: large-joint and clinical tape decisions — full shoulder spica limits, AC joint support, and when patella/knee tape is (and is not) appropriate. Emphasizes referral, bracing, and instructor-supervised practice.',
+      outcomes: [
+        'Explain the limits of tape on large joints like the shoulder',
+        'Describe an AC joint support tape and when to refer instead',
+        'Compare bracing vs. taping for return-to-play decisions',
+        'Describe advanced considerations for patella taping in clinical scenarios',
+        'Recognize red flags that mean do not tape — activate care pathways',
+      ],
+      concepts: [
+        { id: 'shoulder-advanced', name: 'Shoulder spica (advanced)', keywords: ['shoulder spica', 'instability', 'large joint', 'return to play'] },
+        { id: 'ac-joint-tape', name: 'AC joint tape', keywords: ['ac joint', 'acromioclavicular', 'separation', 'clavicle', 'shoulder separation'] },
+        { id: 'clinical-patella', name: 'Clinical patella decisions', keywords: ['patella', 'McConnell', 'patellofemoral', 'tracking', 'clinical'] },
+        { id: 'brace-referral', name: 'Brace & referral judgment', keywords: ['brace', 'referral', 'red flag', 'scope', 'limitations of tape'] },
+      ],
+      flashcards: [
+        { id: 'sm35t-f1', concept: 'shoulder-advanced', front: 'Why is a shoulder spica an “advanced” job?', back: 'Huge surface area, complex 3D motion, and high sweat/movement demand — easy to do poorly or have it fail mid-game.' },
+        { id: 'sm35t-f2', concept: 'shoulder-advanced', front: 'What should you tell an athlete about shoulder tape vs. brace?', back: 'Tape can give short-term proprioceptive support; a well-fitted brace is usually more reliable for unstable shoulders returning to contact.' },
+        { id: 'sm35t-f3', concept: 'ac-joint-tape', front: 'What does AC joint tape try to support?', back: 'The acromioclavicular joint (where clavicle meets acromion) after a mild sprain — strips help stabilize/depress the distal clavicle temporarily.' },
+        { id: 'sm35t-f4', concept: 'ac-joint-tape', front: 'When is AC tape NOT enough?', back: 'Visible step-off deformity, severe pain, inability to use the arm, or higher-grade separations — those need medical assessment, not just tape.' },
+        { id: 'sm35t-f5', concept: 'clinical-patella', front: 'What must be true before advanced patella taping?', back: 'A clear, instructor-guided reason (e.g. PFPS tracking pattern), no fracture suspicion, and the correction actually reduces pain with a test movement.' },
+        { id: 'sm35t-f6', concept: 'clinical-patella', front: 'How is clinical patella tape different from “slap tape on the kneecap”?', back: 'Direction and tension are chosen to unload the painful track; random strips without assessment can worsen symptoms.' },
+        { id: 'sm35t-f7', concept: 'brace-referral', front: 'List three red flags that mean do not rely on tape.', back: 'Any of: deformity, numbness/tingling, loss of distal pulses/colour, inability to bear weight, suspected fracture/dislocation, or deteriorating neuro status.' },
+        { id: 'sm35t-f8', concept: 'brace-referral', front: 'What is still your job after an advanced tape job?', back: 'Circulation/comfort check, clear limits of the job, and knowing when to escalate to a therapist/physician.' },
+      ],
+      questions: [
+        {
+          id: 'sm35t-q1', concept: 'shoulder-advanced', difficulty: 2,
+          prompt: 'A shoulder spica fails mid-game most often because:',
+          options: ['Tape is always waterproof forever', 'Large motion + sweat make big jobs loosen', 'Shoulders never move', 'Anchors are illegal'],
+          answer: 1,
+          explanation: 'Large-joint tapes loosen with movement and moisture — a known limitation.',
+        },
+        {
+          id: 'sm35t-q2', concept: 'ac-joint-tape', difficulty: 2,
+          prompt: 'AC joint taping is most appropriate as temporary support for:',
+          options: ['A mild AC sprain under instructor guidance', 'An open clavicle fracture', 'Cardiac arrest', 'A spinal cord injury'],
+          answer: 0,
+          explanation: 'Mild AC support only; serious injuries need medical care.',
+        },
+        {
+          id: 'sm35t-q3', concept: 'ac-joint-tape', difficulty: 3,
+          prompt: 'A “step-off” deformity at the end of the clavicle after a fall means you should:',
+          options: ['Just add more tape strips', 'Refer for medical assessment — higher-grade AC injury is possible', 'Buddy tape the fingers', 'Ignore it if they can smile'],
+          answer: 1,
+          explanation: 'Deformity suggests a more serious AC separation than tape can manage.',
+        },
+        {
+          id: 'sm35t-q4', concept: 'clinical-patella', difficulty: 2,
+          prompt: 'Good clinical patella taping requires:',
+          options: ['Random strips with max tension always', 'An assessed direction of correction that reduces pain', 'Taping over an open wound', 'Skipping the circulation check'],
+          answer: 1,
+          explanation: 'Direction/tension should be purposeful and improve symptoms on retest.',
+        },
+        {
+          id: 'sm35t-q5', concept: 'brace-referral', difficulty: 1,
+          prompt: 'For return-to-play with shoulder instability, bracing is often preferred because:',
+          options: ['Braces are always illegal', 'They usually hold support more consistently than a big tape job', 'Tape never needs practice', 'Shoulders cannot be braced'],
+          answer: 1,
+          explanation: 'Braces are reusable and often more reliable on large joints.',
+        },
+        {
+          id: 'sm35t-q6', concept: 'brace-referral', difficulty: 3,
+          prompt: 'Which scenario is OUTSIDE student scope even with advanced taping knowledge?',
+          options: ['Describing a practice AC support in class', 'Diagnosing the grade of an AC separation and clearing return to play', 'Checking toe colour after an arch tape', 'Asking an instructor to supervise a spica'],
+          answer: 1,
+          explanation: 'Diagnosis and medical clearance are professional responsibilities, not student tape theory.',
         },
       ],
     },

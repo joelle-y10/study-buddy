@@ -27,12 +27,15 @@ function DiagramGallery({ entries }: { entries: DiagramEntry[] }) {
   )
 }
 
-/** Step-by-step taping guides: written steps + real anatomy, with an authoritative demo link. */
+/** Step-by-step Alberta taping guides: in-app diagrams + written REC sequences. */
 function TapingGuides({ guides }: { guides: TapeGuide[] }) {
   return (
     <div className="space-y-4">
       <div className="rounded-xl bg-rose-500/10 p-3.5 text-sm text-rose-800 dark:text-rose-200">
-        ⚠️ <b>Theory only.</b> Taping is a hands-on skill — practise on a partner with a certified athletic therapist or instructor before taping for real. Remove tape immediately if you feel numbness, tingling, or see any colour change.
+        ⚠️ <b>Theory only — Alberta Sports Med / REC sequences.</b> Practise hands-on with a
+        certified athletic therapist or instructor (e.g. Sport Medicine Council of Alberta taping
+        credential) before taping for real. Remove tape immediately if you feel numbness, tingling,
+        or see any colour change.
       </div>
       {guides.map((g) => (
         <div key={g.id} className="rounded-2xl border border-ink-100 p-5 dark:border-ink-700">
@@ -40,6 +43,14 @@ function TapingGuides({ guides }: { guides: TapeGuide[] }) {
             <span className="text-2xl">{g.emoji}</span> {g.name}
           </h3>
           <p className="mt-1 text-sm leading-relaxed text-ink-500 dark:text-ink-300">{g.use}</p>
+          {g.diagram && (
+            <div className="mt-3 overflow-hidden rounded-xl border border-ink-100 dark:border-ink-700">
+              <div className="flex justify-center bg-white p-3 dark:bg-ink-100">{g.diagram}</div>
+              <p className="border-t border-ink-100 bg-ink-50 px-3 py-2 text-xs text-ink-400 dark:border-ink-700 dark:bg-ink-800 dark:text-ink-500">
+                StudyBuddy diagram — Alberta curriculum taping sequence (hosted on this site)
+              </p>
+            </div>
+          )}
           {g.image && (
             <figure className="mt-3">
               <img
@@ -48,7 +59,9 @@ function TapingGuides({ guides }: { guides: TapeGuide[] }) {
                 loading="lazy"
                 className="h-auto w-full max-w-xs rounded-xl border border-ink-100 dark:border-ink-700"
               />
-              <figcaption className="mt-1 text-xs text-ink-400 dark:text-ink-500">Image: {g.image.credit}</figcaption>
+              <figcaption className="mt-1 text-xs text-ink-400 dark:text-ink-500">
+                Photo: {g.image.credit}
+              </figcaption>
             </figure>
           )}
           <ol className="mt-3 space-y-2">
@@ -61,16 +74,6 @@ function TapingGuides({ guides }: { guides: TapeGuide[] }) {
               </li>
             ))}
           </ol>
-          {g.link && (
-            <a
-              href={g.link.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-3 inline-flex items-center gap-1.5 rounded-lg bg-brand-500/10 px-3.5 py-2 text-sm font-bold text-brand-600 hover:bg-brand-500/20 dark:text-brand-300"
-            >
-              ▶ {g.link.label} ↗
-            </a>
-          )}
         </div>
       ))}
     </div>
